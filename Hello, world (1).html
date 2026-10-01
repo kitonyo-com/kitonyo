@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hello, world</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0}
+body{overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#241659 0%,#120e3a 60%,#0b0826 100%);
+ font-family:'Fredoka',system-ui,-apple-system,'Segoe UI',sans-serif}
+.b{position:fixed;width:60vmax;height:60vmax;border-radius:50%;filter:blur(70px);opacity:.45;animation:drift 24s ease-in-out infinite alternate}
+.b1{background:radial-gradient(circle,#7a3cff,transparent 65%);left:-20vmax;top:-20vmax}
+.b2{background:radial-gradient(circle,#ff7eb6,transparent 65%);right:-25vmax;bottom:-20vmax;animation-duration:30s}
+.b3{background:radial-gradient(circle,#3fd5cf,transparent 65%);left:20vw;bottom:-38vmax;opacity:.3;animation-duration:36s}
+@keyframes drift{to{transform:translate(12vmax,8vmax) scale(1.15)}}
+canvas{position:fixed;inset:0;width:100%;height:100%;touch-action:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hint{position:fixed;left:0;right:0;bottom:calc(24px + env(safe-area-inset-bottom,0px));margin:0;text-align:center;
+ color:rgba(255,255,255,.6);font-size:15px;font-weight:500;opacity:0;animation:fade 1.5s 4s forwards}
+@keyframes fade{to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.b{animation:none}.hint{animation:none;opacity:1}}
+</style>
+</head>
+<body>
+<div class="b b1"></div><div class="b b2"></div><div class="b b3"></div>
+<h1 class="sr">Hello, world</h1>
+<canvas id="c" aria-hidden="true"></canvas>
+<p class="hint">move your finger or mouse through it</p>
+<script>
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W, H, DPR, P = [], first = true, t0 = performance.now(), last = t0;
+const mouse = { x: -9999, y: -9999 }, R = 90, R2 = R * R;
+
+/* sunset-to-aqua colour ramp: butter, peach, rose, violet, aqua */
+const ramp = [[43,100,80],[22,100,77],[-30,100,75],[-95,100,82],[-184,75,70]];
+function colour(t){
+  const s = Math.min(t, .999) * (ramp.length - 1), i = Math.floor(s), f = s - i;
+  const a = ramp[i], b = ramp[i + 1];
+  const h = a[0] + (b[0] - a[0]) * f, sat = a[1] + (b[1] - a[1]) * f, l = a[2] + (b[2] - a[2]) * f;
+  return `hsla(${(h + 360) % 360},${sat}%,${l}%,.9)`;
+}
+
+function layout(){
+  DPR = Math.min(devicePixelRatio || 1, 2);
+  W = innerWidth; H = innerHeight;
+  cv.width = W * DPR; cv.height = H * DPR;
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+  const lines = W < 640 ? ['Hello,', 'world'] : ['Hello, world'];
+  const off = document.createElement('canvas'); off.width = W; off.height = H;
+  const o = off.getContext('2d');
+  const font = s => `700 ${s}px Fredoka, "Trebuchet MS", system-ui, sans-serif`;
+  o.font = font(200);
+  const widest = Math.max(...lines.map(l => o.measureText(l).width));
+  const fs = Math.min(200 * W * .86 / widest, lines.length === 1 ? H * .4 : H * .2);
+  const lh = fs * 1.08, top = H / 2 - lh * lines.length / 2 + lh / 2;
+  o.font = font(fs); o.textAlign = 'center'; o.textBaseline = 'middle'; o.fillStyle = '#000';
+  lines.forEach((l, i) => o.fillText(l, W / 2, top + i * lh));
+
+  const img = o.getImageData(0, 0, W, H).data;
+  let gap = 3, pts;
+  do {
+    pts = [];
+    for (let y = 0; y < H; y += gap) for (let x = 0; x < W; x += gap)
+      if (img[(y * W + x) * 4 + 3] > 128) pts.push([x, y]);
+    gap++;
+  } while (pts.length > 3000);
+
+  const minX = Math.min(...pts.map(p => p[0])), maxX = Math.max(...pts.map(p => p[0]));
+  P.length = Math.min(P.length, pts.length);
+  pts.forEach((pt, i) => {
+    let p = P[i];
+    if (!p){
+      const a = Math.random() * 6.283, r = Math.max(W, H) * (.25 + Math.random() * .5);
+      p = P[i] = { x: W / 2 + Math.cos(a) * r, y: H / 2 + Math.sin(a) * r, vx: 0, vy: 0, ph: Math.random() * 6.283, r: 1 + Math.random() * 1.3 };
+    }
+    const tt = (pt[0] - minX) / (maxX - minX || 1);
+    p.tx = pt[0]; p.ty = pt[1]; p.col = colour(tt);
+    p.d = first && !reduce ? .2 + tt * 1.6 + Math.random() * .6 : -1;
+    if (reduce){ p.x = p.tx; p.y = p.ty; }
+  });
+  first = false;
+}
+
+function draw(t, dt){
+  ctx.clearRect(0, 0, W, H);
+  ctx.globalCompositeOperation = 'lighter';
+  const damp = Math.pow(.86, dt);
+  for (const p of P){
+    if (!reduce){
+      if (t < p.d){
+        const dx = p.x - W / 2, dy = p.y - H / 2, a = .012 * dt;
+        p.x = W / 2 + dx * Math.cos(a) - dy * Math.sin(a);
+        p.y = H / 2 + dx * Math.sin(a) + dy * Math.cos(a);
+      } else {
+        const tx = p.tx + Math.sin(t * 1.3 + p.ph) * 1.2, ty = p.ty + Math.cos(t * 1.1 + p.ph) * 1.2;
+        p.vx += (tx - p.x) * .045 * dt; p.vy += (ty - p.y) * .045 * dt;
+        const mx = p.x - mouse.x, my = p.y - mouse.y, d2 = mx * mx + my * my;
+        if (d2 < R2){ const d = Math.sqrt(d2) || 1, f = (1 - d / R) * 6 * dt; p.vx += mx / d * f; p.vy += my / d * f; }
+        p.vx *= damp; p.vy *= damp;
+        p.x += p.vx * dt; p.y += p.vy * dt;
+      }
+    }
+    ctx.fillStyle = p.col;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r * (.85 + .3 * Math.sin(t * 2 + p.ph)), 0, 6.283);
+    ctx.fill();
+  }
+}
+
+function frame(now){
+  const t = (now - t0) / 1000, dt = Math.min((now - last) / 16.7, 2);
+  last = now;
+  draw(t, dt);
+  requestAnimationFrame(frame);
+}
+
+function burst(x, y){
+  for (const p of P){
+    const dx = p.x - x, dy = p.y - y, d = Math.sqrt(dx * dx + dy * dy) || 1;
+    const f = Math.max(0, 1 - d / (Math.max(W, H) * .6)) * 16 + Math.random() * 3;
+    p.vx += dx / d * f; p.vy += dy / d * f;
+  }
+}
+
+addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+addEventListener('pointerdown', e => { mouse.x = e.clientX; mouse.y = e.clientY; if (!reduce) burst(e.clientX, e.clientY); });
+['pointerup', 'pointercancel', 'pointerleave'].forEach(t => addEventListener(t, () => { mouse.x = mouse.y = -9999; }));
+
+let rz;
+addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { layout(); if (reduce) draw(0, 1); }, 150); });
+
+function start(){
+  layout();
+  if (reduce){ draw(0, 1); return; }
+  t0 = last = performance.now();
+  requestAnimationFrame(frame);
+}
+Promise.race([document.fonts.load('700 100px Fredoka'), new Promise(r => setTimeout(r, 1500))]).then(start, start);
+</script>
+</body>
+</html>
