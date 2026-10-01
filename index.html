@@ -1,148 +1,628 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Hi Edna, Betty here!</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&amp;display=swap">
-  <style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-html,body{height:100%;margin:0}
-body{overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#ff86c0 0%,#f4509a 55%,#c42a78 100%);
- font-family:'Fredoka',system-ui,-apple-system,'Segoe UI',sans-serif}
-.b{position:fixed;width:60vmax;height:60vmax;border-radius:50%;filter:blur(70px);opacity:.45;animation:drift 24s ease-in-out infinite alternate}
-.b1{background:radial-gradient(circle,#ffc2e0,transparent 65%);left:-20vmax;top:-20vmax}
-.b2{background:radial-gradient(circle,#b0145f,transparent 65%);right:-25vmax;bottom:-20vmax;animation-duration:30s}
-.b3{background:radial-gradient(circle,#ffe3f1,transparent 65%);left:20vw;bottom:-38vmax;opacity:.3;animation-duration:36s}
-@keyframes drift{to{transform:translate(12vmax,8vmax) scale(1.15)}}
-canvas{position:fixed;inset:0;width:100%;height:100%;touch-action:none}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.hint{position:fixed;left:0;right:0;bottom:calc(24px + env(safe-area-inset-bottom,0px));margin:0;text-align:center;
- color:rgba(255,255,255,.92);font-size:15px;font-weight:500;opacity:0;animation:fade 1.5s 4s forwards}
-@keyframes fade{to{opacity:1}}
-@media (prefers-reduced-motion:reduce){.b{animation:none}.hint{animation:none;opacity:1}}
-</style>
- </head>
- <body>
-  <div class="b b1"></div>
-  <div class="b b2"></div>
-  <div class="b b3"></div>
-  <h1 class="sr">Hi Edna!</h1>
-  <canvas id="c" aria-hidden="true"></canvas>
-  <p class="hint">touch it, turn your phone...</p>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Official Scientific Proof: Why You Are 100% Perfect &amp; Why I Love You</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&amp;family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Fira+Code:wght@400;600&amp;display=swap" rel="stylesheet">
   <script>
-const cv = document.getElementById('c'), ctx = cv.getContext('2d');
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-let W, H, DPR, P = [], first = true, t0 = performance.now(), last = t0;
-const mouse = { x: -9999, y: -9999 }, R = 90, R2 = R * R;
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        chocolate: {
+                            800: '#3D2314',
+                            900: '#2A160A',
+                            950: '#1A0C05',
+                        },
+                        gold: {
+                            300: '#FDE047',
+                            400: '#FACC15',
+                            500: '#EAB308',
+                            600: '#CA8A04',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'stamp-bounce': 'stampBounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                        'scan-line': 'scanline 2s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-15px) rotate(3deg)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.6', filter: 'drop-shadow(0 0 15px rgba(244, 63, 94, 0.6))' },
+                            '50%': { opacity: '1', filter: 'drop-shadow(0 0 25px rgba(244, 63, 94, 0.9))' },
+                        },
+                        stampBounce: {
+                            '0%': { opacity: '0', transform: 'scale(3) rotate(-15deg)' },
+                            '100%': { opacity: '1', transform: 'scale(1) rotate(-8deg)' },
+                        },
+                        scanline: {
+                            '0%': { top: '0%' },
+                            '100%': { top: '100%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+  <style>
+        /* Custom scrollbar and glass effects */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1A0C05;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e11d48;
+            border-radius: 4px;
+        }
+        .glass-card {
+            background: rgba(42, 22, 10, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .glass-card-rose {
+            background: rgba(159, 18, 57, 0.25);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+        }
+        .text-gradient-gold {
+            background: linear-[#FDE047, #EAB308, #CA8A04];
+            background: linear-gradient(135deg, #FFF099 0%, #FACC15 50%, #CA8A04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-rose {
+            background: linear-gradient(135deg, #FDA4AF 0%, #FB7185 50%, #E11D48 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+ </head>
+ <body class="bg-gradient-to-br from-chocolate-950 via-slate-950 to-rose-950 text-slate-100 font-sans min-h-screen overflow-x-hidden selection:bg-rose-500 selection:text-white relative">
+  <canvas id="heartCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+  <!-- Main Container -->
+  <div class="relative z-10 max-w-5xl mx-auto px-4 py-8 md:py-12 space-y-16 md:space-y-24">
+   <!-- 1. HERO SECTION -->
+   <header class="text-center space-y-6 pt-6">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card-rose border border-rose-500/40 text-rose-300 text-xs sm:text-sm font-semibold tracking-wider uppercase animate-pulse">
+     <span>🔬 CLASSIFIED SCIENTIFIC DOSSIER</span> <span class="w-2 h-2 rounded-full bg-rose-500"></span> <span>TOP SECRET</span>
+    </div>
+    <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">Official Dossier:
+     <br class="hidden sm:inline">
+     <span class="text-gradient-gold font-serif">The Perfection Protocol</span></h1>
+    <p class="max-w-2xl mx-auto text-lg sm:text-xl text-rose-100/90 font-medium leading-relaxed">Subject: <span class="text-amber-300 font-bold border-b-2 border-amber-400/50 pb-0.5">Black, gorgeous, and strictly 100% perfect</span> — scientifically tested, verified, and peer-reviewed by me.</p>
+    <div class="pt-4 flex justify-center">
+     <a href="#scanner" onclick="startScannerFast()" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 bg-gradient-to-r from-rose-600 to-amber-600 rounded-full shadow-lg shadow-rose-900/50 hover:shadow-rose-600/40 hover:scale-105 active:scale-95 overflow-hidden"> <span class="absolute inset-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span> <span class="relative flex items-center gap-3"> 
+       <svg class="w-6 h-6 animate-spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+       </svg> Start Scientific Scan 
+      </span> </a>
+    </div>
+   </header>
+   <!-- 2. UNMATCHED PERFECTION DETECTOR -->
+   <section id="scanner" class="glass-card rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl relative overflow-hidden border border-amber-500/20">
+    <!-- Subtle accent light -->
+    <div class="absolute -top-24 -right-24 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="flex flex-col md:flex-row gap-8 items-center">
+     <!-- Scanner Visual Box -->
+     <div class="w-full md:w-1/2 flex flex-col items-center text-center space-y-4">
+      <div class="text-xs font-mono text-amber-400 tracking-widest uppercase">LAB EQUIPMENT #404-PERFECT</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white font-serif">Unmatched Perfection Scanner</h2>
+      <!-- Interactive Scan Graphic -->
+      <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl bg-black/60 border-2 border-rose-500/40 p-4 flex flex-col items-center justify-center overflow-hidden shadow-inner group">
+       <div id="scanLine" class="hidden absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-rose-400 to-transparent shadow-[0_0_15px_#f43f5e] z-20 animate-scan-line"></div>
+       <!-- Center Target Icon -->
+       <div id="scannerIcon" class="relative z-10 transition-all duration-500">
+        <svg class="w-20 h-20 text-rose-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+       </div>
+       <div id="scanStatusText" class="text-xs font-mono text-rose-300/80 mt-2 z-10">SYSTEM READY</div>
+       <!-- Badge reveal -->
+       <div id="resultBadge" class="hidden absolute inset-0 bg-gradient-to-br from-rose-950/95 via-chocolate-950/95 to-amber-950/95 z-30 flex flex-col items-center justify-center p-4 text-center animate-stamp-bounce">
+        <span class="text-3xl sm:text-4xl mb-1">👑</span> <span class="text-xs font-mono text-amber-300 uppercase tracking-widest">Final Diagnosis</span>
+        <div class="text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-300 to-amber-200 mt-1">PERFECTION LEVEL: 10,000%</div>
+        <span class="text-[10px] sm:text-xs text-rose-300/90 font-mono mt-1 bg-rose-900/50 px-2 py-0.5 rounded border border-rose-500/30"> (ILLEGAL AMOUNT OF FINE) </span>
+       </div>
+      </div>
+      <!-- Scan Trigger Button -->
+      <button id="scanBtn" onclick="runDiagnosticScan()" class="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white font-bold rounded-xl shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"><span>Initiate Full Body &amp; Soul Scan</span> <span>✨</span></button>
+     </div>
+     <!-- Terminal / Console Log Output -->
+     <div class="w-full md:w-1/2 bg-black/80 rounded-2xl p-4 sm:p-5 border border-rose-500/20 font-mono text-xs sm:text-sm h-64 flex flex-col justify-between shadow-2xl">
+      <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2 text-slate-400">
+       <span class="flex items-center gap-2"> <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span> <span>DIAGNOSTIC_LOG.TXT</span> </span> <span class="text-[10px] text-amber-400/80">CONFIDENTIAL</span>
+      </div>
+      <!-- Dynamic Terminal Lines Container -->
+      <div id="terminalLog" class="space-y-2 overflow-y-auto flex-1 pr-1 text-slate-300 leading-relaxed">
+       <p class="text-slate-500">&gt; Press button to initiate diagnostic analysis...</p>
+      </div>
+      <!-- Progress Bar Container -->
+      <div class="mt-3 pt-2 border-t border-white/10">
+       <div class="flex justify-between text-[11px] mb-1 text-slate-400">
+        <span>SCAN PROGRESS:</span> <span id="scanPercent">0%</span>
+       </div>
+       <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-white/10">
+        <div id="progressBar" class="bg-gradient-to-r from-amber-500 via-rose-500 to-amber-300 h-full w-0 transition-all duration-300"></div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- 3. SCIENTIFIC LOVE METER & HILARIOUS CHARTS -->
+   <section class="space-y-6">
+    <div class="text-center space-y-2">
+     <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-serif">Scientific Love Metrics &amp; Peer-Reviewed Data</h2>
+     <p class="text-slate-300 text-sm sm:text-base">Empirical data collected from thousands of daily interactions with you.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+     <!-- Bar 1: Melanin & Royalty -->
+     <div class="glass-card p-6 rounded-2xl border border-rose-500/20 space-y-3 hover:border-amber-500/40 transition-colors">
+      <div class="flex justify-between items-center">
+       <span class="font-bold text-amber-200 text-sm sm:text-base flex items-center gap-2"> <span>✨</span> Melanin &amp; Goddess Glow </span> <span class="text-xs font-mono font-bold px-2 py-0.5 bg-amber-500/20 text-amber-300 rounded border border-amber-500/30"> OFF THE CHARTS 🔥 </span>
+      </div>
+      <div class="w-full bg-black/50 rounded-full h-4 p-0.5 border border-amber-500/30">
+       <div class="bg-gradient-to-r from-amber-600 via-amber-400 to-amber-200 h-full rounded-full w-[100%] shadow-[0_0_10px_rgba(251,191,36,0.5)]"></div>
+      </div>
+      <p class="text-xs text-slate-300">Result: Pure royal melanated brilliance. Skin like glass, aura like magic.</p>
+     </div>
+     <!-- Bar 2: Heart Rate -->
+     <div class="glass-card p-6 rounded-2xl border border-rose-500/20 space-y-3 hover:border-rose-500/40 transition-colors">
+      <div class="flex justify-between items-center">
+       <span class="font-bold text-rose-200 text-sm sm:text-base flex items-center gap-2"> <span>📈</span> My Heart Rate When You Smile </span> <span class="text-xs font-mono font-bold px-2 py-0.5 bg-rose-500/20 text-rose-300 rounded border border-rose-500/30"> 195 BPM (OUT OF CONTROL) </span>
+      </div>
+      <div class="w-full bg-black/50 rounded-full h-4 p-0.5 border border-rose-500/30">
+       <div class="bg-gradient-to-r from-rose-700 via-rose-500 to-rose-300 h-full rounded-full w-[98%] shadow-[0_0_10px_rgba(244,63,94,0.5)] animate-pulse"></div>
+      </div>
+      <p class="text-xs text-slate-300">Medical Warning: Doctors suggest looking at you directly causes severe butterflies.</p>
+     </div>
+     <!-- Bar 3: Chances of Letting You Go -->
+     <div class="glass-card p-6 rounded-2xl border border-rose-500/20 space-y-3 hover:border-blue-500/40 transition-colors">
+      <div class="flex justify-between items-center">
+       <span class="font-bold text-sky-200 text-sm sm:text-base flex items-center gap-2"> <span>🔒</span> Chances Of Me Ever Letting You Go </span> <span class="text-xs font-mono font-bold px-2 py-0.5 bg-sky-500/20 text-sky-300 rounded border border-sky-500/30"> 0.000% </span>
+      </div>
+      <div class="w-full bg-black/50 rounded-full h-4 p-0.5 border border-sky-500/30">
+       <div class="bg-gradient-to-r from-sky-600 to-indigo-500 h-full rounded-full w-[2%] shadow-[0_0_10px_rgba(56,189,248,0.5)]"></div>
+      </div>
+      <p class="text-xs text-slate-300">Statistical Analysis: You are stuck with me forever. No refunds or exchanges allowed.</p>
+     </div>
+     <!-- Bar 4: Flawlessness -->
+     <div class="glass-card p-6 rounded-2xl border border-rose-500/20 space-y-3 hover:border-purple-500/40 transition-colors">
+      <div class="flex justify-between items-center">
+       <span class="font-bold text-purple-200 text-sm sm:text-base flex items-center gap-2"> <span>♾️</span> Overall Flawlessness &amp; Cuteness </span> <span class="text-xs font-mono font-bold px-2 py-0.5 bg-purple-500/20 text-purple-300 rounded border border-purple-500/30"> INFINITE ♾️ </span>
+      </div>
+      <div class="w-full bg-black/50 rounded-full h-4 p-0.5 border border-purple-500/30">
+       <div class="bg-gradient-to-r from-purple-600 via-pink-500 to-purple-300 h-full rounded-full w-[100%] shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
+      </div>
+      <p class="text-xs text-slate-300">Even when you're mildly annoyed at me, you look like a 10/10 masterpiece.</p>
+     </div>
+    </div>
+   </section>
+   <!-- 4. THE "DO I LOVE YOU?" UNFAIR QUIZ -->
+   <section class="glass-card-rose rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl border border-rose-500/40">
+    <div class="max-w-xl mx-auto space-y-6">
+     <span class="text-xs font-mono text-rose-300 tracking-widest uppercase bg-rose-900/40 px-3 py-1 rounded-full border border-rose-500/30"> MANDATORY DIAGNOSTIC QUIZ </span>
+     <h2 class="text-3xl sm:text-5xl font-black text-white font-serif leading-tight">Crucial Scientific Question:
+      <br>
+      <span class="text-gradient-gold">Do I Love You?</span></h2>
+     <p class="text-slate-200 text-sm sm:text-base">Please select your answer below. (Our scientific algorithm has high confidence in your selection).</p>
+     <!-- Interactive Dodge Buttons Area -->
+     <div id="quizContainer" class="relative min-h-[140px] flex items-center justify-center gap-6 pt-4">
+      <!-- YES BUTTON -->
+      <button id="yesBtn" onclick="handleYesClick()" class="z-10 px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black text-xl rounded-2xl shadow-xl hover:shadow-green-500/40 hover:scale-110 active:scale-95 transition-all duration-200 flex items-center gap-2"><span>YES! ❤️</span></button>
+      <!-- NO BUTTON (RUNS AWAY) -->
+      <button id="noBtn" class="z-20 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-lg rounded-2xl shadow-lg border border-slate-600 transition-all duration-150 absolute md:relative"><span>No 🙅‍♂️</span></button>
+     </div>
+    </div>
+   </section>
+   <!-- 5. RANDOM REASON GENERATOR -->
+   <section class="glass-card rounded-3xl p-6 sm:p-10 border border-amber-500/20 text-center space-y-6">
+    <div class="space-y-2">
+     <span class="text-xs font-mono text-amber-400 tracking-widest uppercase">EMPIRICAL PROOF ENGINE</span>
+     <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-serif">The Undeniable Fact Generator</h2>
+     <p class="text-slate-300 text-sm">Click the button below to retrieve randomized scientific facts about your perfection.</p>
+    </div>
+    <!-- Fact Card Output -->
+    <div class="max-w-2xl mx-auto min-h-[140px] bg-black/40 rounded-2xl p-6 border border-white/10 flex flex-col items-center justify-center relative overflow-hidden shadow-inner transition-all duration-300" id="factDisplayCard">
+     <div class="text-xs font-mono text-amber-400/80 mb-2 uppercase tracking-wider" id="factNumberBadge">FACT #1 OF 8</div>
+     <p id="factText" class="text-lg sm:text-xl font-medium text-rose-100 leading-relaxed italic">"You are stunning, glowing, black beauty perfection and I'm genuinely the luckiest guy on the planet."</p>
+    </div>
+    <button onclick="generateNextFact()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-rose-600 hover:from-amber-400 hover:to-rose-500 text-slate-950 font-black rounded-xl shadow-lg hover:shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 mx-auto">
+     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+     </svg>
+     <span>Click For Another Undeniable Fact</span>
+    </button>
+   </section>
+   <!-- 6. OFFICIAL CERTIFICATE OF ABSOLUTE PERFECTION -->
+   <section class="glass-card rounded-3xl p-6 sm:p-10 md:p-12 border-2 border-amber-500/40 relative shadow-2xl space-y-8">
+    <div class="text-center space-y-2">
+     <span class="text-xs font-mono text-amber-400 tracking-widest uppercase">LEGAL &amp; SCIENTIFIC DOCUMENT</span>
+     <h2 class="text-3xl sm:text-4xl font-black text-white font-serif">Official Certificate of Perfection</h2>
+     <p class="text-slate-300 text-sm">Personalize and seal your official document below.</p>
+    </div>
+    <!-- Printable/Customizable Certificate Box -->
+    <div id="certificate" class="relative bg-gradient-to-b from-[#2d1b0e] via-[#1f1209] to-[#140b05] border-4 border-amber-500/60 rounded-2xl p-6 sm:p-10 shadow-2xl text-center space-y-6 overflow-hidden">
+     <!-- Decorative Corner Accents -->
+     <div class="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-amber-400/80"></div>
+     <div class="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-amber-400/80"></div>
+     <div class="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-amber-400/80"></div>
+     <div class="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-amber-400/80"></div>
+     <div class="space-y-1">
+      <p class="font-mono text-amber-400/90 text-xs uppercase tracking-widest">MINISTRY OF UNMATCHED BEAUTY &amp; AFFECTION</p>
+      <h3 class="font-serif text-2xl sm:text-4xl text-gradient-gold font-extrabold tracking-wide uppercase">Certificate of Absolute Perfection</h3>
+     </div>
+     <p class="text-slate-300 text-xs sm:text-sm italic">This document officially certifies that:</p>
+     <!-- Name Input / Display -->
+     <div class="py-2">
+      <input id="herNameInput" type="text" value="Beatrice Kitonyo" placeholder="Beatrice Kitonyo" oninput="updateCertName()" class="bg-black/60 border-b-2 border-amber-400 text-amber-200 text-2xl sm:text-4xl font-serif text-center font-bold px-4 py-2 focus:outline-none focus:border-rose-400 w-full max-w-md transition-colors placeholder:text-amber-700">
+     </div>
+     <p class="max-w-xl mx-auto text-xs sm:text-base text-slate-200 leading-relaxed">Has been tested under strict laboratory conditions and found to be <strong class="text-amber-300">100% flawless, illegal amounts of fine, melanated perfection</strong>, and endlessly loved beyond measure forever and ever.</p>
+     <!-- Signature & Stamp Section -->
+     <div class="pt-6 flex flex-col sm:flex-row items-center justify-around gap-6 border-t border-amber-500/20">
+      <div class="text-left space-y-1 font-serif">
+       <div class="text-rose-300 font-bold italic text-lg sm:text-xl font-mono">Your Lucky Man ❤️</div>
+       <div class="text-[10px] text-amber-400/70 uppercase tracking-wider font-mono">Certified Chief Loving Officer</div>
+      </div>
+      <!-- Interactive Stamp Placeholder -->
+      <div class="relative w-32 h-32 flex items-center justify-center">
+       <div id="officialStamp" class="hidden absolute inset-0 flex flex-col items-center justify-center border-4 border-amber-400 text-amber-400 rounded-full p-2 transform -rotate-12 bg-amber-950/80 shadow-[0_0_20px_rgba(234,179,8,0.4)] animate-stamp-bounce">
+        <span class="text-[9px] font-mono tracking-widest uppercase font-bold text-rose-300">OFFICIAL SEAL</span> <span class="text-xs font-black font-serif text-center text-amber-200 leading-tight">100% PERFECT</span> <span class="text-[8px] font-mono text-amber-400/90">APPROVED FOR LIFE</span>
+       </div>
+       <span id="stampPromptText" class="text-xs text-slate-500 font-mono italic">Unstamped</span>
+      </div>
+     </div>
+    </div>
+    <!-- Stamp Action Button -->
+    <div class="text-center pt-2">
+     <button onclick="applyOfficialStamp()" class="px-8 py-4 bg-gradient-to-r from-amber-500 via-rose-500 to-amber-600 hover:opacity-95 text-slate-950 font-black text-base sm:text-lg rounded-2xl shadow-xl hover:shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all">📜 Affix Official Stamp of Love</button>
+    </div>
+   </section>
+   <!-- FOOTER -->
+   <footer class="text-center text-xs text-slate-300 font-mono space-y-2 pb-8">
+    <p>Made with 💖, scientific rigor, and endless love for you.</p>
+    <p class="text-amber-400/80">© 2026 The Perfection Protocol Laboratory • All Rights Reserved.</p>
+   </footer>
+  </div>
+  <!-- SUCCESS MODAL FOR YES BUTTON -->
+  <div id="yesModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+   <div class="glass-card-rose rounded-3xl p-8 max-w-md w-full text-center space-y-6 border-2 border-rose-500 shadow-2xl animate-stamp-bounce">
+    <div class="text-6xl animate-bounce">💖👑✨</div>
+    <h3 class="text-3xl font-black text-white font-serif">CORRECT ANSWER!</h3>
+    <p class="text-rose-100 text-base leading-relaxed">Science has confirmed it! You win <strong class="text-amber-300">1,000,000 hugs, 10,000 kisses</strong>, and my heart forever and ever!</p>
+    <button onclick="closeModal()" class="w-full py-3.5 bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-400 hover:to-amber-400 text-slate-950 font-black rounded-xl shadow-lg transition-all">Claim Reward 😘</button>
+   </div>
+  </div>
+  <script>
+        // Web Audio Synthesizer for sound effects without external dependencies
+        let audioCtx = null;
 
-/* soft pink colour ramp: white, blush, rose, orchid */
-const ramp = [[345,100,97],[330,100,92],[350,100,90],[315,100,94],[340,100,98]];
-function colour(t){
-  const s = Math.min(t, .999) * (ramp.length - 1), i = Math.floor(s), f = s - i;
-  const a = ramp[i], b = ramp[i + 1];
-  const h = a[0] + (b[0] - a[0]) * f, sat = a[1] + (b[1] - a[1]) * f, l = a[2] + (b[2] - a[2]) * f;
-  return `hsla(${(h + 360) % 360},${sat}%,${l}%,.9)`;
-}
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
 
-function layout(){
-  DPR = Math.min(devicePixelRatio || 1, 2);
-  W = innerWidth; H = innerHeight;
-  cv.width = W * DPR; cv.height = H * DPR;
-  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        // Sound helper functions
+        function playBeep(freq = 600, duration = 0.08, type = 'sine') {
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + duration);
+            } catch (e) {
+                // Audio fallback silence
+            }
+        }
 
-  const lines = W < 640 ? ['Hi', 'Edna!'] : ['How are you?'];
-  const off = document.createElement('canvas'); off.width = W; off.height = H;
-  const o = off.getContext('2d');
-  const font = s => `700 ${s}px Fredoka, "Trebuchet MS", system-ui, sans-serif`;
-  o.font = font(200);
-  const widest = Math.max(...lines.map(l => o.measureText(l).width));
-  const fs = Math.min(200 * W * .86 / widest, lines.length === 1 ? H * .4 : H * .2);
-  const lh = fs * 1.08, top = H / 2 - lh * lines.length / 2 + lh / 2;
-  o.font = font(fs); o.textAlign = 'center'; o.textBaseline = 'middle'; o.fillStyle = '#000';
-  lines.forEach((l, i) => o.fillText(l, W / 2, top + i * lh));
+        function playStampSound() {
+            try {
+                const ctx = getAudioContext();
+                // Low thud
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(150, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.2);
+                gain.gain.setValueAtTime(0.5, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.2);
+            } catch (e) {}
+        }
 
-  const img = o.getImageData(0, 0, W, H).data;
-  let gap = 3, pts;
-  do {
-    pts = [];
-    for (let y = 0; y < H; y += gap) for (let x = 0; x < W; x += gap)
-      if (img[(y * W + x) * 4 + 3] > 128) pts.push([x, y]);
-    gap++;
-  } while (pts.length > 3000);
+        function playCheerSound() {
+            try {
+                const ctx = getAudioContext();
+                const notes = [261.63, 329.63, 392.00, 523.25, 659.25];
+                notes.forEach((freq, idx) => {
+                    setTimeout(() => {
+                        playBeep(freq, 0.2, 'triangle');
+                    }, idx * 60);
+                });
+            } catch (e) {}
+        }
 
-  const minX = Math.min(...pts.map(p => p[0])), maxX = Math.max(...pts.map(p => p[0]));
-  P.length = Math.min(P.length, pts.length);
-  pts.forEach((pt, i) => {
-    let p = P[i];
-    if (!p){
-      const a = Math.random() * 6.283, r = Math.max(W, H) * (.25 + Math.random() * .5);
-      p = P[i] = { x: W / 2 + Math.cos(a) * r, y: H / 2 + Math.sin(a) * r, vx: 0, vy: 0, ph: Math.random() * 6.283, r: 1 + Math.random() * 1.3 };
-    }
-    const tt = (pt[0] - minX) / (maxX - minX || 1);
-    p.tx = pt[0]; p.ty = pt[1]; p.col = colour(tt);
-    p.d = first && !reduce ? .2 + tt * 1.6 + Math.random() * .6 : -1;
-    if (reduce){ p.x = p.tx; p.y = p.ty; }
-  });
-  first = false;
-}
+        // Floating Heart Particles Canvas
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+        let hearts = [];
 
-function draw(t, dt){
-  ctx.clearRect(0, 0, W, H);
-  ctx.globalCompositeOperation = 'source-over';
-  const damp = Math.pow(.86, dt);
-  for (const p of P){
-    if (!reduce){
-      if (t < p.d){
-        const dx = p.x - W / 2, dy = p.y - H / 2, a = .012 * dt;
-        p.x = W / 2 + dx * Math.cos(a) - dy * Math.sin(a);
-        p.y = H / 2 + dx * Math.sin(a) + dy * Math.cos(a);
-      } else {
-        const tx = p.tx + Math.sin(t * 1.3 + p.ph) * 1.2, ty = p.ty + Math.cos(t * 1.1 + p.ph) * 1.2;
-        p.vx += (tx - p.x) * .045 * dt; p.vy += (ty - p.y) * .045 * dt;
-        const mx = p.x - mouse.x, my = p.y - mouse.y, d2 = mx * mx + my * my;
-        if (d2 < R2){ const d = Math.sqrt(d2) || 1, f = (1 - d / R) * 6 * dt; p.vx += mx / d * f; p.vy += my / d * f; }
-        p.vx *= damp; p.vy *= damp;
-        p.x += p.vx * dt; p.y += p.vy * dt;
-      }
-    }
-    ctx.fillStyle = p.col;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r * (.85 + .3 * Math.sin(t * 2 + p.ph)), 0, 6.283);
-    ctx.fill();
-  }
-}
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-function frame(now){
-  const t = (now - t0) / 1000, dt = Math.min((now - last) / 16.7, 2);
-  last = now;
-  draw(t, dt);
-  requestAnimationFrame(frame);
-}
+        class Heart {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 15 + 10;
+                this.speedY = Math.random() * 1.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.color = Math.random() > 0.4 ? '#f43f5e' : '#facc15';
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                if (this.y < -20) this.reset();
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                const topCurveHeight = this.size * 0.3;
+                ctx.moveTo(this.x, this.y + topCurveHeight);
+                ctx.bezierCurveTo(this.x, this.y, this.x - this.size / 2, this.y, this.x - this.size / 2, this.y + topCurveHeight);
+                ctx.bezierCurveTo(this.x - this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x, this.y + this.size, this.x, this.y + this.size);
+                ctx.bezierCurveTo(this.x, this.y + (this.size + topCurveHeight) / 2, this.x + this.size / 2, this.y + topCurveHeight, this.x + this.size / 2, this.y + topCurveHeight);
+                ctx.bezierCurveTo(this.x + this.size / 2, this.y, this.x, this.y, this.x, this.y + topCurveHeight);
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+        }
 
-function burst(x, y){
-  for (const p of P){
-    const dx = p.x - x, dy = p.y - y, d = Math.sqrt(dx * dx + dy * dy) || 1;
-    const f = Math.max(0, 1 - d / (Math.max(W, H) * .6)) * 16 + Math.random() * 3;
-    p.vx += dx / d * f; p.vy += dy / d * f;
-  }
-}
+        for (let i = 0; i < 25; i++) {
+            hearts.push(new Heart());
+        }
 
-addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-addEventListener('pointerdown', e => { mouse.x = e.clientX; mouse.y = e.clientY; if (!reduce) burst(e.clientX, e.clientY); });
-['pointerup', 'pointercancel', 'pointerleave'].forEach(t => addEventListener(t, () => { mouse.x = mouse.y = -9999; }));
+        function animateHearts() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hearts.forEach(heart => {
+                heart.update();
+                heart.draw();
+            });
+            requestAnimationFrame(animateHearts);
+        }
+        animateHearts();
 
-let rz;
-addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { layout(); if (reduce) draw(0, 1); }, 150); });
+        let isScanning = false;
+        
+        function startScannerFast() {
+            if (!isScanning) {
+                runDiagnosticScan();
+            }
+        }
 
-function start(){
-  layout();
-  if (reduce){ draw(0, 1); return; }
-  t0 = last = performance.now();
-  requestAnimationFrame(frame);
-}
-Promise.race([document.fonts.load('700 100px Fredoka'), new Promise(r => setTimeout(r, 1500))]).then(start, start);
-</script>
+        function runDiagnosticScan() {
+            if (isScanning) return;
+            isScanning = true;
+
+            const logContainer = document.getElementById('terminalLog');
+            const scanBtn = document.getElementById('scanBtn');
+            const progressBar = document.getElementById('progressBar');
+            const scanPercent = document.getElementById('scanPercent');
+            const resultBadge = document.getElementById('resultBadge');
+            const scanLine = document.getElementById('scanLine');
+            const scanStatusText = document.getElementById('scanStatusText');
+
+            // Reset state
+            logContainer.innerHTML = '';
+            resultBadge.classList.add('hidden');
+            scanLine.classList.remove('hidden');
+            scanStatusText.innerText = "SCANNING IN PROGRESS...";
+            scanBtn.disabled = true;
+            scanBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            const diagnosticSteps = [
+                { percent: 15, text: "> Initializing quantum beauty spectrum analyzer...", sound: 400 },
+                { percent: 35, text: "> Scanning melanin level... Result: PURE ROYALTY ✨👑", sound: 550 },
+                { percent: 55, text: "> Checking for bad angles... Result: 0 found (Literally zero).", sound: 700 },
+                { percent: 75, text: "> Analyzing smile lethality... Result: Dangerously cute.", sound: 850 },
+                { percent: 90, text: "> Measuring perfection score...", sound: 1000 },
+                { percent: 100, text: "🚨 ERROR: Scale broken! Limit exceeded by 10,000%!", sound: 1200 }
+            ];
+
+            let stepIndex = 0;
+
+            const interval = setInterval(() => {
+                if (stepIndex < diagnosticSteps.length) {
+                    const step = diagnosticSteps[stepIndex];
+                    progressBar.style.width = step.percent + '%';
+                    scanPercent.innerText = step.percent + '%';
+
+                    const p = document.createElement('p');
+                    p.className = step.percent === 100 ? 'text-amber-400 font-bold' : 'text-slate-200';
+                    p.innerText = step.text;
+                    logContainer.appendChild(p);
+                    logContainer.scrollTop = logContainer.scrollHeight;
+
+                    playBeep(step.sound, 0.1);
+                    stepIndex++;
+                } else {
+                    clearInterval(interval);
+                    scanLine.classList.add('hidden');
+                    scanStatusText.innerText = "ANALYSIS COMPLETE";
+                    resultBadge.classList.remove('hidden');
+                    playCheerSound();
+                    
+                    // Trigger minor confetti burst
+                    confetti({
+                        particleCount: 50,
+                        spread: 60,
+                        origin: { y: 0.6 }
+                    });
+
+                    scanBtn.disabled = false;
+                    scanBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    isScanning = false;
+                }
+            }, 750);
+        }
+
+        const noBtn = document.getElementById('noBtn');
+        const quizContainer = document.getElementById('quizContainer');
+
+        function moveNoButton() {
+            playBeep(300, 0.05);
+            const containerRect = quizContainer.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            // Calculate max available bounds inside or around the container
+            const maxX = Math.min(window.innerWidth - btnRect.width - 20, containerRect.width - btnRect.width + 100);
+            const maxY = 120; 
+
+            const randomX = (Math.random() - 0.5) * maxX;
+            const randomY = (Math.random() - 0.5) * maxY;
+
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        // Dodging listeners for hover and touch
+        noBtn.addEventListener('mouseenter', moveNoButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
+
+        function handleYesClick() {
+            playCheerSound();
+            document.getElementById('yesModal').classList.remove('hidden');
+
+            // Mega celebration confetti
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#f43f5e', '#facc15', '#ffffff']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#f43f5e', '#facc15', '#ffffff']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+
+        function closeModal() {
+            document.getElementById('yesModal').classList.add('hidden');
+        }
+
+        const facts = [
+            "Fact #1: You are stunning, glowing, black beauty perfection and I'm genuinely the luckiest guy alive.",
+            "Fact #2: Science tried to find a single flaw in you and the laboratory computer overheated.",
+            "Fact #3: I love you more than sleep, pizza, video games, and breathing combined.",
+            "Fact #4: You look like a whole 10/10 masterpiece even when you're mildly annoyed at me.",
+            "Fact #5: Your melanin was crafted by pure royal magic. Absolutely zero notes.",
+            "Fact #6: Side effects of looking at you include: sudden heart racing, goofy smiling, and uncontrollable affection.",
+            "Fact #7: Official scientific diagnosis: I am 100% hopelessly in love with you forever.",
+            "Fact #8: You are my favorite notification, my favorite person, and my favorite view."
+        ];
+
+        let currentFactIndex = 0;
+
+        function generateNextFact() {
+            playBeep(700, 0.08);
+            currentFactIndex = (currentFactIndex + 1) % facts.length;
+
+            const factDisplayCard = document.getElementById('factDisplayCard');
+            const factText = document.getElementById('factText');
+            const factNumberBadge = document.getElementById('factNumberBadge');
+
+            factDisplayCard.classList.add('scale-95', 'opacity-50');
+
+            setTimeout(() => {
+                factNumberBadge.innerText = `FACT #${currentFactIndex + 1} OF ${facts.length}`;
+                factText.innerText = `"${facts[currentFactIndex]}"`;
+                factDisplayCard.classList.remove('scale-95', 'opacity-50');
+            }, 150);
+        }
+
+        function updateCertName() {
+            // Handled dynamically via standard value binding
+        }
+
+        function applyOfficialStamp() {
+            playStampSound();
+            const stamp = document.getElementById('officialStamp');
+            const prompt = document.getElementById('stampPromptText');
+
+            prompt.classList.add('hidden');
+            stamp.classList.remove('hidden');
+
+            confetti({
+                particleCount: 40,
+                spread: 50,
+                origin: { y: 0.8 },
+                colors: ['#eab308', '#f43f5e']
+            });
+        }
+    </script>
  </body>
 </html>
