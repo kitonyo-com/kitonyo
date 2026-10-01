@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -53,7 +52,7 @@ function layout(){
   cv.width = W * DPR; cv.height = H * DPR;
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
-  const lines = W < 640 ? ['hi', 'roomie'] : ['hi roomie'];
+  const lines = W < 640 ? ['hi', 'roomie'] : ['Hi Edna'];
   const off = document.createElement('canvas'); off.width = W; off.height = H;
   const o = off.getContext('2d');
   const font = s => `700 ${s}px Fredoka, "Trebuchet MS", system-ui, sans-serif`;
