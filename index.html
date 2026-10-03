@@ -1,628 +1,862 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
- <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Official Scientific Proof: Why You Are 100% Perfect &amp; Why I Love You</title>
-  <!-- Tailwind CSS -->
+  <title>HI MOSES! - Ultimate Animated Greeting</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Canvas Confetti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&amp;family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Fira+Code:wght@400;600&amp;display=swap" rel="stylesheet">
-  <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        serif: ['Cinzel', 'serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    },
-                    colors: {
-                        chocolate: {
-                            800: '#3D2314',
-                            900: '#2A160A',
-                            950: '#1A0C05',
-                        },
-                        gold: {
-                            300: '#FDE047',
-                            400: '#FACC15',
-                            500: '#EAB308',
-                            600: '#CA8A04',
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
-                        'stamp-bounce': 'stampBounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
-                        'scan-line': 'scanline 2s linear infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-15px) rotate(3deg)' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { opacity: '0.6', filter: 'drop-shadow(0 0 15px rgba(244, 63, 94, 0.6))' },
-                            '50%': { opacity: '1', filter: 'drop-shadow(0 0 25px rgba(244, 63, 94, 0.9))' },
-                        },
-                        stampBounce: {
-                            '0%': { opacity: '0', transform: 'scale(3) rotate(-15deg)' },
-                            '100%': { opacity: '1', transform: 'scale(1) rotate(-8deg)' },
-                        },
-                        scanline: {
-                            '0%': { top: '0%' },
-                            '100%': { top: '100%' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-        /* Custom scrollbar and glass effects */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1A0C05;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #e11d48;
-            border-radius: 4px;
-        }
-        .glass-card {
-            background: rgba(42, 22, 10, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-        }
-        .glass-card-rose {
-            background: rgba(159, 18, 57, 0.25);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(244, 63, 94, 0.3);
-        }
-        .text-gradient-gold {
-            background: linear-[#FDE047, #EAB308, #CA8A04];
-            background: linear-gradient(135deg, #FFF099 0%, #FACC15 50%, #CA8A04 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .text-gradient-rose {
-            background: linear-gradient(135deg, #FDA4AF 0%, #FB7185 50%, #E11D48 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
- </head>
- <body class="bg-gradient-to-br from-chocolate-950 via-slate-950 to-rose-950 text-slate-100 font-sans min-h-screen overflow-x-hidden selection:bg-rose-500 selection:text-white relative">
-  <canvas id="heartCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
-  <!-- Main Container -->
-  <div class="relative z-10 max-w-5xl mx-auto px-4 py-8 md:py-12 space-y-16 md:space-y-24">
-   <!-- 1. HERO SECTION -->
-   <header class="text-center space-y-6 pt-6">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card-rose border border-rose-500/40 text-rose-300 text-xs sm:text-sm font-semibold tracking-wider uppercase animate-pulse">
-     <span>🔬 CLASSIFIED SCIENTIFIC DOSSIER</span> <span class="w-2 h-2 rounded-full bg-rose-500"></span> <span>TOP SECRET</span>
+    body {
+      font-family: 'Fredoka', cursive, sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+      overflow-x: hidden;
+    }
+
+    .font-bungee {
+      font-family: 'Bungee', cursive, sans-serif;
+    }
+
+    /* Rainbow Gradient Animated Text */
+    .rainbow-text {
+      background: linear-gradient(
+        90deg, 
+        #ff2a6d, #ffb703, #06d6a0, #118ab2, #9d4edd, #ff2a6d
+      );
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowMove 4s ease infinite;
+      filter: drop-shadow(0px 8px 0px rgba(0,0,0,0.2));
+    }
+
+    @keyframes rainbowMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Squash and Stretch Physics Effect */
+    .letter-bubble {
+      display: inline-block;
+      transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+    
+    .letter-bubble:hover {
+      animation: jelly 0.6s ease;
+    }
+
+    @keyframes jelly {
+      0% { transform: scale(1, 1); }
+      30% { transform: scale(1.35, 0.75); }
+      40% { transform: scale(0.75, 1.3); }
+      50% { transform: scale(1.15, 0.85); }
+      65% { transform: scale(0.95, 1.05); }
+      75% { transform: scale(1.05, 0.95); }
+      100% { transform: scale(1, 1); }
+    }
+
+    /* Mascot Wobble Dance */
+    @keyframes mascotDance {
+      0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+      25% { transform: translateY(-12px) rotate(-8deg) scale(1.05, 0.95); }
+      50% { transform: translateY(0) rotate(0deg) scale(0.95, 1.05); }
+      75% { transform: translateY(-12px) rotate(8deg) scale(1.05, 0.95); }
+    }
+
+    .dancing-mascot {
+      animation: mascotDance 1.8s infinite ease-in-out;
+      transform-origin: bottom center;
+    }
+
+    .dancing-mascot:hover {
+      animation-duration: 0.6s;
+    }
+
+    /* Silly Mode Background Pulsing Strobe */
+    @keyframes discoBackground {
+      0% { background-color: #ff007f; }
+      20% { background-color: #7928ca; }
+      40% { background-color: #0070f3; }
+      60% { background-color: #00df72; }
+      80% { background-color: #f5a623; }
+      100% { background-color: #ff007f; }
+    }
+
+    .silly-disco-bg {
+      animation: discoBackground 2s infinite linear !important;
+    }
+
+    /* Floating Emoji Elements */
+    @keyframes floatUp {
+      0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+    }
+
+    .floating-emoji {
+      position: fixed;
+      pointer-events: none;
+      z-index: 15;
+      animation: floatUp 6s linear forwards;
+    }
+
+    /* Red Sea Parting Animations */
+    .sea-wall {
+      transition: transform 1.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .sea-parted-left {
+      transform: translateX(-110%);
+    }
+
+    .sea-parted-right {
+      transform: translateX(110%);
+    }
+
+    /* Custom Button Pulse */
+    .btn-bounce {
+      transition: all 0.2s ease;
+      box-shadow: 0 8px 0 rgba(0,0,0,0.15);
+    }
+    .btn-bounce:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 0 rgba(0,0,0,0.2);
+    }
+    .btn-bounce:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ff70a6;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body id="mainBody" class="min-h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-300 text-slate-800 flex flex-col items-center justify-between p-4 relative overflow-x-hidden transition-colors duration-700">
+
+  <!-- Particle & Confetti Canvas Overlay -->
+  <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-30"></canvas>
+
+  <!-- Disco Lights Top Bar overlay for Silly Mode -->
+  <div id="discoBar" class="fixed top-0 left-0 w-full h-4 z-40 hidden flex">
+    <div class="h-full flex-1 bg-red-500 animate-pulse"></div>
+    <div class="h-full flex-1 bg-yellow-400 animate-pulse delay-75"></div>
+    <div class="h-full flex-1 bg-green-400 animate-pulse delay-150"></div>
+    <div class="h-full flex-1 bg-blue-500 animate-pulse delay-200"></div>
+    <div class="h-full flex-1 bg-purple-500 animate-pulse delay-300"></div>
+  </div>
+
+  <!-- Header Badge -->
+  <header class="w-full max-w-4xl flex justify-between items-center z-20 py-2">
+    <div class="flex items-center space-x-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-md border-2 border-pink-300">
+      <span class="text-xl">🎉</span>
+      <span class="font-bold text-pink-600 text-sm md:text-base">Special VIP Greeting</span>
     </div>
-    <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">Official Dossier:
-     <br class="hidden sm:inline">
-     <span class="text-gradient-gold font-serif">The Perfection Protocol</span></h1>
-    <p class="max-w-2xl mx-auto text-lg sm:text-xl text-rose-100/90 font-medium leading-relaxed">Subject: <span class="text-amber-300 font-bold border-b-2 border-amber-400/50 pb-0.5">Black, gorgeous, and strictly 100% perfect</span> — scientifically tested, verified, and peer-reviewed by me.</p>
-    <div class="pt-4 flex justify-center">
-     <a href="#scanner" onclick="startScannerFast()" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 bg-gradient-to-r from-rose-600 to-amber-600 rounded-full shadow-lg shadow-rose-900/50 hover:shadow-rose-600/40 hover:scale-105 active:scale-95 overflow-hidden"> <span class="absolute inset-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span> <span class="relative flex items-center gap-3"> 
-       <svg class="w-6 h-6 animate-spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-       </svg> Start Scientific Scan 
-      </span> </a>
-    </div>
-   </header>
-   <!-- 2. UNMATCHED PERFECTION DETECTOR -->
-   <section id="scanner" class="glass-card rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl relative overflow-hidden border border-amber-500/20">
-    <!-- Subtle accent light -->
-    <div class="absolute -top-24 -right-24 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="flex flex-col md:flex-row gap-8 items-center">
-     <!-- Scanner Visual Box -->
-     <div class="w-full md:w-1/2 flex flex-col items-center text-center space-y-4">
-      <div class="text-xs font-mono text-amber-400 tracking-widest uppercase">LAB EQUIPMENT #404-PERFECT</div>
-      <h2 class="text-2xl sm:text-3xl font-bold text-white font-serif">Unmatched Perfection Scanner</h2>
-      <!-- Interactive Scan Graphic -->
-      <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl bg-black/60 border-2 border-rose-500/40 p-4 flex flex-col items-center justify-center overflow-hidden shadow-inner group">
-       <div id="scanLine" class="hidden absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-rose-400 to-transparent shadow-[0_0_15px_#f43f5e] z-20 animate-scan-line"></div>
-       <!-- Center Target Icon -->
-       <div id="scannerIcon" class="relative z-10 transition-all duration-500">
-        <svg class="w-20 h-20 text-rose-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
-       </div>
-       <div id="scanStatusText" class="text-xs font-mono text-rose-300/80 mt-2 z-10">SYSTEM READY</div>
-       <!-- Badge reveal -->
-       <div id="resultBadge" class="hidden absolute inset-0 bg-gradient-to-br from-rose-950/95 via-chocolate-950/95 to-amber-950/95 z-30 flex flex-col items-center justify-center p-4 text-center animate-stamp-bounce">
-        <span class="text-3xl sm:text-4xl mb-1">👑</span> <span class="text-xs font-mono text-amber-300 uppercase tracking-widest">Final Diagnosis</span>
-        <div class="text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-300 to-amber-200 mt-1">PERFECTION LEVEL: 10,000%</div>
-        <span class="text-[10px] sm:text-xs text-rose-300/90 font-mono mt-1 bg-rose-900/50 px-2 py-0.5 rounded border border-rose-500/30"> (ILLEGAL AMOUNT OF FINE) </span>
-       </div>
-      </div>
-      <!-- Scan Trigger Button -->
-      <button id="scanBtn" onclick="runDiagnosticScan()" class="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white font-bold rounded-xl shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"><span>Initiate Full Body &amp; Soul Scan</span> <span>✨</span></button>
-     </div>
-     <!-- Terminal / Console Log Output -->
-     <div class="w-full md:w-1/2 bg-black/80 rounded-2xl p-4 sm:p-5 border border-rose-500/20 font-mono text-xs sm:text-sm h-64 flex flex-col justify-between shadow-2xl">
-      <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2 text-slate-400">
-       <span class="flex items-center gap-2"> <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span> <span>DIAGNOSTIC_LOG.TXT</span> </span> <span class="text-[10px] text-amber-400/80">CONFIDENTIAL</span>
-      </div>
-      <!-- Dynamic Terminal Lines Container -->
-      <div id="terminalLog" class="space-y-2 overflow-y-auto flex-1 pr-1 text-slate-300 leading-relaxed">
-       <p class="text-slate-500">&gt; Press button to initiate diagnostic analysis...</p>
-      </div>
-      <!-- Progress Bar Container -->
-      <div class="mt-3 pt-2 border-t border-white/10">
-       <div class="flex justify-between text-[11px] mb-1 text-slate-400">
-        <span>SCAN PROGRESS:</span> <span id="scanPercent">0%</span>
-       </div>
-       <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-white/10">
-        <div id="progressBar" class="bg-gradient-to-r from-amber-500 via-rose-500 to-amber-300 h-full w-0 transition-all duration-300"></div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-   <!-- 3. SCIENTIFIC LOVE METER & HILARIOUS CHARTS -->
-   <section class="space-y-6">
-    <div class="text-center space-y-2">
-     <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-serif">Scientific Love Metrics &amp; Peer-Reviewed Data</h2>
-     <p class="text-slate-300 text-sm sm:text-base">Empirical data collected from thousands of daily interactions with you.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-     <!-- Bar 1: Melanin & Royalty -->
-     <div class="glass-card p-6 rounded-2xl border border-rose-500/20 space-y-3 hover:border-amber-500/40 transition-colors">
-      <div class="flex justify-between items-center">
-       <span class="font-bold text-amber-200 text-sm sm:text-base flex items-center gap-2"> <span>✨</span> Melanin &amp; Goddess Glow </span> <span class="text-xs font-mono font-bold px-2 py-0.5 bg-amber-500/20 text-amber-300 rounded border border-amber-500/30"> OFF THE CHARTS 🔥 </span>
-      </div>
-      <div class="w-full bg-black/50 rounded-full h-4 p-0.5 border border-amber-500/30">
-       <div class="bg-gradient-to-r from-amber-600 via-amber-400 to-amber-200 h-full rounded-full w-[100%] shadow-[0_0_10px_rgba(251,191,36,0.5)]"></div>
-      </div>
-      <p class="text-xs text-slate-300">Result: Pure royal melanated brilliance. Skin like glass, aura like magic.</p>
-     </div>
-     <!-- Bar 2: Heart Rate -->
-     <div class="glass-card p-6 rounded-2xl border border-rose-500/20 space-y-3 hover:border-rose-500/40 transition-colors">
-      <div class="flex justify-between items-center">
-       <span class="font-bold text-rose-200 text-sm sm:text-base flex items-center gap-2"> <span>📈</span> My Heart Rate When You Smile </span> <span class="text-xs font-mono font-bold px-2 py-0.5 bg-rose-500/20 text-rose-300 rounded border border-rose-500/30"> 195 BPM (OUT OF CONTROL) </span>
-      </div>
-      <div class="w-full bg-black/50 rounded-full h-4 p-0.5 border border-rose-500/30">
-       <div class="bg-gradient-to-r from-rose-700 via-rose-500 to-rose-300 h-full rounded-full w-[98%] shadow-[0_0_10px_rgba(244,63,94,0.5)] animate-pulse"></div>
-      </div>
-      <p class="text-xs text-slate-300">Medical Warning: Doctors suggest looking at you directly causes severe butterflies.</p>
-     </div>
-     <!-- Bar 3: Chances of Letting You Go -->
-     <div class="glass-card p-6 rounded-2xl border border-rose-500/20 space-y-3 hover:border-blue-500/40 transition-colors">
-      <div class="flex justify-between items-center">
-       <span class="font-bold text-sky-200 text-sm sm:text-base flex items-center gap-2"> <span>🔒</span> Chances Of Me Ever Letting You Go </span> <span class="text-xs font-mono font-bold px-2 py-0.5 bg-sky-500/20 text-sky-300 rounded border border-sky-500/30"> 0.000% </span>
-      </div>
-      <div class="w-full bg-black/50 rounded-full h-4 p-0.5 border border-sky-500/30">
-       <div class="bg-gradient-to-r from-sky-600 to-indigo-500 h-full rounded-full w-[2%] shadow-[0_0_10px_rgba(56,189,248,0.5)]"></div>
-      </div>
-      <p class="text-xs text-slate-300">Statistical Analysis: You are stuck with me forever. No refunds or exchanges allowed.</p>
-     </div>
-     <!-- Bar 4: Flawlessness -->
-     <div class="glass-card p-6 rounded-2xl border border-rose-500/20 space-y-3 hover:border-purple-500/40 transition-colors">
-      <div class="flex justify-between items-center">
-       <span class="font-bold text-purple-200 text-sm sm:text-base flex items-center gap-2"> <span>♾️</span> Overall Flawlessness &amp; Cuteness </span> <span class="text-xs font-mono font-bold px-2 py-0.5 bg-purple-500/20 text-purple-300 rounded border border-purple-500/30"> INFINITE ♾️ </span>
-      </div>
-      <div class="w-full bg-black/50 rounded-full h-4 p-0.5 border border-purple-500/30">
-       <div class="bg-gradient-to-r from-purple-600 via-pink-500 to-purple-300 h-full rounded-full w-[100%] shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
-      </div>
-      <p class="text-xs text-slate-300">Even when you're mildly annoyed at me, you look like a 10/10 masterpiece.</p>
-     </div>
-    </div>
-   </section>
-   <!-- 4. THE "DO I LOVE YOU?" UNFAIR QUIZ -->
-   <section class="glass-card-rose rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl border border-rose-500/40">
-    <div class="max-w-xl mx-auto space-y-6">
-     <span class="text-xs font-mono text-rose-300 tracking-widest uppercase bg-rose-900/40 px-3 py-1 rounded-full border border-rose-500/30"> MANDATORY DIAGNOSTIC QUIZ </span>
-     <h2 class="text-3xl sm:text-5xl font-black text-white font-serif leading-tight">Crucial Scientific Question:
-      <br>
-      <span class="text-gradient-gold">Do I Love You?</span></h2>
-     <p class="text-slate-200 text-sm sm:text-base">Please select your answer below. (Our scientific algorithm has high confidence in your selection).</p>
-     <!-- Interactive Dodge Buttons Area -->
-     <div id="quizContainer" class="relative min-h-[140px] flex items-center justify-center gap-6 pt-4">
-      <!-- YES BUTTON -->
-      <button id="yesBtn" onclick="handleYesClick()" class="z-10 px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black text-xl rounded-2xl shadow-xl hover:shadow-green-500/40 hover:scale-110 active:scale-95 transition-all duration-200 flex items-center gap-2"><span>YES! ❤️</span></button>
-      <!-- NO BUTTON (RUNS AWAY) -->
-      <button id="noBtn" class="z-20 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-lg rounded-2xl shadow-lg border border-slate-600 transition-all duration-150 absolute md:relative"><span>No 🙅‍♂️</span></button>
-     </div>
-    </div>
-   </section>
-   <!-- 5. RANDOM REASON GENERATOR -->
-   <section class="glass-card rounded-3xl p-6 sm:p-10 border border-amber-500/20 text-center space-y-6">
-    <div class="space-y-2">
-     <span class="text-xs font-mono text-amber-400 tracking-widest uppercase">EMPIRICAL PROOF ENGINE</span>
-     <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-serif">The Undeniable Fact Generator</h2>
-     <p class="text-slate-300 text-sm">Click the button below to retrieve randomized scientific facts about your perfection.</p>
-    </div>
-    <!-- Fact Card Output -->
-    <div class="max-w-2xl mx-auto min-h-[140px] bg-black/40 rounded-2xl p-6 border border-white/10 flex flex-col items-center justify-center relative overflow-hidden shadow-inner transition-all duration-300" id="factDisplayCard">
-     <div class="text-xs font-mono text-amber-400/80 mb-2 uppercase tracking-wider" id="factNumberBadge">FACT #1 OF 8</div>
-     <p id="factText" class="text-lg sm:text-xl font-medium text-rose-100 leading-relaxed italic">"You are stunning, glowing, black beauty perfection and I'm genuinely the luckiest guy on the planet."</p>
-    </div>
-    <button onclick="generateNextFact()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-rose-600 hover:from-amber-400 hover:to-rose-500 text-slate-950 font-black rounded-xl shadow-lg hover:shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 mx-auto">
-     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-     </svg>
-     <span>Click For Another Undeniable Fact</span>
+    <button id="soundToggle" class="bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-md border-2 border-purple-300 flex items-center space-x-2 hover:bg-white transition text-sm font-bold">
+      <span id="soundIcon">🔊</span>
+      <span id="soundText">SFX: ON</span>
     </button>
-   </section>
-   <!-- 6. OFFICIAL CERTIFICATE OF ABSOLUTE PERFECTION -->
-   <section class="glass-card rounded-3xl p-6 sm:p-10 md:p-12 border-2 border-amber-500/40 relative shadow-2xl space-y-8">
-    <div class="text-center space-y-2">
-     <span class="text-xs font-mono text-amber-400 tracking-widest uppercase">LEGAL &amp; SCIENTIFIC DOCUMENT</span>
-     <h2 class="text-3xl sm:text-4xl font-black text-white font-serif">Official Certificate of Perfection</h2>
-     <p class="text-slate-300 text-sm">Personalize and seal your official document below.</p>
-    </div>
-    <!-- Printable/Customizable Certificate Box -->
-    <div id="certificate" class="relative bg-gradient-to-b from-[#2d1b0e] via-[#1f1209] to-[#140b05] border-4 border-amber-500/60 rounded-2xl p-6 sm:p-10 shadow-2xl text-center space-y-6 overflow-hidden">
-     <!-- Decorative Corner Accents -->
-     <div class="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-amber-400/80"></div>
-     <div class="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-amber-400/80"></div>
-     <div class="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-amber-400/80"></div>
-     <div class="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-amber-400/80"></div>
-     <div class="space-y-1">
-      <p class="font-mono text-amber-400/90 text-xs uppercase tracking-widest">MINISTRY OF UNMATCHED BEAUTY &amp; AFFECTION</p>
-      <h3 class="font-serif text-2xl sm:text-4xl text-gradient-gold font-extrabold tracking-wide uppercase">Certificate of Absolute Perfection</h3>
-     </div>
-     <p class="text-slate-300 text-xs sm:text-sm italic">This document officially certifies that:</p>
-     <!-- Name Input / Display -->
-     <div class="py-2">
-      <input id="herNameInput" type="text" value="Beatrice Kitonyo" placeholder="Beatrice Kitonyo" oninput="updateCertName()" class="bg-black/60 border-b-2 border-amber-400 text-amber-200 text-2xl sm:text-4xl font-serif text-center font-bold px-4 py-2 focus:outline-none focus:border-rose-400 w-full max-w-md transition-colors placeholder:text-amber-700">
-     </div>
-     <p class="max-w-xl mx-auto text-xs sm:text-base text-slate-200 leading-relaxed">Has been tested under strict laboratory conditions and found to be <strong class="text-amber-300">100% flawless, illegal amounts of fine, melanated perfection</strong>, and endlessly loved beyond measure forever and ever.</p>
-     <!-- Signature & Stamp Section -->
-     <div class="pt-6 flex flex-col sm:flex-row items-center justify-around gap-6 border-t border-amber-500/20">
-      <div class="text-left space-y-1 font-serif">
-       <div class="text-rose-300 font-bold italic text-lg sm:text-xl font-mono">Your Lucky Man ❤️</div>
-       <div class="text-[10px] text-amber-400/70 uppercase tracking-wider font-mono">Certified Chief Loving Officer</div>
+  </header>
+
+  <!-- Main Interactive Greeting Card Container -->
+  <main class="w-full max-w-4xl my-auto flex flex-col items-center text-center z-20 py-6 px-4">
+    
+    <!-- GIANT GOOGLY EYES -->
+    <div class="flex items-center justify-center space-x-4 md:space-x-8 mb-4 cursor-pointer" id="googlyEyesContainer" title="Click our eyes!">
+      <!-- Left Eye -->
+      <div class="w-24 h-24 md:w-32 md:h-32 bg-white rounded-full border-4 border-slate-900 shadow-xl flex items-center justify-center relative overflow-hidden transform hover:scale-105 transition-transform">
+        <div id="pupilLeft" class="w-10 h-10 md:w-14 md:h-14 bg-slate-900 rounded-full relative flex items-start justify-end p-1 transition-transform duration-75">
+          <!-- Pupil shine -->
+          <div class="w-3 h-3 md:w-4 md:h-4 bg-white rounded-full"></div>
+        </div>
       </div>
-      <!-- Interactive Stamp Placeholder -->
-      <div class="relative w-32 h-32 flex items-center justify-center">
-       <div id="officialStamp" class="hidden absolute inset-0 flex flex-col items-center justify-center border-4 border-amber-400 text-amber-400 rounded-full p-2 transform -rotate-12 bg-amber-950/80 shadow-[0_0_20px_rgba(234,179,8,0.4)] animate-stamp-bounce">
-        <span class="text-[9px] font-mono tracking-widest uppercase font-bold text-rose-300">OFFICIAL SEAL</span> <span class="text-xs font-black font-serif text-center text-amber-200 leading-tight">100% PERFECT</span> <span class="text-[8px] font-mono text-amber-400/90">APPROVED FOR LIFE</span>
-       </div>
-       <span id="stampPromptText" class="text-xs text-slate-500 font-mono italic">Unstamped</span>
+      <!-- Right Eye -->
+      <div class="w-24 h-24 md:w-32 md:h-32 bg-white rounded-full border-4 border-slate-900 shadow-xl flex items-center justify-center relative overflow-hidden transform hover:scale-105 transition-transform">
+        <div id="pupilRight" class="w-10 h-10 md:w-14 md:h-14 bg-slate-900 rounded-full relative flex items-start justify-end p-1 transition-transform duration-75">
+          <!-- Pupil shine -->
+          <div class="w-3 h-3 md:w-4 md:h-4 bg-white rounded-full"></div>
+        </div>
       </div>
-     </div>
     </div>
-    <!-- Stamp Action Button -->
-    <div class="text-center pt-2">
-     <button onclick="applyOfficialStamp()" class="px-8 py-4 bg-gradient-to-r from-amber-500 via-rose-500 to-amber-600 hover:opacity-95 text-slate-950 font-black text-base sm:text-lg rounded-2xl shadow-xl hover:shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all">📜 Affix Official Stamp of Love</button>
+
+    <!-- BOUNCY RAINBOW BUBBLE TEXT: HI MOSES! -->
+    <div class="relative my-2 select-none">
+      <!-- Cool Glasses overlay for Silly Mode -->
+      <div id="sunglassesOverlay" class="absolute -top-6 left-1/2 -translate-x-1/2 text-6xl md:text-8xl opacity-0 transition-all duration-500 pointer-events-none z-10">
+        🕶️
+      </div>
+
+      <div id="greetingText" class="font-bungee text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-wider rainbow-text leading-tight drop-shadow-2xl flex flex-wrap justify-center gap-1 md:gap-3">
+        <!-- Text constructed dynamically via JS for individual letter interactivity -->
+      </div>
     </div>
-   </section>
-   <!-- FOOTER -->
-   <footer class="text-center text-xs text-slate-300 font-mono space-y-2 pb-8">
-    <p>Made with 💖, scientific rigor, and endless love for you.</p>
-    <p class="text-amber-400/80">© 2026 The Perfection Protocol Laboratory • All Rights Reserved.</p>
-   </footer>
+
+    <!-- Subtitle Tagline -->
+    <p class="text-lg md:text-2xl font-semibold text-purple-800 bg-white/60 backdrop-blur-sm px-6 py-2 rounded-full shadow-sm border border-purple-200 mt-2 mb-6">
+      ✨ Tap any letter or button for maximum chaos! ✨
+    </p>
+
+    <!-- GOOFY DANCING MASCOT (AVOCADO/BANANA) -->
+    <div class="relative my-4 flex flex-col items-center">
+      <div id="mascotSpeech" class="bg-amber-100 border-2 border-amber-400 text-amber-900 font-bold px-4 py-2 rounded-2xl shadow-lg mb-2 relative transform -rotate-2 text-sm md:text-base animate-bounce">
+        Holy guacamole! It's MOSES! 🥑
+        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-amber-100"></div>
+      </div>
+
+      <div id="mascot" class="dancing-mascot cursor-pointer text-7xl md:text-9xl filter drop-shadow-xl select-none" title="Click me to squeak!">
+        🥑
+      </div>
+    </div>
+
+    <!-- FORTUNE / COMPLIMENT SPEECH BUBBLE DISPLAY -->
+    <div id="fortuneBox" class="hidden w-full max-w-xl bg-white border-4 border-yellow-400 rounded-3xl p-4 md:p-6 shadow-2xl my-4 transform transition-all duration-300">
+      <div class="flex items-center justify-between border-b-2 border-yellow-100 pb-2 mb-3">
+        <span class="text-xs font-bold text-yellow-600 uppercase tracking-widest">⚡ Moses Certified Fact</span>
+        <span class="text-xl">📜</span>
+      </div>
+      <p id="fortuneText" class="text-lg md:text-2xl font-bold text-slate-800 italic">
+        "Moses is legally certified as 100% That Guy."
+      </p>
+    </div>
+
+    <!-- INTERACTIVE CONTROL BUTTONS GRID -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full max-w-3xl mt-4">
+      
+      <!-- Button 1: Part the Red Sea -->
+      <button id="btnRedSea" class="btn-bounce bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold p-3 md:p-4 rounded-2xl border-b-4 border-indigo-800 flex flex-col items-center justify-center space-y-1">
+        <span class="text-2xl md:text-3xl">🌊</span>
+        <span class="text-xs md:text-sm uppercase tracking-wider font-bungee">Part Red Sea</span>
+      </button>
+
+      <!-- Button 2: Confetti Cannon -->
+      <button id="btnConfetti" class="btn-bounce bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold p-3 md:p-4 rounded-2xl border-b-4 border-rose-800 flex flex-col items-center justify-center space-y-1">
+        <span class="text-2xl md:text-3xl">🎉</span>
+        <span class="text-xs md:text-sm uppercase tracking-wider font-bungee">Party Blast</span>
+      </button>
+
+      <!-- Button 3: Silly Moses Mode Toggle -->
+      <button id="btnSillyMode" class="btn-bounce bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold p-3 md:p-4 rounded-2xl border-b-4 border-orange-700 flex flex-col items-center justify-center space-y-1">
+        <span class="text-2xl md:text-3xl" id="sillyModeIcon">🤪</span>
+        <span class="text-xs md:text-sm uppercase tracking-wider font-bungee" id="sillyModeText">Silly Mode</span>
+      </button>
+
+      <!-- Button 4: Fortune Generator -->
+      <button id="btnFortune" class="btn-bounce bg-gradient-to-r from-emerald-400 to-teal-600 text-white font-bold p-3 md:p-4 rounded-2xl border-b-4 border-teal-800 flex flex-col items-center justify-center space-y-1">
+        <span class="text-2xl md:text-3xl">🔮</span>
+        <span class="text-xs md:text-sm uppercase tracking-wider font-bungee">Moses Oracle</span>
+      </button>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full text-center z-20 py-2 text-xs md:text-sm font-medium text-slate-600">
+    Crafted with maximum wobbyliness for Moses • Enjoy the vibes! ✨
+  </footer>
+
+  <!-- RED SEA PARTING OVERLAY DRAMATIC EFFECT -->
+  <div id="redSeaOverlay" class="fixed inset-0 z-50 pointer-events-none hidden overflow-hidden flex">
+    
+    <!-- Left Sea Wall -->
+    <div id="leftSea" class="sea-wall w-1/2 h-full bg-blue-600 border-r-8 border-cyan-300 flex flex-col justify-around items-center text-6xl md:text-8xl p-4 shadow-2xl">
+      <span class="animate-bounce">🌊</span>
+      <span class="animate-pulse">🦈</span>
+      <span class="animate-bounce">🌊</span>
+      <span class="animate-pulse">🐠</span>
+      <span class="animate-bounce">🌊</span>
+    </div>
+
+    <!-- Center Moses Revealed Path -->
+    <div id="seaCenterPath" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto bg-amber-200/90 backdrop-blur-sm z-10 opacity-0 transition-opacity duration-500 p-6 text-center">
+      <div class="text-8xl md:text-9xl mb-4 animate-bounce">⚡👑⚡</div>
+      <h2 class="font-bungee text-4xl md:text-6xl text-amber-900 mb-2">BEHOLD!</h2>
+      <p class="text-xl md:text-3xl font-bold text-amber-800 max-w-xl">
+        The Holy Ground of Unlimited Vibes has parted for MOSES!
+      </p>
+      <button id="btnCloseSea" class="mt-8 bg-amber-500 hover:bg-amber-600 text-white font-bungee text-lg px-8 py-4 rounded-full shadow-xl border-b-4 border-amber-800 transform active:scale-95 transition">
+        WALK THROUGH LIKE A BOSS 😎
+      </button>
+    </div>
+
+    <!-- Right Sea Wall -->
+    <div id="rightSea" class="sea-wall w-1/2 h-full bg-blue-600 border-l-8 border-cyan-300 flex flex-col justify-around items-center text-6xl md:text-8xl p-4 shadow-2xl">
+      <span class="animate-pulse">🌊</span>
+      <span class="animate-bounce">🐙</span>
+      <span class="animate-pulse">🌊</span>
+      <span class="animate-bounce">🦀</span>
+      <span class="animate-pulse">🌊</span>
+    </div>
+
   </div>
-  <!-- SUCCESS MODAL FOR YES BUTTON -->
-  <div id="yesModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-   <div class="glass-card-rose rounded-3xl p-8 max-w-md w-full text-center space-y-6 border-2 border-rose-500 shadow-2xl animate-stamp-bounce">
-    <div class="text-6xl animate-bounce">💖👑✨</div>
-    <h3 class="text-3xl font-black text-white font-serif">CORRECT ANSWER!</h3>
-    <p class="text-rose-100 text-base leading-relaxed">Science has confirmed it! You win <strong class="text-amber-300">1,000,000 hugs, 10,000 kisses</strong>, and my heart forever and ever!</p>
-    <button onclick="closeModal()" class="w-full py-3.5 bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-400 hover:to-amber-400 text-slate-950 font-black rounded-xl shadow-lg transition-all">Claim Reward 😘</button>
-   </div>
-  </div>
+
   <script>
-        // Web Audio Synthesizer for sound effects without external dependencies
-        let audioCtx = null;
+    /* =============================================================
+       WEB AUDIO API SOUND SYNTHESIZER (ZERO EXTERNAL SOUND FILES)
+       ============================================================= */
+    class RetroSoundSynth {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
 
-        function getAudioContext() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            return audioCtx;
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            this.ctx = new AudioContext();
+          }
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      // Boing Sound
+      playBoing() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(150, now);
+        osc.frequency.exponentialRampToValueAtTime(600, now + 0.12);
+        osc.frequency.exponentialRampToValueAtTime(180, now + 0.35);
+
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.35);
+      }
+
+      // Squeak Sound
+      playSqueak() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(800, now);
+        osc.frequency.linearRampToValueAtTime(2400, now + 0.08);
+        osc.frequency.linearRampToValueAtTime(1200, now + 0.15);
+
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.15);
+      }
+
+      // Pop Sound
+      playPop() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(450, now);
+        osc.frequency.exponentialRampToValueAtTime(60, now + 0.06);
+
+        gain.gain.setValueAtTime(0.4, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.06);
+      }
+
+      // Laser Blast Sound
+      playLaser() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(1200, now);
+        osc.frequency.exponentialRampToValueAtTime(100, now + 0.2);
+
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.2);
+      }
+
+      // Trumpet Fanfare
+      playFanfare() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+        notes.forEach((freq, idx) => {
+          const startTime = this.ctx.currentTime + (idx * 0.09);
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(freq, startTime);
+
+          gain.gain.setValueAtTime(0.15, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.25);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          osc.start(startTime);
+          osc.stop(startTime + 0.25);
+        });
+      }
+
+      // Ocean Roar Sweep
+      playSeaRoar() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        // White noise node for splash
+        const bufferSize = this.ctx.sampleRate * 1.5;
+        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
         }
 
-        // Sound helper functions
-        function playBeep(freq = 600, duration = 0.08, type = 'sine') {
-            try {
-                const ctx = getAudioContext();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = type;
-                osc.frequency.setValueAtTime(freq, ctx.currentTime);
-                gain.gain.setValueAtTime(0.15, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start();
-                osc.stop(ctx.currentTime + duration);
-            } catch (e) {
-                // Audio fallback silence
-            }
+        const noise = this.ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(200, this.ctx.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(1200, this.ctx.currentTime + 0.7);
+        filter.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 1.5);
+
+        const gain = this.ctx.createGain();
+        gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 1.5);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        noise.start();
+      }
+    }
+
+    const sound = new RetroSoundSynth();
+
+    // Sound toggle listener
+    const soundToggleBtn = document.getElementById('soundToggle');
+    const soundIcon = document.getElementById('soundIcon');
+    const soundText = document.getElementById('soundText');
+
+    soundToggleBtn.addEventListener('click', () => {
+      sound.enabled = !sound.enabled;
+      if (sound.enabled) {
+        soundIcon.textContent = '🔊';
+        soundText.textContent = 'SFX: ON';
+        sound.playPop();
+      } else {
+        soundIcon.textContent = '🔇';
+        soundText.textContent = 'SFX: OFF';
+      }
+    });
+
+    /* =============================================================
+       INTERACTIVE GOOGLY EYES MOUSE TRACKING
+       ============================================================= */
+    const pupilLeft = document.getElementById('pupilLeft');
+    const pupilRight = document.getElementById('pupilRight');
+    const googlyEyesContainer = document.getElementById('googlyEyesContainer');
+
+    function updateEyes(targetX, targetY) {
+      const eyes = [pupilLeft, pupilRight];
+      
+      eyes.forEach(pupil => {
+        const eyeBox = pupil.parentElement.getBoundingClientRect();
+        const eyeCenterX = eyeBox.left + eyeBox.width / 2;
+        const eyeCenterY = eyeBox.top + eyeBox.height / 2;
+
+        const angle = Math.atan2(targetY - eyeCenterY, targetX - eyeCenterX);
+        const maxDistance = eyeBox.width / 4; // limit pupil inside white eye
+
+        const distance = Math.min(
+          Math.hypot(targetX - eyeCenterX, targetY - eyeCenterY), 
+          maxDistance
+        );
+
+        const pupilX = Math.cos(angle) * distance;
+        const pupilY = Math.sin(angle) * distance;
+
+        pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+      });
+    }
+
+    // Event listeners for mouse and touch
+    window.addEventListener('mousemove', (e) => {
+      updateEyes(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        updateEyes(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    });
+
+    // Click on eyes to shrink/pop pupil
+    googlyEyesContainer.addEventListener('click', () => {
+      sound.playSqueak();
+      pupilLeft.classList.add('scale-50');
+      pupilRight.classList.add('scale-50');
+      setTimeout(() => {
+        pupilLeft.classList.remove('scale-50');
+        pupilRight.classList.remove('scale-50');
+      }, 300);
+      spawnFloatingEmoji('👀');
+    });
+
+
+    /* =============================================================
+       BUILDING HI MOSES BUBBLE TEXT & INTERACTIVITY
+       ============================================================= */
+    const greetingTextContainer = document.getElementById('greetingText');
+    const fullText = "HI MOSES!";
+
+    function renderGreetingText() {
+      greetingTextContainer.innerHTML = '';
+      
+      fullText.split('').forEach((char, index) => {
+        if (char === ' ') {
+          const spaceSpan = document.createElement('span');
+          spaceSpan.className = 'w-4 md:w-8';
+          greetingTextContainer.appendChild(spaceSpan);
+          return;
         }
 
-        function playStampSound() {
-            try {
-                const ctx = getAudioContext();
-                // Low thud
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(150, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.2);
-                gain.gain.setValueAtTime(0.5, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start();
-                osc.stop(ctx.currentTime + 0.2);
-            } catch (e) {}
-        }
-
-        function playCheerSound() {
-            try {
-                const ctx = getAudioContext();
-                const notes = [261.63, 329.63, 392.00, 523.25, 659.25];
-                notes.forEach((freq, idx) => {
-                    setTimeout(() => {
-                        playBeep(freq, 0.2, 'triangle');
-                    }, idx * 60);
-                });
-            } catch (e) {}
-        }
-
-        // Floating Heart Particles Canvas
-        const canvas = document.getElementById('heartCanvas');
-        const ctx = canvas.getContext('2d');
-        let hearts = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Heart {
-            constructor() {
-                this.reset();
-            }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = canvas.height + Math.random() * 100;
-                this.size = Math.random() * 15 + 10;
-                this.speedY = Math.random() * 1.5 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.opacity = Math.random() * 0.5 + 0.2;
-                this.color = Math.random() > 0.4 ? '#f43f5e' : '#facc15';
-            }
-            update() {
-                this.y -= this.speedY;
-                this.x += this.speedX;
-                if (this.y < -20) this.reset();
-            }
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                const topCurveHeight = this.size * 0.3;
-                ctx.moveTo(this.x, this.y + topCurveHeight);
-                ctx.bezierCurveTo(this.x, this.y, this.x - this.size / 2, this.y, this.x - this.size / 2, this.y + topCurveHeight);
-                ctx.bezierCurveTo(this.x - this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x, this.y + this.size, this.x, this.y + this.size);
-                ctx.bezierCurveTo(this.x, this.y + (this.size + topCurveHeight) / 2, this.x + this.size / 2, this.y + topCurveHeight, this.x + this.size / 2, this.y + topCurveHeight);
-                ctx.bezierCurveTo(this.x + this.size / 2, this.y, this.x, this.y, this.x, this.y + topCurveHeight);
-                ctx.closePath();
-                ctx.fill();
-                ctx.restore();
-            }
-        }
-
-        for (let i = 0; i < 25; i++) {
-            hearts.push(new Heart());
-        }
-
-        function animateHearts() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            hearts.forEach(heart => {
-                heart.update();
-                heart.draw();
-            });
-            requestAnimationFrame(animateHearts);
-        }
-        animateHearts();
-
-        let isScanning = false;
+        const letterSpan = document.createElement('span');
+        letterSpan.textContent = char;
+        letterSpan.className = 'letter-bubble transform hover:scale-125 hover:-rotate-6 transition-all duration-150 py-1 px-1';
         
-        function startScannerFast() {
-            if (!isScanning) {
-                runDiagnosticScan();
-            }
-        }
+        // Random playful colors or default rainbow gradient
+        letterSpan.addEventListener('click', () => {
+          sound.playBoing();
+          // Trigger squash animation
+          letterSpan.style.transform = 'scale(1.5, 0.6) rotate(12deg)';
+          setTimeout(() => {
+            letterSpan.style.transform = '';
+          }, 200);
 
-        function runDiagnosticScan() {
-            if (isScanning) return;
-            isScanning = true;
-
-            const logContainer = document.getElementById('terminalLog');
-            const scanBtn = document.getElementById('scanBtn');
-            const progressBar = document.getElementById('progressBar');
-            const scanPercent = document.getElementById('scanPercent');
-            const resultBadge = document.getElementById('resultBadge');
-            const scanLine = document.getElementById('scanLine');
-            const scanStatusText = document.getElementById('scanStatusText');
-
-            // Reset state
-            logContainer.innerHTML = '';
-            resultBadge.classList.add('hidden');
-            scanLine.classList.remove('hidden');
-            scanStatusText.innerText = "SCANNING IN PROGRESS...";
-            scanBtn.disabled = true;
-            scanBtn.classList.add('opacity-50', 'cursor-not-allowed');
-
-            const diagnosticSteps = [
-                { percent: 15, text: "> Initializing quantum beauty spectrum analyzer...", sound: 400 },
-                { percent: 35, text: "> Scanning melanin level... Result: PURE ROYALTY ✨👑", sound: 550 },
-                { percent: 55, text: "> Checking for bad angles... Result: 0 found (Literally zero).", sound: 700 },
-                { percent: 75, text: "> Analyzing smile lethality... Result: Dangerously cute.", sound: 850 },
-                { percent: 90, text: "> Measuring perfection score...", sound: 1000 },
-                { percent: 100, text: "🚨 ERROR: Scale broken! Limit exceeded by 10,000%!", sound: 1200 }
-            ];
-
-            let stepIndex = 0;
-
-            const interval = setInterval(() => {
-                if (stepIndex < diagnosticSteps.length) {
-                    const step = diagnosticSteps[stepIndex];
-                    progressBar.style.width = step.percent + '%';
-                    scanPercent.innerText = step.percent + '%';
-
-                    const p = document.createElement('p');
-                    p.className = step.percent === 100 ? 'text-amber-400 font-bold' : 'text-slate-200';
-                    p.innerText = step.text;
-                    logContainer.appendChild(p);
-                    logContainer.scrollTop = logContainer.scrollHeight;
-
-                    playBeep(step.sound, 0.1);
-                    stepIndex++;
-                } else {
-                    clearInterval(interval);
-                    scanLine.classList.add('hidden');
-                    scanStatusText.innerText = "ANALYSIS COMPLETE";
-                    resultBadge.classList.remove('hidden');
-                    playCheerSound();
-                    
-                    // Trigger minor confetti burst
-                    confetti({
-                        particleCount: 50,
-                        spread: 60,
-                        origin: { y: 0.6 }
-                    });
-
-                    scanBtn.disabled = false;
-                    scanBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                    isScanning = false;
-                }
-            }, 750);
-        }
-
-        const noBtn = document.getElementById('noBtn');
-        const quizContainer = document.getElementById('quizContainer');
-
-        function moveNoButton() {
-            playBeep(300, 0.05);
-            const containerRect = quizContainer.getBoundingClientRect();
-            const btnRect = noBtn.getBoundingClientRect();
-
-            // Calculate max available bounds inside or around the container
-            const maxX = Math.min(window.innerWidth - btnRect.width - 20, containerRect.width - btnRect.width + 100);
-            const maxY = 120; 
-
-            const randomX = (Math.random() - 0.5) * maxX;
-            const randomY = (Math.random() - 0.5) * maxY;
-
-            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-        }
-
-        // Dodging listeners for hover and touch
-        noBtn.addEventListener('mouseenter', moveNoButton);
-        noBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            moveNoButton();
-        });
-        noBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            moveNoButton();
+          // Burst mini particles around letter
+          const rect = letterSpan.getBoundingClientRect();
+          createBurstParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
         });
 
-        function handleYesClick() {
-            playCheerSound();
-            document.getElementById('yesModal').classList.remove('hidden');
+        greetingTextContainer.appendChild(letterSpan);
+      });
+    }
 
-            // Mega celebration confetti
-            const duration = 3 * 1000;
-            const end = Date.now() + duration;
+    renderGreetingText();
 
-            (function frame() {
-                confetti({
-                    particleCount: 5,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0 },
-                    colors: ['#f43f5e', '#facc15', '#ffffff']
-                });
-                confetti({
-                    particleCount: 5,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1 },
-                    colors: ['#f43f5e', '#facc15', '#ffffff']
-                });
 
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
-            })();
+    /* =============================================================
+       CANVAS CONFETTI & PARTICLE ENGINE
+       ============================================================= */
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class ConfettiParticle {
+      constructor(x, y) {
+        this.x = x !== undefined ? x : Math.random() * canvas.width;
+        this.y = y !== undefined ? y : -20;
+        this.size = Math.random() * 12 + 6;
+        this.color = ['#ff2a6d', '#ffb703', '#06d6a0', '#118ab2', '#9d4edd', '#ff70a6'][Math.floor(Math.random() * 6)];
+        this.vx = (Math.random() - 0.5) * 8;
+        this.vy = Math.random() * 6 + 3;
+        this.rotation = Math.random() * 360;
+        this.vRot = (Math.random() - 0.5) * 10;
+        this.shape = Math.random() > 0.5 ? 'circle' : 'square';
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.vRot;
+        this.vy += 0.05; // gravity
+      }
+
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate((this.rotation * Math.PI) / 180);
+        ctx.fillStyle = this.color;
+
+        if (this.shape === 'circle') {
+          ctx.beginPath();
+          ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
         }
+        ctx.restore();
+      }
+    }
 
-        function closeModal() {
-            document.getElementById('yesModal').classList.add('hidden');
+    function createBurstParticles(x, y, count = 20) {
+      for (let i = 0; i < count; i++) {
+        const p = new ConfettiParticle(x, y);
+        p.vx = (Math.random() - 0.5) * 12;
+        p.vy = (Math.random() - 0.5) * 12;
+        particles.push(p);
+      }
+    }
+
+    function launchConfettiCannon() {
+      sound.playLaser();
+      sound.playFanfare();
+      // Blast particles from left and right bottom corners
+      for (let i = 0; i < 80; i++) {
+        const pLeft = new ConfettiParticle(0, canvas.height);
+        pLeft.vx = Math.random() * 14 + 4;
+        pLeft.vy = -(Math.random() * 16 + 8);
+        particles.push(pLeft);
+
+        const pRight = new ConfettiParticle(canvas.width, canvas.height);
+        pRight.vx = -(Math.random() * 14 + 4);
+        pRight.vy = -(Math.random() * 16 + 8);
+        particles.push(pRight);
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, index) => {
+        p.update();
+        p.draw();
+        if (p.y > canvas.height + 50) {
+          particles.splice(index, 1);
         }
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
 
-        const facts = [
-            "Fact #1: You are stunning, glowing, black beauty perfection and I'm genuinely the luckiest guy alive.",
-            "Fact #2: Science tried to find a single flaw in you and the laboratory computer overheated.",
-            "Fact #3: I love you more than sleep, pizza, video games, and breathing combined.",
-            "Fact #4: You look like a whole 10/10 masterpiece even when you're mildly annoyed at me.",
-            "Fact #5: Your melanin was crafted by pure royal magic. Absolutely zero notes.",
-            "Fact #6: Side effects of looking at you include: sudden heart racing, goofy smiling, and uncontrollable affection.",
-            "Fact #7: Official scientific diagnosis: I am 100% hopelessly in love with you forever.",
-            "Fact #8: You are my favorite notification, my favorite person, and my favorite view."
-        ];
+    document.getElementById('btnConfetti').addEventListener('click', launchConfettiCannon);
 
-        let currentFactIndex = 0;
 
-        function generateNextFact() {
-            playBeep(700, 0.08);
-            currentFactIndex = (currentFactIndex + 1) % facts.length;
+    /* =============================================================
+       MOSES FORTUNE & COMPLIMENT GENERATOR
+       ============================================================= */
+    const mosesFortunes = [
+      "Moses is legally certified as 100% That Guy.",
+      "Holy Moses! You just unlocked +10,000 aura points!",
+      "Fun Fact: Even GPS asks Moses for directions.",
+      "Moses doesn't wait for luck. Luck waits for Moses.",
+      "Scientists confirm: Moses has a 99.9% higher vibe rating than average.",
+      "When Moses enters the room, the background music automatically gets epic.",
+      "Moses is the only person who can sneeze with their eyes open and look cool.",
+      "Legend says if you whisper 'Moses' three times, a warm slice of pizza appears! 🍕",
+      "Moses was voted 'Most Likely to Excel at Everything' by galactic cool cats. 🐱",
+      "Warning: Being near Moses may cause sudden smiling and urge to dance!"
+    ];
 
-            const factDisplayCard = document.getElementById('factDisplayCard');
-            const factText = document.getElementById('factText');
-            const factNumberBadge = document.getElementById('factNumberBadge');
+    const fortuneBox = document.getElementById('fortuneBox');
+    const fortuneText = document.getElementById('fortuneText');
+    const btnFortune = document.getElementById('btnFortune');
 
-            factDisplayCard.classList.add('scale-95', 'opacity-50');
+    btnFortune.addEventListener('click', () => {
+      sound.playPop();
+      sound.playFanfare();
 
-            setTimeout(() => {
-                factNumberBadge.innerText = `FACT #${currentFactIndex + 1} OF ${facts.length}`;
-                factText.innerText = `"${facts[currentFactIndex]}"`;
-                factDisplayCard.classList.remove('scale-95', 'opacity-50');
-            }, 150);
-        }
+      const randomQuote = mosesFortunes[Math.floor(Math.random() * mosesFortunes.length)];
+      
+      fortuneBox.classList.remove('hidden');
+      fortuneBox.style.transform = 'scale(0.8)';
+      
+      setTimeout(() => {
+        fortuneText.textContent = `"${randomQuote}"`;
+        fortuneBox.style.transform = 'scale(1)';
+      }, 100);
 
-        function updateCertName() {
-            // Handled dynamically via standard value binding
-        }
+      spawnFloatingEmoji('🔮');
+    });
 
-        function applyOfficialStamp() {
-            playStampSound();
-            const stamp = document.getElementById('officialStamp');
-            const prompt = document.getElementById('stampPromptText');
 
-            prompt.classList.add('hidden');
-            stamp.classList.remove('hidden');
+    /* =============================================================
+       PART THE RED SEA INTERACTIVE EFFECT
+       ============================================================= */
+    const btnRedSea = document.getElementById('btnRedSea');
+    const redSeaOverlay = document.getElementById('redSeaOverlay');
+    const leftSea = document.getElementById('leftSea');
+    const rightSea = document.getElementById('rightSea');
+    const seaCenterPath = document.getElementById('seaCenterPath');
+    const btnCloseSea = document.getElementById('btnCloseSea');
 
-            confetti({
-                particleCount: 40,
-                spread: 50,
-                origin: { y: 0.8 },
-                colors: ['#eab308', '#f43f5e']
-            });
-        }
-    </script>
- </body>
+    btnRedSea.addEventListener('click', () => {
+      sound.playSeaRoar();
+      
+      redSeaOverlay.classList.remove('hidden');
+      redSeaOverlay.classList.add('pointer-events-auto');
+      
+      // Reset sea positions
+      leftSea.classList.remove('sea-parted-left');
+      rightSea.classList.remove('sea-parted-right');
+      seaCenterPath.style.opacity = '0';
+
+      // Dramatic parting animation delay
+      setTimeout(() => {
+        sound.playFanfare();
+        leftSea.classList.add('sea-parted-left');
+        rightSea.classList.add('sea-parted-right');
+        
+        setTimeout(() => {
+          seaCenterPath.style.opacity = '1';
+          launchConfettiCannon();
+        }, 800);
+      }, 600);
+    });
+
+    btnCloseSea.addEventListener('click', () => {
+      sound.playBoing();
+      redSeaOverlay.classList.add('hidden');
+      redSeaOverlay.classList.remove('pointer-events-auto');
+    });
+
+
+    /* =============================================================
+       SILLY MOSES MODE TOGGLE
+       ============================================================= */
+    const btnSillyMode = document.getElementById('btnSillyMode');
+    const mainBody = document.getElementById('mainBody');
+    const sunglassesOverlay = document.getElementById('sunglassesOverlay');
+    const discoBar = document.getElementById('discoBar');
+    const mascot = document.getElementById('mascot');
+    const sillyModeIcon = document.getElementById('sillyModeIcon');
+    const sillyModeText = document.getElementById('sillyModeText');
+
+    let isSillyMode = false;
+    let pizzaInterval = null;
+
+    btnSillyMode.addEventListener('click', () => {
+      sound.playSqueak();
+      isSillyMode = !isSillyMode;
+
+      if (isSillyMode) {
+        // Activate Silly Mode
+        mainBody.classList.add('silly-disco-bg');
+        sunglassesOverlay.style.opacity = '1';
+        sunglassesOverlay.style.transform = 'translate(-50%, 0px) scale(1.1)';
+        discoBar.classList.remove('hidden');
+        mascot.textContent = '🥳';
+        sillyModeIcon.textContent = '🕺';
+        sillyModeText.textContent = 'NORMAL MODE';
+
+        // Spawn floating pizzas
+        pizzaInterval = setInterval(() => {
+          spawnFloatingEmoji(['🍕', '🍩', '🌮', '🎈', '⚡'][Math.floor(Math.random() * 5)]);
+        }, 600);
+
+        sound.playFanfare();
+      } else {
+        // Deactivate Silly Mode
+        mainBody.classList.remove('silly-disco-bg');
+        sunglassesOverlay.style.opacity = '0';
+        discoBar.classList.add('hidden');
+        mascot.textContent = '🥑';
+        sillyModeIcon.textContent = '🤪';
+        sillyModeText.textContent = 'SILLY MODE';
+
+        if (pizzaInterval) clearInterval(pizzaInterval);
+      }
+    });
+
+    // Helper: Floating Emoji Spawner
+    function spawnFloatingEmoji(emoji) {
+      const el = document.createElement('div');
+      el.className = 'floating-emoji text-4xl md:text-6xl';
+      el.textContent = emoji;
+      el.style.left = Math.random() * 90 + 'vw';
+      el.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      document.body.appendChild(el);
+
+      setTimeout(() => {
+        el.remove();
+      }, 6000);
+    }
+
+    // Mascot Click Interaction
+    const mascotSpeech = document.getElementById('mascotSpeech');
+    const mascotQuotes = [
+      "Holy guacamole! It's MOSES! 🥑",
+      "Moses is 100% legally That Guy!",
+      "Pass the salsa, Moses is here!",
+      "10/10 VIBES APPROVED! ✨",
+      "Wiggle wiggle wiggle! 🎉"
+    ];
+
+    mascot.addEventListener('click', () => {
+      sound.playSqueak();
+      mascot.style.transform = 'scale(1.4) rotate(360deg)';
+      setTimeout(() => {
+        mascot.style.transform = '';
+      }, 500);
+
+      const randomSpeech = mascotQuotes[Math.floor(Math.random() * mascotQuotes.length)];
+      mascotSpeech.textContent = randomSpeech;
+      spawnFloatingEmoji('🥑');
+    });
+
+  </script>
+</body>
 </html>
+```
