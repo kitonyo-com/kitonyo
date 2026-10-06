@@ -1,862 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HI MOSES! - Ultimate Animated Greeting</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You ❤️</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+  box-sizing: border-box;
+}
 
-  <style>
-    body {
-      font-family: 'Fredoka', cursive, sans-serif;
-      user-select: none;
-      -webkit-user-select: none;
-      overflow-x: hidden;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: Georgia, serif;
+  background:
+    radial-gradient(circle at 50% 35%, #ffb6c8 0%, #f88da8 35%, #d94f76 100%);
+}
 
-    .font-bungee {
-      font-family: 'Bungee', cursive, sans-serif;
-    }
+.scene {
+  position: relative;
+  width: 360px;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    /* Rainbow Gradient Animated Text */
-    .rainbow-text {
-      background: linear-gradient(
-        90deg, 
-        #ff2a6d, #ffb703, #06d6a0, #118ab2, #9d4edd, #ff2a6d
-      );
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbowMove 4s ease infinite;
-      filter: drop-shadow(0px 8px 0px rgba(0,0,0,0.2));
-    }
+.envelope {
+  position: relative;
+  width: 300px;
+  height: 190px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
 
-    @keyframes rainbowMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+.envelope:hover {
+  transform: scale(1.03);
+}
 
-    /* Squash and Stretch Physics Effect */
-    .letter-bubble {
-      display: inline-block;
-      transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: pointer;
-    }
-    
-    .letter-bubble:hover {
-      animation: jelly 0.6s ease;
-    }
+/* Envelope body */
+.envelope-body {
+  position: absolute;
+  inset: 0;
+  background: #f9d7df;
+  border-radius: 8px;
+  box-shadow: 0 18px 45px rgba(100, 0, 35, 0.28);
+  overflow: hidden;
+}
 
-    @keyframes jelly {
-      0% { transform: scale(1, 1); }
-      30% { transform: scale(1.35, 0.75); }
-      40% { transform: scale(0.75, 1.3); }
-      50% { transform: scale(1.15, 0.85); }
-      65% { transform: scale(0.95, 1.05); }
-      75% { transform: scale(1.05, 0.95); }
-      100% { transform: scale(1, 1); }
-    }
+/* bottom folds */
+.envelope-body::before,
+.envelope-body::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+}
 
-    /* Mascot Wobble Dance */
-    @keyframes mascotDance {
-      0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-      25% { transform: translateY(-12px) rotate(-8deg) scale(1.05, 0.95); }
-      50% { transform: translateY(0) rotate(0deg) scale(0.95, 1.05); }
-      75% { transform: translateY(-12px) rotate(8deg) scale(1.05, 0.95); }
-    }
+.envelope-body::before {
+  left: 0;
+  border-left: 150px solid #f4bdca;
+  border-top: 95px solid transparent;
+}
 
-    .dancing-mascot {
-      animation: mascotDance 1.8s infinite ease-in-out;
-      transform-origin: bottom center;
-    }
+.envelope-body::after {
+  right: 0;
+  border-right: 150px solid #f6c7d1;
+  border-top: 95px solid transparent;
+}
 
-    .dancing-mascot:hover {
-      animation-duration: 0.6s;
-    }
+/* letter */
+.letter {
+  position: absolute;
+  left: 22px;
+  bottom: 16px;
+  width: 256px;
+  height: 165px;
+  background: #fff9f6;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(80, 0, 30, 0.14);
+  z-index: 2;
+  transition:
+    transform 1.05s cubic-bezier(.2,.8,.2,1),
+    height 1s ease;
+  overflow: hidden;
+}
 
-    /* Silly Mode Background Pulsing Strobe */
-    @keyframes discoBackground {
-      0% { background-color: #ff007f; }
-      20% { background-color: #7928ca; }
-      40% { background-color: #0070f3; }
-      60% { background-color: #00df72; }
-      80% { background-color: #f5a623; }
-      100% { background-color: #ff007f; }
-    }
+.letter-content {
+  height: 100%;
+  padding: 28px 24px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: 0.8s ease 0.45s;
+}
 
-    .silly-disco-bg {
-      animation: discoBackground 2s infinite linear !important;
-    }
+.letter h1 {
+  margin: 10px 0 8px;
+  color: #c72f62;
+  font-size: 34px;
+  font-weight: normal;
+}
 
-    /* Floating Emoji Elements */
-    @keyframes floatUp {
-      0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
-    }
+.letter p {
+  margin: 0;
+  color: #7f4054;
+  font-size: 17px;
+  line-height: 1.5;
+}
 
-    .floating-emoji {
-      position: fixed;
-      pointer-events: none;
-      z-index: 15;
-      animation: floatUp 6s linear forwards;
-    }
+.heart {
+  font-size: 42px;
+  display: inline-block;
+  animation: beat 1.2s infinite;
+}
 
-    /* Red Sea Parting Animations */
-    .sea-wall {
-      transition: transform 1.8s cubic-bezier(0.25, 1, 0.5, 1);
-    }
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  20% { transform: scale(1.16); }
+  40% { transform: scale(1); }
+  60% { transform: scale(1.12); }
+  80% { transform: scale(1); }
+}
 
-    .sea-parted-left {
-      transform: translateX(-110%);
-    }
+/* envelope flap */
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 105px solid #ed9fb1;
+  transform-origin: top center;
+  z-index: 5;
+  transition: transform 0.9s cubic-bezier(.2,.8,.2,1);
+}
 
-    .sea-parted-right {
-      transform: translateX(110%);
-    }
+/* seal */
+.seal {
+  position: absolute;
+  left: 50%;
+  top: 86px;
+  transform: translate(-50%, -50%);
+  width: 58px;
+  height: 58px;
+  background: #c92f5f;
+  border-radius: 50%;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 5px 12px rgba(120,0,40,.25);
+  transition: 0.4s ease;
+}
 
-    /* Custom Button Pulse */
-    .btn-bounce {
-      transition: all 0.2s ease;
-      box-shadow: 0 8px 0 rgba(0,0,0,0.15);
-    }
-    .btn-bounce:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 0 rgba(0,0,0,0.2);
-    }
-    .btn-bounce:active {
-      transform: translateY(2px);
-      box-shadow: 0 4px 0 rgba(0,0,0,0.2);
-    }
+.hint {
+  position: absolute;
+  bottom: 35px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  letter-spacing: 0.7px;
+  opacity: 0.9;
+  transition: opacity .5s;
+}
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #ff70a6;
-      border-radius: 5px;
-    }
-  </style>
+/* opened state */
+.scene.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.scene.open .letter {
+  transform: translateY(-145px);
+  height: 245px;
+}
+
+.scene.open .letter-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scene.open .seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.3);
+}
+
+.scene.open .hint {
+  opacity: 0;
+}
+
+/* floating hearts */
+.floating-heart {
+  position: fixed;
+  bottom: -30px;
+  color: rgba(255,255,255,.8);
+  font-size: 22px;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) scale(.8) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  to {
+    transform: translateY(-110vh) scale(1.5) rotate(25deg);
+    opacity: 0;
+  }
+}
+</style>
 </head>
 
-<body id="mainBody" class="min-h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-300 text-slate-800 flex flex-col items-center justify-between p-4 relative overflow-x-hidden transition-colors duration-700">
+<body>
 
-  <!-- Particle & Confetti Canvas Overlay -->
-  <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-30"></canvas>
+<div class="scene" id="scene">
+  <div class="envelope" id="envelope">
 
-  <!-- Disco Lights Top Bar overlay for Silly Mode -->
-  <div id="discoBar" class="fixed top-0 left-0 w-full h-4 z-40 hidden flex">
-    <div class="h-full flex-1 bg-red-500 animate-pulse"></div>
-    <div class="h-full flex-1 bg-yellow-400 animate-pulse delay-75"></div>
-    <div class="h-full flex-1 bg-green-400 animate-pulse delay-150"></div>
-    <div class="h-full flex-1 bg-blue-500 animate-pulse delay-200"></div>
-    <div class="h-full flex-1 bg-purple-500 animate-pulse delay-300"></div>
+    <div class="letter">
+      <div class="letter-content">
+        <div class="heart">❤️</div>
+        <h1>I love you</h1>
+        <p>
+          More than words can say.<br>
+          More with every day.<br>
+          Always yours.
+        </p>
+      </div>
+    </div>
+
+    <div class="envelope-body"></div>
+
+    <div class="flap"></div>
+
+    <div class="seal">♥</div>
   </div>
 
-  <!-- Header Badge -->
-  <header class="w-full max-w-4xl flex justify-between items-center z-20 py-2">
-    <div class="flex items-center space-x-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-md border-2 border-pink-300">
-      <span class="text-xl">🎉</span>
-      <span class="font-bold text-pink-600 text-sm md:text-base">Special VIP Greeting</span>
-    </div>
-    <button id="soundToggle" class="bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-md border-2 border-purple-300 flex items-center space-x-2 hover:bg-white transition text-sm font-bold">
-      <span id="soundIcon">🔊</span>
-      <span id="soundText">SFX: ON</span>
-    </button>
-  </header>
+  <div class="hint">Tap the letter ❤️</div>
+</div>
+
+<script>
+const scene = document.getElementById("scene");
+const envelope = document.getElementById("envelope");
+
+let opened = false;
+
+envelope.addEventListener("click", () => {
+  opened = !opened;
+  scene.classList.toggle("open", opened);
+
+  if (opened) {
+    createHearts();
+  }
+});
+
+function createHearts() {
+  for (let i = 0; i < 22; i++) {
+    setTimeout(() => {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.innerHTML = Math.random() > 0.5 ? "♥" : "♡";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (14 + Math.random() * 26) + "px";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 8000);
+    }, i * 100);
+  }
+}
+</script>
 
-  <!-- Main Interactive Greeting Card Container -->
-  <main class="w-full max-w-4xl my-auto flex flex-col items-center text-center z-20 py-6 px-4">
-    
-    <!-- GIANT GOOGLY EYES -->
-    <div class="flex items-center justify-center space-x-4 md:space-x-8 mb-4 cursor-pointer" id="googlyEyesContainer" title="Click our eyes!">
-      <!-- Left Eye -->
-      <div class="w-24 h-24 md:w-32 md:h-32 bg-white rounded-full border-4 border-slate-900 shadow-xl flex items-center justify-center relative overflow-hidden transform hover:scale-105 transition-transform">
-        <div id="pupilLeft" class="w-10 h-10 md:w-14 md:h-14 bg-slate-900 rounded-full relative flex items-start justify-end p-1 transition-transform duration-75">
-          <!-- Pupil shine -->
-          <div class="w-3 h-3 md:w-4 md:h-4 bg-white rounded-full"></div>
-        </div>
-      </div>
-      <!-- Right Eye -->
-      <div class="w-24 h-24 md:w-32 md:h-32 bg-white rounded-full border-4 border-slate-900 shadow-xl flex items-center justify-center relative overflow-hidden transform hover:scale-105 transition-transform">
-        <div id="pupilRight" class="w-10 h-10 md:w-14 md:h-14 bg-slate-900 rounded-full relative flex items-start justify-end p-1 transition-transform duration-75">
-          <!-- Pupil shine -->
-          <div class="w-3 h-3 md:w-4 md:h-4 bg-white rounded-full"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BOUNCY RAINBOW BUBBLE TEXT: HI MOSES! -->
-    <div class="relative my-2 select-none">
-      <!-- Cool Glasses overlay for Silly Mode -->
-      <div id="sunglassesOverlay" class="absolute -top-6 left-1/2 -translate-x-1/2 text-6xl md:text-8xl opacity-0 transition-all duration-500 pointer-events-none z-10">
-        🕶️
-      </div>
-
-      <div id="greetingText" class="font-bungee text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-wider rainbow-text leading-tight drop-shadow-2xl flex flex-wrap justify-center gap-1 md:gap-3">
-        <!-- Text constructed dynamically via JS for individual letter interactivity -->
-      </div>
-    </div>
-
-    <!-- Subtitle Tagline -->
-    <p class="text-lg md:text-2xl font-semibold text-purple-800 bg-white/60 backdrop-blur-sm px-6 py-2 rounded-full shadow-sm border border-purple-200 mt-2 mb-6">
-      ✨ Tap any letter or button for maximum chaos! ✨
-    </p>
-
-    <!-- GOOFY DANCING MASCOT (AVOCADO/BANANA) -->
-    <div class="relative my-4 flex flex-col items-center">
-      <div id="mascotSpeech" class="bg-amber-100 border-2 border-amber-400 text-amber-900 font-bold px-4 py-2 rounded-2xl shadow-lg mb-2 relative transform -rotate-2 text-sm md:text-base animate-bounce">
-        Holy guacamole! It's MOSES! 🥑
-        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-amber-100"></div>
-      </div>
-
-      <div id="mascot" class="dancing-mascot cursor-pointer text-7xl md:text-9xl filter drop-shadow-xl select-none" title="Click me to squeak!">
-        🥑
-      </div>
-    </div>
-
-    <!-- FORTUNE / COMPLIMENT SPEECH BUBBLE DISPLAY -->
-    <div id="fortuneBox" class="hidden w-full max-w-xl bg-white border-4 border-yellow-400 rounded-3xl p-4 md:p-6 shadow-2xl my-4 transform transition-all duration-300">
-      <div class="flex items-center justify-between border-b-2 border-yellow-100 pb-2 mb-3">
-        <span class="text-xs font-bold text-yellow-600 uppercase tracking-widest">⚡ Moses Certified Fact</span>
-        <span class="text-xl">📜</span>
-      </div>
-      <p id="fortuneText" class="text-lg md:text-2xl font-bold text-slate-800 italic">
-        "Moses is legally certified as 100% That Guy."
-      </p>
-    </div>
-
-    <!-- INTERACTIVE CONTROL BUTTONS GRID -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full max-w-3xl mt-4">
-      
-      <!-- Button 1: Part the Red Sea -->
-      <button id="btnRedSea" class="btn-bounce bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold p-3 md:p-4 rounded-2xl border-b-4 border-indigo-800 flex flex-col items-center justify-center space-y-1">
-        <span class="text-2xl md:text-3xl">🌊</span>
-        <span class="text-xs md:text-sm uppercase tracking-wider font-bungee">Part Red Sea</span>
-      </button>
-
-      <!-- Button 2: Confetti Cannon -->
-      <button id="btnConfetti" class="btn-bounce bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold p-3 md:p-4 rounded-2xl border-b-4 border-rose-800 flex flex-col items-center justify-center space-y-1">
-        <span class="text-2xl md:text-3xl">🎉</span>
-        <span class="text-xs md:text-sm uppercase tracking-wider font-bungee">Party Blast</span>
-      </button>
-
-      <!-- Button 3: Silly Moses Mode Toggle -->
-      <button id="btnSillyMode" class="btn-bounce bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold p-3 md:p-4 rounded-2xl border-b-4 border-orange-700 flex flex-col items-center justify-center space-y-1">
-        <span class="text-2xl md:text-3xl" id="sillyModeIcon">🤪</span>
-        <span class="text-xs md:text-sm uppercase tracking-wider font-bungee" id="sillyModeText">Silly Mode</span>
-      </button>
-
-      <!-- Button 4: Fortune Generator -->
-      <button id="btnFortune" class="btn-bounce bg-gradient-to-r from-emerald-400 to-teal-600 text-white font-bold p-3 md:p-4 rounded-2xl border-b-4 border-teal-800 flex flex-col items-center justify-center space-y-1">
-        <span class="text-2xl md:text-3xl">🔮</span>
-        <span class="text-xs md:text-sm uppercase tracking-wider font-bungee">Moses Oracle</span>
-      </button>
-
-    </div>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="w-full text-center z-20 py-2 text-xs md:text-sm font-medium text-slate-600">
-    Crafted with maximum wobbyliness for Moses • Enjoy the vibes! ✨
-  </footer>
-
-  <!-- RED SEA PARTING OVERLAY DRAMATIC EFFECT -->
-  <div id="redSeaOverlay" class="fixed inset-0 z-50 pointer-events-none hidden overflow-hidden flex">
-    
-    <!-- Left Sea Wall -->
-    <div id="leftSea" class="sea-wall w-1/2 h-full bg-blue-600 border-r-8 border-cyan-300 flex flex-col justify-around items-center text-6xl md:text-8xl p-4 shadow-2xl">
-      <span class="animate-bounce">🌊</span>
-      <span class="animate-pulse">🦈</span>
-      <span class="animate-bounce">🌊</span>
-      <span class="animate-pulse">🐠</span>
-      <span class="animate-bounce">🌊</span>
-    </div>
-
-    <!-- Center Moses Revealed Path -->
-    <div id="seaCenterPath" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto bg-amber-200/90 backdrop-blur-sm z-10 opacity-0 transition-opacity duration-500 p-6 text-center">
-      <div class="text-8xl md:text-9xl mb-4 animate-bounce">⚡👑⚡</div>
-      <h2 class="font-bungee text-4xl md:text-6xl text-amber-900 mb-2">BEHOLD!</h2>
-      <p class="text-xl md:text-3xl font-bold text-amber-800 max-w-xl">
-        The Holy Ground of Unlimited Vibes has parted for MOSES!
-      </p>
-      <button id="btnCloseSea" class="mt-8 bg-amber-500 hover:bg-amber-600 text-white font-bungee text-lg px-8 py-4 rounded-full shadow-xl border-b-4 border-amber-800 transform active:scale-95 transition">
-        WALK THROUGH LIKE A BOSS 😎
-      </button>
-    </div>
-
-    <!-- Right Sea Wall -->
-    <div id="rightSea" class="sea-wall w-1/2 h-full bg-blue-600 border-l-8 border-cyan-300 flex flex-col justify-around items-center text-6xl md:text-8xl p-4 shadow-2xl">
-      <span class="animate-pulse">🌊</span>
-      <span class="animate-bounce">🐙</span>
-      <span class="animate-pulse">🌊</span>
-      <span class="animate-bounce">🦀</span>
-      <span class="animate-pulse">🌊</span>
-    </div>
-
-  </div>
-
-  <script>
-    /* =============================================================
-       WEB AUDIO API SOUND SYNTHESIZER (ZERO EXTERNAL SOUND FILES)
-       ============================================================= */
-    class RetroSoundSynth {
-      constructor() {
-        this.ctx = null;
-        this.enabled = true;
-      }
-
-      init() {
-        if (!this.ctx) {
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          if (AudioContext) {
-            this.ctx = new AudioContext();
-          }
-        }
-        if (this.ctx && this.ctx.state === 'suspended') {
-          this.ctx.resume();
-        }
-      }
-
-      // Boing Sound
-      playBoing() {
-        if (!this.enabled) return;
-        this.init();
-        if (!this.ctx) return;
-
-        const now = this.ctx.currentTime;
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(150, now);
-        osc.frequency.exponentialRampToValueAtTime(600, now + 0.12);
-        osc.frequency.exponentialRampToValueAtTime(180, now + 0.35);
-
-        gain.gain.setValueAtTime(0.3, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-
-        osc.start(now);
-        osc.stop(now + 0.35);
-      }
-
-      // Squeak Sound
-      playSqueak() {
-        if (!this.enabled) return;
-        this.init();
-        if (!this.ctx) return;
-
-        const now = this.ctx.currentTime;
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(800, now);
-        osc.frequency.linearRampToValueAtTime(2400, now + 0.08);
-        osc.frequency.linearRampToValueAtTime(1200, now + 0.15);
-
-        gain.gain.setValueAtTime(0.25, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
-
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-
-        osc.start(now);
-        osc.stop(now + 0.15);
-      }
-
-      // Pop Sound
-      playPop() {
-        if (!this.enabled) return;
-        this.init();
-        if (!this.ctx) return;
-
-        const now = this.ctx.currentTime;
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(450, now);
-        osc.frequency.exponentialRampToValueAtTime(60, now + 0.06);
-
-        gain.gain.setValueAtTime(0.4, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
-
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-
-        osc.start(now);
-        osc.stop(now + 0.06);
-      }
-
-      // Laser Blast Sound
-      playLaser() {
-        if (!this.enabled) return;
-        this.init();
-        if (!this.ctx) return;
-
-        const now = this.ctx.currentTime;
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(1200, now);
-        osc.frequency.exponentialRampToValueAtTime(100, now + 0.2);
-
-        gain.gain.setValueAtTime(0.2, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
-
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-
-        osc.start(now);
-        osc.stop(now + 0.2);
-      }
-
-      // Trumpet Fanfare
-      playFanfare() {
-        if (!this.enabled) return;
-        this.init();
-        if (!this.ctx) return;
-
-        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
-        notes.forEach((freq, idx) => {
-          const startTime = this.ctx.currentTime + (idx * 0.09);
-          const osc = this.ctx.createOscillator();
-          const gain = this.ctx.createGain();
-
-          osc.type = 'square';
-          osc.frequency.setValueAtTime(freq, startTime);
-
-          gain.gain.setValueAtTime(0.15, startTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.25);
-
-          osc.connect(gain);
-          gain.connect(this.ctx.destination);
-
-          osc.start(startTime);
-          osc.stop(startTime + 0.25);
-        });
-      }
-
-      // Ocean Roar Sweep
-      playSeaRoar() {
-        if (!this.enabled) return;
-        this.init();
-        if (!this.ctx) return;
-
-        // White noise node for splash
-        const bufferSize = this.ctx.sampleRate * 1.5;
-        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          data[i] = Math.random() * 2 - 1;
-        }
-
-        const noise = this.ctx.createBufferSource();
-        noise.buffer = buffer;
-
-        const filter = this.ctx.createBiquadFilter();
-        filter.type = 'bandpass';
-        filter.frequency.setValueAtTime(200, this.ctx.currentTime);
-        filter.frequency.exponentialRampToValueAtTime(1200, this.ctx.currentTime + 0.7);
-        filter.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 1.5);
-
-        const gain = this.ctx.createGain();
-        gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 1.5);
-
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(this.ctx.destination);
-
-        noise.start();
-      }
-    }
-
-    const sound = new RetroSoundSynth();
-
-    // Sound toggle listener
-    const soundToggleBtn = document.getElementById('soundToggle');
-    const soundIcon = document.getElementById('soundIcon');
-    const soundText = document.getElementById('soundText');
-
-    soundToggleBtn.addEventListener('click', () => {
-      sound.enabled = !sound.enabled;
-      if (sound.enabled) {
-        soundIcon.textContent = '🔊';
-        soundText.textContent = 'SFX: ON';
-        sound.playPop();
-      } else {
-        soundIcon.textContent = '🔇';
-        soundText.textContent = 'SFX: OFF';
-      }
-    });
-
-    /* =============================================================
-       INTERACTIVE GOOGLY EYES MOUSE TRACKING
-       ============================================================= */
-    const pupilLeft = document.getElementById('pupilLeft');
-    const pupilRight = document.getElementById('pupilRight');
-    const googlyEyesContainer = document.getElementById('googlyEyesContainer');
-
-    function updateEyes(targetX, targetY) {
-      const eyes = [pupilLeft, pupilRight];
-      
-      eyes.forEach(pupil => {
-        const eyeBox = pupil.parentElement.getBoundingClientRect();
-        const eyeCenterX = eyeBox.left + eyeBox.width / 2;
-        const eyeCenterY = eyeBox.top + eyeBox.height / 2;
-
-        const angle = Math.atan2(targetY - eyeCenterY, targetX - eyeCenterX);
-        const maxDistance = eyeBox.width / 4; // limit pupil inside white eye
-
-        const distance = Math.min(
-          Math.hypot(targetX - eyeCenterX, targetY - eyeCenterY), 
-          maxDistance
-        );
-
-        const pupilX = Math.cos(angle) * distance;
-        const pupilY = Math.sin(angle) * distance;
-
-        pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
-      });
-    }
-
-    // Event listeners for mouse and touch
-    window.addEventListener('mousemove', (e) => {
-      updateEyes(e.clientX, e.clientY);
-    });
-
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches.length > 0) {
-        updateEyes(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    });
-
-    // Click on eyes to shrink/pop pupil
-    googlyEyesContainer.addEventListener('click', () => {
-      sound.playSqueak();
-      pupilLeft.classList.add('scale-50');
-      pupilRight.classList.add('scale-50');
-      setTimeout(() => {
-        pupilLeft.classList.remove('scale-50');
-        pupilRight.classList.remove('scale-50');
-      }, 300);
-      spawnFloatingEmoji('👀');
-    });
-
-
-    /* =============================================================
-       BUILDING HI MOSES BUBBLE TEXT & INTERACTIVITY
-       ============================================================= */
-    const greetingTextContainer = document.getElementById('greetingText');
-    const fullText = "HI MOSES!";
-
-    function renderGreetingText() {
-      greetingTextContainer.innerHTML = '';
-      
-      fullText.split('').forEach((char, index) => {
-        if (char === ' ') {
-          const spaceSpan = document.createElement('span');
-          spaceSpan.className = 'w-4 md:w-8';
-          greetingTextContainer.appendChild(spaceSpan);
-          return;
-        }
-
-        const letterSpan = document.createElement('span');
-        letterSpan.textContent = char;
-        letterSpan.className = 'letter-bubble transform hover:scale-125 hover:-rotate-6 transition-all duration-150 py-1 px-1';
-        
-        // Random playful colors or default rainbow gradient
-        letterSpan.addEventListener('click', () => {
-          sound.playBoing();
-          // Trigger squash animation
-          letterSpan.style.transform = 'scale(1.5, 0.6) rotate(12deg)';
-          setTimeout(() => {
-            letterSpan.style.transform = '';
-          }, 200);
-
-          // Burst mini particles around letter
-          const rect = letterSpan.getBoundingClientRect();
-          createBurstParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
-        });
-
-        greetingTextContainer.appendChild(letterSpan);
-      });
-    }
-
-    renderGreetingText();
-
-
-    /* =============================================================
-       CANVAS CONFETTI & PARTICLE ENGINE
-       ============================================================= */
-    const canvas = document.getElementById('confettiCanvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class ConfettiParticle {
-      constructor(x, y) {
-        this.x = x !== undefined ? x : Math.random() * canvas.width;
-        this.y = y !== undefined ? y : -20;
-        this.size = Math.random() * 12 + 6;
-        this.color = ['#ff2a6d', '#ffb703', '#06d6a0', '#118ab2', '#9d4edd', '#ff70a6'][Math.floor(Math.random() * 6)];
-        this.vx = (Math.random() - 0.5) * 8;
-        this.vy = Math.random() * 6 + 3;
-        this.rotation = Math.random() * 360;
-        this.vRot = (Math.random() - 0.5) * 10;
-        this.shape = Math.random() > 0.5 ? 'circle' : 'square';
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.rotation += this.vRot;
-        this.vy += 0.05; // gravity
-      }
-
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate((this.rotation * Math.PI) / 180);
-        ctx.fillStyle = this.color;
-
-        if (this.shape === 'circle') {
-          ctx.beginPath();
-          ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
-          ctx.fill();
-        } else {
-          ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-        }
-        ctx.restore();
-      }
-    }
-
-    function createBurstParticles(x, y, count = 20) {
-      for (let i = 0; i < count; i++) {
-        const p = new ConfettiParticle(x, y);
-        p.vx = (Math.random() - 0.5) * 12;
-        p.vy = (Math.random() - 0.5) * 12;
-        particles.push(p);
-      }
-    }
-
-    function launchConfettiCannon() {
-      sound.playLaser();
-      sound.playFanfare();
-      // Blast particles from left and right bottom corners
-      for (let i = 0; i < 80; i++) {
-        const pLeft = new ConfettiParticle(0, canvas.height);
-        pLeft.vx = Math.random() * 14 + 4;
-        pLeft.vy = -(Math.random() * 16 + 8);
-        particles.push(pLeft);
-
-        const pRight = new ConfettiParticle(canvas.width, canvas.height);
-        pRight.vx = -(Math.random() * 14 + 4);
-        pRight.vy = -(Math.random() * 16 + 8);
-        particles.push(pRight);
-      }
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p, index) => {
-        p.update();
-        p.draw();
-        if (p.y > canvas.height + 50) {
-          particles.splice(index, 1);
-        }
-      });
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-
-    document.getElementById('btnConfetti').addEventListener('click', launchConfettiCannon);
-
-
-    /* =============================================================
-       MOSES FORTUNE & COMPLIMENT GENERATOR
-       ============================================================= */
-    const mosesFortunes = [
-      "Moses is legally certified as 100% That Guy.",
-      "Holy Moses! You just unlocked +10,000 aura points!",
-      "Fun Fact: Even GPS asks Moses for directions.",
-      "Moses doesn't wait for luck. Luck waits for Moses.",
-      "Scientists confirm: Moses has a 99.9% higher vibe rating than average.",
-      "When Moses enters the room, the background music automatically gets epic.",
-      "Moses is the only person who can sneeze with their eyes open and look cool.",
-      "Legend says if you whisper 'Moses' three times, a warm slice of pizza appears! 🍕",
-      "Moses was voted 'Most Likely to Excel at Everything' by galactic cool cats. 🐱",
-      "Warning: Being near Moses may cause sudden smiling and urge to dance!"
-    ];
-
-    const fortuneBox = document.getElementById('fortuneBox');
-    const fortuneText = document.getElementById('fortuneText');
-    const btnFortune = document.getElementById('btnFortune');
-
-    btnFortune.addEventListener('click', () => {
-      sound.playPop();
-      sound.playFanfare();
-
-      const randomQuote = mosesFortunes[Math.floor(Math.random() * mosesFortunes.length)];
-      
-      fortuneBox.classList.remove('hidden');
-      fortuneBox.style.transform = 'scale(0.8)';
-      
-      setTimeout(() => {
-        fortuneText.textContent = `"${randomQuote}"`;
-        fortuneBox.style.transform = 'scale(1)';
-      }, 100);
-
-      spawnFloatingEmoji('🔮');
-    });
-
-
-    /* =============================================================
-       PART THE RED SEA INTERACTIVE EFFECT
-       ============================================================= */
-    const btnRedSea = document.getElementById('btnRedSea');
-    const redSeaOverlay = document.getElementById('redSeaOverlay');
-    const leftSea = document.getElementById('leftSea');
-    const rightSea = document.getElementById('rightSea');
-    const seaCenterPath = document.getElementById('seaCenterPath');
-    const btnCloseSea = document.getElementById('btnCloseSea');
-
-    btnRedSea.addEventListener('click', () => {
-      sound.playSeaRoar();
-      
-      redSeaOverlay.classList.remove('hidden');
-      redSeaOverlay.classList.add('pointer-events-auto');
-      
-      // Reset sea positions
-      leftSea.classList.remove('sea-parted-left');
-      rightSea.classList.remove('sea-parted-right');
-      seaCenterPath.style.opacity = '0';
-
-      // Dramatic parting animation delay
-      setTimeout(() => {
-        sound.playFanfare();
-        leftSea.classList.add('sea-parted-left');
-        rightSea.classList.add('sea-parted-right');
-        
-        setTimeout(() => {
-          seaCenterPath.style.opacity = '1';
-          launchConfettiCannon();
-        }, 800);
-      }, 600);
-    });
-
-    btnCloseSea.addEventListener('click', () => {
-      sound.playBoing();
-      redSeaOverlay.classList.add('hidden');
-      redSeaOverlay.classList.remove('pointer-events-auto');
-    });
-
-
-    /* =============================================================
-       SILLY MOSES MODE TOGGLE
-       ============================================================= */
-    const btnSillyMode = document.getElementById('btnSillyMode');
-    const mainBody = document.getElementById('mainBody');
-    const sunglassesOverlay = document.getElementById('sunglassesOverlay');
-    const discoBar = document.getElementById('discoBar');
-    const mascot = document.getElementById('mascot');
-    const sillyModeIcon = document.getElementById('sillyModeIcon');
-    const sillyModeText = document.getElementById('sillyModeText');
-
-    let isSillyMode = false;
-    let pizzaInterval = null;
-
-    btnSillyMode.addEventListener('click', () => {
-      sound.playSqueak();
-      isSillyMode = !isSillyMode;
-
-      if (isSillyMode) {
-        // Activate Silly Mode
-        mainBody.classList.add('silly-disco-bg');
-        sunglassesOverlay.style.opacity = '1';
-        sunglassesOverlay.style.transform = 'translate(-50%, 0px) scale(1.1)';
-        discoBar.classList.remove('hidden');
-        mascot.textContent = '🥳';
-        sillyModeIcon.textContent = '🕺';
-        sillyModeText.textContent = 'NORMAL MODE';
-
-        // Spawn floating pizzas
-        pizzaInterval = setInterval(() => {
-          spawnFloatingEmoji(['🍕', '🍩', '🌮', '🎈', '⚡'][Math.floor(Math.random() * 5)]);
-        }, 600);
-
-        sound.playFanfare();
-      } else {
-        // Deactivate Silly Mode
-        mainBody.classList.remove('silly-disco-bg');
-        sunglassesOverlay.style.opacity = '0';
-        discoBar.classList.add('hidden');
-        mascot.textContent = '🥑';
-        sillyModeIcon.textContent = '🤪';
-        sillyModeText.textContent = 'SILLY MODE';
-
-        if (pizzaInterval) clearInterval(pizzaInterval);
-      }
-    });
-
-    // Helper: Floating Emoji Spawner
-    function spawnFloatingEmoji(emoji) {
-      const el = document.createElement('div');
-      el.className = 'floating-emoji text-4xl md:text-6xl';
-      el.textContent = emoji;
-      el.style.left = Math.random() * 90 + 'vw';
-      el.style.animationDuration = (Math.random() * 3 + 3) + 's';
-      document.body.appendChild(el);
-
-      setTimeout(() => {
-        el.remove();
-      }, 6000);
-    }
-
-    // Mascot Click Interaction
-    const mascotSpeech = document.getElementById('mascotSpeech');
-    const mascotQuotes = [
-      "Holy guacamole! It's MOSES! 🥑",
-      "Moses is 100% legally That Guy!",
-      "Pass the salsa, Moses is here!",
-      "10/10 VIBES APPROVED! ✨",
-      "Wiggle wiggle wiggle! 🎉"
-    ];
-
-    mascot.addEventListener('click', () => {
-      sound.playSqueak();
-      mascot.style.transform = 'scale(1.4) rotate(360deg)';
-      setTimeout(() => {
-        mascot.style.transform = '';
-      }, 500);
-
-      const randomSpeech = mascotQuotes[Math.floor(Math.random() * mascotQuotes.length)];
-      mascotSpeech.textContent = randomSpeech;
-      spawnFloatingEmoji('🥑');
-    });
-
-  </script>
 </body>
 </html>
-```
