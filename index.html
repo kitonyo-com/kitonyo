@@ -1,290 +1,171 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I Love You ❤️</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  font-family: Georgia, serif;
-  background:
-    radial-gradient(circle at 50% 35%, #ffb6c8 0%, #f88da8 35%, #d94f76 100%);
-}
-
-.scene {
-  position: relative;
-  width: 360px;
-  height: 420px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.envelope {
-  position: relative;
-  width: 300px;
-  height: 190px;
-  cursor: pointer;
-  transition: transform 0.4s ease;
-}
-
-.envelope:hover {
-  transform: scale(1.03);
-}
-
-/* Envelope body */
-.envelope-body {
-  position: absolute;
-  inset: 0;
-  background: #f9d7df;
-  border-radius: 8px;
-  box-shadow: 0 18px 45px rgba(100, 0, 35, 0.28);
-  overflow: hidden;
-}
-
-/* bottom folds */
-.envelope-body::before,
-.envelope-body::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 0;
-  height: 0;
-}
-
-.envelope-body::before {
-  left: 0;
-  border-left: 150px solid #f4bdca;
-  border-top: 95px solid transparent;
-}
-
-.envelope-body::after {
-  right: 0;
-  border-right: 150px solid #f6c7d1;
-  border-top: 95px solid transparent;
-}
-
-/* letter */
-.letter {
-  position: absolute;
-  left: 22px;
-  bottom: 16px;
-  width: 256px;
-  height: 165px;
-  background: #fff9f6;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(80, 0, 30, 0.14);
-  z-index: 2;
-  transition:
-    transform 1.05s cubic-bezier(.2,.8,.2,1),
-    height 1s ease;
-  overflow: hidden;
-}
-
-.letter-content {
-  height: 100%;
-  padding: 28px 24px;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(22px);
-  transition: 0.8s ease 0.45s;
-}
-
-.letter h1 {
-  margin: 10px 0 8px;
-  color: #c72f62;
-  font-size: 34px;
-  font-weight: normal;
-}
-
-.letter p {
-  margin: 0;
-  color: #7f4054;
-  font-size: 17px;
-  line-height: 1.5;
-}
-
-.heart {
-  font-size: 42px;
-  display: inline-block;
-  animation: beat 1.2s infinite;
-}
-
-@keyframes beat {
-  0%, 100% { transform: scale(1); }
-  20% { transform: scale(1.16); }
-  40% { transform: scale(1); }
-  60% { transform: scale(1.12); }
-  80% { transform: scale(1); }
-}
-
-/* envelope flap */
-.flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 150px solid transparent;
-  border-right: 150px solid transparent;
-  border-top: 105px solid #ed9fb1;
-  transform-origin: top center;
-  z-index: 5;
-  transition: transform 0.9s cubic-bezier(.2,.8,.2,1);
-}
-
-/* seal */
-.seal {
-  position: absolute;
-  left: 50%;
-  top: 86px;
-  transform: translate(-50%, -50%);
-  width: 58px;
-  height: 58px;
-  background: #c92f5f;
-  border-radius: 50%;
-  z-index: 7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 24px;
-  box-shadow: 0 5px 12px rgba(120,0,40,.25);
-  transition: 0.4s ease;
-}
-
-.hint {
-  position: absolute;
-  bottom: 35px;
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 16px;
-  letter-spacing: 0.7px;
-  opacity: 0.9;
-  transition: opacity .5s;
-}
-
-/* opened state */
-.scene.open .flap {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
-
-.scene.open .letter {
-  transform: translateY(-145px);
-  height: 245px;
-}
-
-.scene.open .letter-content {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scene.open .seal {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.3);
-}
-
-.scene.open .hint {
-  opacity: 0;
-}
-
-/* floating hearts */
-.floating-heart {
-  position: fixed;
-  bottom: -30px;
-  color: rgba(255,255,255,.8);
-  font-size: 22px;
-  pointer-events: none;
-  animation: floatUp linear forwards;
-}
-
-@keyframes floatUp {
-  from {
-    transform: translateY(0) scale(.8) rotate(0deg);
-    opacity: 0;
-  }
-  10% { opacity: 1; }
-  to {
-    transform: translateY(-110vh) scale(1.5) rotate(25deg);
-    opacity: 0;
-  }
-}
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#b5122b">
+  <title>Our Little Home — Shopping List</title>
+  <style>
+:root{--red:#c11235;--red2:#8f0924;--pink:#ffe7ec;--rose:#fff5f6;--ink:#35141b;--muted:#8b6670;--line:#f1c5ce;--green:#287653;--shadow:0 18px 50px #7c0a2018}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#ffd7df 0,transparent 35%),linear-gradient(135deg,#fff8f9,#ffeef2 55%,#fff);font-family:ui-rounded,"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--ink);min-height:100vh}
+button,input,select{font:inherit}button{cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s}button:hover{transform:translateY(-2px)}button:active{transform:scale(.98)}
+.topbar{background:linear-gradient(120deg,#85091f,#c11235 60%,#ed4261);color:#fff;padding:26px 18px 68px;position:relative;overflow:hidden}.topbar:before,.topbar:after{content:"♥";position:absolute;color:#ffffff12;font-size:150px;transform:rotate(-18deg);animation:float 7s ease-in-out infinite}.topbar:before{right:8%;top:-44px}.topbar:after{right:27%;bottom:-112px;font-size:220px;animation-delay:-3s}.top-inner{max-width:1120px;margin:auto;position:relative;z-index:1;display:flex;justify-content:space-between;gap:20px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:800;opacity:.8}.topbar h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.02;margin:9px 0 12px;letter-spacing:-.04em}.topbar p{margin:0;max-width:600px;color:#ffe6eb}.heart-mark{font-size:clamp(3rem,8vw,6rem);animation:heartbeat 1.8s infinite;filter:drop-shadow(0 8px 18px #5c001b66)}
+.wrap{max-width:1120px;margin:-38px auto 60px;padding:0 18px;position:relative;z-index:2}.panel{background:#ffffffed;border:1px solid #fff;border-radius:24px;box-shadow:var(--shadow);padding:22px;margin-bottom:18px;backdrop-filter:blur(12px)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:var(--rose);border:1px solid #ffe0e6;border-radius:17px;padding:15px}.stat small{display:block;color:var(--muted);font-weight:700}.stat strong{display:block;font-size:1.8rem;color:var(--red);margin-top:5px}.progress{height:10px;background:#f7dce2;border-radius:99px;overflow:hidden;margin-top:16px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#8f0924,#f04d6d);border-radius:99px;transition:width .5s ease}
+.toolbar{display:grid;grid-template-columns:minmax(180px,1.4fr) minmax(150px,.8fr) minmax(150px,.8fr) auto;gap:10px}.field{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px 13px;background:#fffafb;color:var(--ink);outline:none}.field:focus{border-color:var(--red);box-shadow:0 0 0 3px #c1123515}.btn{border:0;border-radius:13px;padding:12px 15px;font-weight:800}.primary{background:linear-gradient(120deg,var(--red2),var(--red));color:white;box-shadow:0 7px 18px #c1123526}.soft{background:var(--pink);color:var(--red2)}.outline{border:1px solid var(--line);background:#fff;color:var(--red2)}.toolbar-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:0 0 13px}.section-head h2{margin:0;font-size:1.35rem;letter-spacing:-.02em}.section-head p{margin:5px 0 0;color:var(--muted);font-size:.9rem}.section-count{color:var(--red);font-weight:800;font-size:.86rem}
+.groups{display:grid;grid-template-columns:1fr 1fr;gap:16px}.group{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;animation:rise .5s both;box-shadow:0 9px 24px #8c0a2010}.group-head{padding:17px 18px;background:linear-gradient(120deg,#fff0f3,#fff);border-bottom:1px solid #f8dce2;display:flex;justify-content:space-between;align-items:center}.group-head h3{margin:0;font-size:1.08rem}.group-head small{display:block;color:var(--muted);margin-top:4px}.group-body{padding:7px 14px 13px}.item{display:grid;grid-template-columns:23px 1fr 34px;align-items:center;gap:10px;padding:11px 2px;border-bottom:1px solid #f8edf0;animation:fadein .25s ease}.item:last-child{border-bottom:0}.item input[type=checkbox]{accent-color:var(--red);width:19px;height:19px;cursor:pointer}.item-name{overflow-wrap:anywhere}.item.purchased .item-name{text-decoration:line-through;color:#9b8990}.item .tag{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:20px;background:#fff0f3;color:var(--red);font-size:.66rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em}.remove{border:0;border-radius:10px;background:#fff0f2;color:#b20e30;width:32px;height:32px;font-size:1.2rem;font-weight:800}.remove:hover{background:#c11235;color:white}.empty{padding:22px;text-align:center;color:var(--muted)}.hidden{display:none!important}
+.love{background:linear-gradient(135deg,#fff,#fff0f3);border:1px solid #f3c2cc;position:relative;overflow:hidden}.love-layout{display:grid;grid-template-columns:130px 1fr;gap:20px;align-items:center}.envelope{width:120px;height:88px;border-radius:10px;background:linear-gradient(145deg,#c11235,#8f0924);position:relative;display:grid;place-items:center;color:white;font-size:2rem;box-shadow:0 12px 25px #c1123533;cursor:pointer;transition:transform .3s}.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 49%,#f16b83 50%,transparent 51%),linear-gradient(35deg,transparent 49%,#ff9bad 50%,transparent 51%);border-radius:10px}.envelope span{position:relative;z-index:1;animation:heartbeat 1.8s infinite}.love h2{margin:0 0 7px;color:var(--red2)}.love p{color:#79505a;line-height:1.65;margin:0}.letter{max-height:0;opacity:0;overflow:hidden;transition:max-height .7s ease,opacity .5s ease,margin .5s ease}.letter.open{max-height:280px;opacity:1;margin-top:18px}.letter-card{background:white;border:1px dashed #e7a4b1;border-radius:15px;padding:18px;line-height:1.7;color:#6c2738}.letter-card strong{color:var(--red2)}.letter-card .sign{font-family:Georgia,serif;font-style:italic;font-size:1.2rem;color:var(--red);margin-top:10px}
+footer{text-align:center;color:#a47b85;font-size:.82rem;padding:8px 12px 30px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:#35141b;color:white;padding:12px 18px;border-radius:99px;box-shadow:var(--shadow);z-index:20;transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}.confetti{position:fixed;pointer-events:none;z-index:30;animation:burst 1.1s ease-out forwards;font-size:22px}
+@keyframes heartbeat{0%,100%{transform:scale(1)}12%{transform:scale(1.12)}24%{transform:scale(1)}36%{transform:scale(1.08)}50%{transform:scale(1)}}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 18px}}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes fadein{from{opacity:0;transform:translateX(-5px)}to{opacity:1;transform:translateX(0)}}@keyframes burst{0%{opacity:1;transform:translate(0,0) scale(.7)}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(35deg) scale(1.3)}}
+@media(max-width:800px){.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}.groups{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.top-inner{align-items:flex-start}.heart-mark{padding-top:15px}.love-layout{grid-template-columns:1fr}.envelope{width:100px;height:75px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 </style>
-</head>
-
-<body>
-
-<div class="scene" id="scene">
-  <div class="envelope" id="envelope">
-
-    <div class="letter">
-      <div class="letter-content">
-        <div class="heart">❤️</div>
-        <h1>I love you</h1>
-        <p>
-          More than words can say.<br>
-          More with every day.<br>
-          Always yours.
-        </p>
-      </div>
+ </head>
+ <body>
+  <header class="topbar">
+   <div class="top-inner">
+    <div>
+     <div class="eyebrow">A little plan for a big new chapter</div>
+     <h1>Our Little Home<span style="color:#ffb4c2"> ♥</span></h1>
+     <p>A thoughtful, one-item-at-a-time list for turning a new apartment into a cozy home.</p>
     </div>
-
-    <div class="envelope-body"></div>
-
-    <div class="flap"></div>
-
-    <div class="seal">♥</div>
-  </div>
-
-  <div class="hint">Tap the letter ❤️</div>
-</div>
-
-<script>
-const scene = document.getElementById("scene");
-const envelope = document.getElementById("envelope");
-
-let opened = false;
-
-envelope.addEventListener("click", () => {
-  opened = !opened;
-  scene.classList.toggle("open", opened);
-
-  if (opened) {
-    createHearts();
-  }
-});
-
-function createHearts() {
-  for (let i = 0; i < 22; i++) {
-    setTimeout(() => {
-      const heart = document.createElement("div");
-      heart.className = "floating-heart";
-      heart.innerHTML = Math.random() > 0.5 ? "♥" : "♡";
-
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (14 + Math.random() * 26) + "px";
-      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
-
-      document.body.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 8000);
-    }, i * 100);
-  }
+    <div class="heart-mark" aria-hidden="true">♥</div>
+   </div>
+  </header>
+  <main class="wrap">
+   <section class="panel">
+    <div class="stats">
+     <div class="stat">
+      <small>Still to buy</small><strong id="remaining">0</strong>
+     </div>
+     <div class="stat">
+      <small>Already bought</small><strong id="purchased">0</strong>
+     </div>
+     <div class="stat">
+      <small>Removed</small><strong id="removedCount">0</strong>
+     </div>
+     <div class="stat">
+      <small>Progress</small><strong id="percent">0%</strong>
+     </div>
+    </div>
+    <div class="progress" aria-label="Shopping progress">
+     <span id="progressBar"></span>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="section-head">
+     <div>
+      <h2>Make it yours</h2>
+      <p>Add things, find things, and remove anything you don't need.</p>
+     </div>
+    </div>
+    <form id="addForm" class="toolbar">
+     <input class="field" id="newItem" placeholder="Add an item…" maxlength="90" aria-label="New item" required> <select class="field" id="newPriority" aria-label="Item priority"><option value="Essential">Essential</option><option value="Useful">Useful</option><option value="Optional">Optional</option></select> <select class="field" id="newCategory" aria-label="Category"><option>Bedroom</option><option>Kitchen</option><option>Bathroom</option><option>Living room</option><option>Cleaning &amp; laundry</option><option>Electronics &amp; essentials</option><option>Other</option></select>
+     <button class="btn primary" type="submit">＋ Add item</button>
+    </form>
+    <div class="toolbar-actions">
+     <input class="field" id="search" placeholder="⌕ Search your list…" aria-label="Search items" style="max-width:280px"> <select class="field" id="filter" aria-label="Filter list" style="max-width:190px"><option value="all">All items</option><option value="Essential">Essentials first</option><option value="Useful">Useful</option><option value="Optional">Optional</option><option value="purchased">Purchased</option><option value="unbought">Still to buy</option></select>
+     <button class="btn soft" id="sortBtn" type="button">↕ Sort by priority</button>
+     <button class="btn outline" id="exportBtn" type="button">⇩ Export</button>
+     <button class="btn outline" id="importBtn" type="button">⇧ Import</button>
+     <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="section-head">
+     <div>
+      <h2>Your shopping list</h2>
+      <p>Ordered from most important to last. Tick it when you have it; press × to remove it.</p>
+     </div>
+     <span class="section-count" id="visibleCount">0 items</span>
+    </div>
+    <div class="groups" id="groups"></div>
+    <div id="noResults" class="empty hidden">Nothing matches that search. Try another word or add a new item. ♥</div>
+   </section>
+   <section class="panel love">
+    <div class="love-layout">
+     <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open love letter">
+      <span>♥</span>
+     </div>
+     <div>
+      <div class="eyebrow" style="color:var(--red)">A little love note</div>
+      <h2>Home is more than four walls.</h2>
+      <p>It's the small things we choose, the memories we make, and the love we bring through the door. Tap the envelope for a little reminder. 💌</p>
+      <button class="btn primary" id="letterBtn" type="button" style="margin-top:13px">Open your love letter ♥</button>
+     </div>
+    </div>
+    <div class="letter" id="letter">
+     <div class="letter-card">
+      <strong>My love,</strong>
+      <br>
+      May this new home be filled with soft mornings, warm hugs, silly laughter, peaceful evenings, and a thousand tiny reasons to smile. The furniture will make it comfortable, but love will make it ours. Whatever we add to this list, the most important thing is the life and memories we build together.
+      <br>
+      <div class="sign">I love you — more than words can say, more with every day. Always yours. ♥</div>
+     </div>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="section-head">
+     <div>
+      <h2>Removed items</h2>
+      <p>Changed your mind? Restore an item instead of adding it again.</p>
+     </div>
+     <span class="section-count" id="removedLabel">0 removed</span>
+    </div>
+    <div id="removedList" class="empty">No removed items yet.</div>
+    <div class="toolbar-actions">
+     <button class="btn outline" id="clearPurchased" type="button">Remove purchased items</button>
+     <button class="btn outline" id="resetBtn" type="button">Reset to starter list</button>
+    </div>
+   </section>
+   <footer>Made with ♥ for your new beginning. Your list is saved in this browser on this device.</footer>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script>
+const starter = [
+["Essential","Bedroom","Pillows"],["Essential","Bedroom","Duvet / comforter"],["Essential","Bedroom","Bedsheets"],["Essential","Bathroom","Bath towels"],["Essential","Bathroom","Hand towels"],["Essential","Kitchen","Cutlery"],["Essential","Kitchen","Cutting board"],["Essential","Kitchen","Spatula & cooking utensils"],["Essential","Kitchen","Can opener"],["Essential","Kitchen","Food storage containers"],["Essential","Kitchen","Kettle"],["Essential","Kitchen","Dish soap"],["Essential","Kitchen","Sponges"],["Essential","Kitchen","Kitchen towels"],["Essential","Kitchen","Trash bags"],["Essential","Kitchen","Fridge"],["Essential","Cleaning & laundry","Laundry detergent"],["Essential","Bathroom","Shampoo & shower gel"],["Essential","Bathroom","Bathroom bin"],["Essential","Electronics & essentials","Phone / internet connection"],["Essential","Kitchen","Salt & pepper"],["Essential","Kitchen","Cooking oil"],["Essential","Kitchen","Basic food supplies"],["Essential","Other","Doormat"],
+["Useful","Bedroom","Blanket"],["Useful","Bedroom","Bedside table"],["Useful","Bedroom","Bedside lamp"],["Useful","Bedroom","Curtains / blinds"],["Useful","Cleaning & laundry","Laundry basket"],["Useful","Living room","Sofa"],["Useful","Living room","Coffee table"],["Useful","Electronics & essentials","Wi-Fi router"],["Useful","Kitchen","Coffee maker"],["Useful","Cleaning & laundry","Iron"],["Useful","Cleaning & laundry","Ironing board"],["Useful","Cleaning & laundry","Drying rack"],["Useful","Bathroom","Bath mat"],["Useful","Bathroom","Shower curtain (if needed)"],["Useful","Cleaning & laundry","Microfiber cloths"],["Useful","Cleaning & laundry","Bathroom cleaner"],["Useful","Cleaning & laundry","Glass cleaner"],["Useful","Other","Step ladder"],["Useful","Electronics & essentials","Desk"],["Useful","Electronics & essentials","Internet subscription"],["Useful","Other","Full-length mirror"],["Useful","Other","Storage boxes"],["Useful","Other","Spare keys"],
+["Optional","Electronics & essentials","TV accessories / streaming device"],["Optional","Living room","Decorations"],["Optional","Living room","Extra rug"],["Optional","Other","Air purifier"],["Optional","Other","Electric fan"],["Optional","Kitchen","Extra kitchen utensils"],["Optional","Other","Shoe storage accessories"],["Optional","Other","Umbrella"],["Optional","Other","First-aid kit"],["Optional","Other","Smoke detector (if not installed)"],["Optional","Other","Carbon monoxide detector (if needed)"],["Optional","Other","Fire blanket"],["Optional","Other","Renter's insurance (if applicable)"],["Optional","Kitchen","Coffee / tea"],["Optional","Kitchen","Sugar"],["Optional","Kitchen","Rice"],["Optional","Kitchen","Pasta"],["Optional","Kitchen","Flour"],["Optional","Kitchen","Extra spices"]
+].map((x,i)=>({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+i),priority:x[0],category:x[1],name:x[2],bought:false,removed:false}));
+const key="ourLittleHomeShopping_v1";
+let items=[];
+try{items=JSON.parse(localStorage.getItem(key)||"null")||starter.map(x=>({...x}));}catch(e){items=starter.map(x=>({...x}));}
+let reverseSort=false;
+const order={Essential:0,Useful:1,Optional:2};
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem(key,JSON.stringify(items));}catch(e){}}
+function toast(msg){$("toast").textContent=msg;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2100)}
+function confetti(){for(let i=0;i<13;i++){const s=document.createElement("span");s.className="confetti";s.textContent=["♥","✦","❤","✧"][i%4];s.style.left=(45+Math.random()*10)+"vw";s.style.top=(60+Math.random()*12)+"vh";s.style.setProperty("--x",((Math.random()-.5)*260)+"px");s.style.setProperty("--y",(-70-Math.random()*180)+"px");s.style.color=["#c11235","#ed4261","#f7a1b3"][i%3];document.body.appendChild(s);setTimeout(()=>s.remove(),1200)}}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function render(){
+ const active=items.filter(x=>!x.removed), bought=active.filter(x=>x.bought).length, todo=active.length-bought, pct=active.length?Math.round(bought/active.length*100):0;
+ $("remaining").textContent=todo;$("purchased").textContent=bought;$("removedCount").textContent=items.filter(x=>x.removed).length;$("percent").textContent=pct+"%";$("progressBar").style.width=pct+"%";
+ const query=$("search").value.trim().toLowerCase(), filter=$("filter").value;
+ let visible=active.filter(x=>(!query||(x.name+" "+x.category+" "+x.priority).toLowerCase().includes(query))&&(filter==="all"||filter===x.priority||(filter==="purchased"&&x.bought)||(filter==="unbought"&&!x.bought)));
+ visible.sort((a,b)=>(reverseSort?-1:1)*(order[a.priority]-order[b.priority]||Number(a.bought)-Number(b.bought)||a.name.localeCompare(b.name)));
+ $("visibleCount").textContent=visible.length+" item"+(visible.length===1?"":"s");
+ const categories=[...new Set(visible.map(x=>x.category))];
+ $("groups").innerHTML=categories.map((cat,idx)=>{const arr=visible.filter(x=>x.category===cat);return `<article class="group" style="animation-delay:${Math.min(idx,8)*45}ms"><div class="group-head"><div><h3>${esc(cat)}</h3><small>${arr.filter(x=>x.bought).length} of ${arr.length} complete</small></div><span class="section-count">${arr.length}</span></div><div class="group-body">${arr.map(x=>`<div class="item ${x.bought?"purchased":""}"><input type="checkbox" aria-label="Mark ${esc(x.name)} purchased" data-buy="${x.id}" ${x.bought?"checked":""}><div class="item-name">${esc(x.name)}<span class="tag">${esc(x.priority)}</span></div><button class="remove" title="Remove ${esc(x.name)}" aria-label="Remove ${esc(x.name)}" data-remove="${x.id}">×</button></div>`).join("")}</div></article>`}).join("");
+ $("noResults").classList.toggle("hidden",visible.length!==0);
+ const removed=items.filter(x=>x.removed);$("removedLabel").textContent=removed.length+" removed";
+ $("removedList").className=removed.length?"":"empty";
+ $("removedList").innerHTML=removed.length?removed.map(x=>`<div class="item"><div></div><div class="item-name">${esc(x.name)} <span class="tag">${esc(x.priority)}</span><small style="display:block;color:#8b6670">${esc(x.category)}</small></div><button class="btn soft" data-restore="${x.id}">Restore</button></div>`).join(""):"No removed items yet.";
 }
+$("groups").addEventListener("change",e=>{const id=e.target.dataset.buy;if(!id)return;const item=items.find(x=>x.id===id);if(item){item.bought=e.target.checked;save();render();if(item.bought){confetti();toast("One more little win! ♥")}}});
+$("groups").addEventListener("click",e=>{const b=e.target.closest("[data-remove]");if(!b)return;const x=items.find(i=>i.id===b.dataset.remove);if(x){x.removed=true;save();render();toast("Removed — you can restore it below.")}});
+$("removedList").addEventListener("click",e=>{const b=e.target.closest("[data-restore]");if(!b)return;const x=items.find(i=>i.id===b.dataset.restore);if(x){x.removed=false;save();render();toast("Back on the list ♥")}});
+$("addForm").addEventListener("submit",e=>{e.preventDefault();const name=$("newItem").value.trim();if(!name)return;if(items.some(x=>!x.removed&&x.name.toLowerCase()===name.toLowerCase())){toast("That item is already on your list.");return}items.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),name,priority:$("newPriority").value,category:$("newCategory").value,bought:false,removed:false});$("newItem").value="";save();render();toast("Added to your list ♥")});
+$("search").addEventListener("input",render);$("filter").addEventListener("change",render);
+$("sortBtn").addEventListener("click",()=>{reverseSort=!reverseSort;$("sortBtn").textContent=reverseSort?"↕ Reverse priority order":"↕ Sort by priority";render()});
+$("exportBtn").addEventListener("click",()=>{const blob=new Blob([JSON.stringify(items,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="our-little-home-shopping-list.json";a.click();URL.revokeObjectURL(a.href);toast("Your list is exported.")});
+$("importBtn").addEventListener("click",()=>$("importFile").click());
+$("importFile").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{const parsed=JSON.parse(await f.text());if(!Array.isArray(parsed)||!parsed.every(x=>x&&typeof x.name==="string"&&typeof x.priority==="string"))throw new Error();items=parsed.map((x,i)=>({id:String(x.id||Date.now()+i),name:x.name,priority:["Essential","Useful","Optional"].includes(x.priority)?x.priority:"Optional",category:String(x.category||"Other"),bought:!!x.bought,removed:!!x.removed}));save();render();toast("List imported.")}catch(err){toast("That file doesn't look like a valid shopping list.")}e.target.value=""});
+$("clearPurchased").addEventListener("click",()=>{const n=items.filter(x=>x.bought&&!x.removed).length;if(!n){toast("No purchased items to remove.");return}if(confirm(`Remove ${n} purchased item(s) from the active list? You can restore them from Removed items.`)){items.forEach(x=>{if(x.bought&&!x.removed)x.removed=true});save();render();toast("Purchased items moved to Removed.")}});
+$("resetBtn").addEventListener("click",()=>{if(confirm("Reset the list to the starter items? This will replace your current changes.")){items=starter.map(x=>({...x,id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random())}));save();render();toast("Starter list restored.")}});
+function toggleLetter(){const opened=$("letter").classList.toggle("open");$("letterBtn").textContent=opened?"Close love letter ♥":"Open your love letter ♥";$("envelope").style.transform=opened?"rotate(-5deg) scale(1.04)":"";if(opened)confetti()}
+$("letterBtn").addEventListener("click",toggleLetter);$("envelope").addEventListener("click",toggleLetter);$("envelope").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggleLetter()}});
+render();
 </script>
-
-</body>
+ </body>
 </html>
