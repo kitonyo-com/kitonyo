@@ -106,6 +106,28 @@ footer{text-align:center;color:#a47b85;font-size:.82rem;padding:8px 12px 30px}.t
      </div>
     </div>
    </section>
+   <section class="panel selfie-panel" id="selfieSection">
+    <div class="selfie-layout">
+     <div class="selfie-frame">
+      <img src="./me.jpg" alt="Your favorite person" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+      <div class="selfie-fallback" style="display:none">
+       📸
+       <br>
+       <small>Add <strong>me.jpg</strong> beside this HTML file</small>
+      </div>
+     </div>
+     <div class="selfie-copy">
+      <div class="eyebrow" style="color:var(--red)">Important household essential</div>
+      <h2>One handsome distraction ♥</h2>
+      <p>For emergencies when you miss me. Warning: may cause smiling at your phone, butterflies, and an unreasonable urge to kiss the screen. 😘</p>
+      <div class="toolbar-actions">
+       <a class="btn primary" href="./me.jpg" target="_blank" rel="noopener">📸 Open my high-quality selfie ↗</a>
+       <button class="btn soft" id="selfieSurprise" type="button">Send a virtual kiss 💋</button>
+      </div>
+      <p class="selfie-note">To show your photo, put your image file named <strong>me.jpg</strong> in the same folder as this HTML file. The selfie link is available below even before you add the photo.</p>
+     </div>
+    </div>
+   </section>
    <section class="panel">
     <div class="section-head">
      <div>
@@ -169,7 +191,8 @@ $("clearPurchased").addEventListener("click",()=>{const n=items.filter(x=>x.boug
 $("resetBtn").addEventListener("click",()=>{if(confirm("Reset the list to the starter items? This will replace your current changes.")){items=starter.map(x=>({...x,id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random())}));save();render();toast("Starter list restored.")}});
 function toggleLetter(){const opened=$("letter").classList.toggle("open");$("letterBtn").textContent=opened?"Close love letter ♥":"Open your love letter ♥";$("envelope").style.transform=opened?"rotate(-5deg) scale(1.04)":"";if(opened)confetti()}
 $("letterBtn").addEventListener("click",toggleLetter);$("envelope").addEventListener("click",toggleLetter);$("envelope").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggleLetter()}});
-$("selfieSurprise").addEventListener("click",()=>{confetti();toast("A kiss delivered with love 💋");$("selfieSurprise").textContent="Another one? 💋";});
+const selfieSurprise=$("selfieSurprise");
+if(selfieSurprise) selfieSurprise.addEventListener("click",()=>{confetti();toast("A kiss delivered with love 💋");selfieSurprise.textContent="Another one? 💋";});
 render();
 </script>
  </body>
