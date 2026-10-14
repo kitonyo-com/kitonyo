@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d0d12">
+<title>Build Your Website | Kitonyo Enterprise</title>
+<style>
+:root{--bg:#0d0d12;--panel:#15151e;--panel2:#1c1c27;--text:#f6f4fb;--muted:#aaa8b8;--line:rgba(255,255,255,.11);--accent:#c5ff5c;--purple:#a78bfa;--pink:#ff8fc8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1120px,calc(100% - 36px));margin:auto}.nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.04em}.brandmark{width:36px;height:36px;border-radius:12px;background:var(--accent);color:#111;display:grid;place-items:center;font-size:20px}.navlinks{display:flex;gap:22px;color:var(--muted);font-size:13px}.navlinks a:hover{color:var(--accent)}.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:11px;color:#d9d5e6;background:rgba(255,255,255,.03)}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 15px var(--accent);animation:pulse 1.8s infinite}.hero{padding:70px 0 45px;display:grid;grid-template-columns:1fr .95fr;gap:35px;align-items:center}.eyebrow{color:var(--accent);text-transform:uppercase;font-weight:850;letter-spacing:.16em;font-size:11px}.hero h1{font-size:clamp(44px,6.4vw,76px);line-height:.96;letter-spacing:-.075em;margin:18px 0}.hero h1 span{color:var(--accent)}.lead{font-size:17px;color:var(--muted);max-width:520px}.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:25px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 17px;border-radius:13px;background:var(--accent);color:#111;font-weight:850;border:1px solid var(--accent);cursor:pointer;transition:transform .2s,box-shadow .2s,filter .2s}.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px #c5ff5c24}.btn.secondary{background:transparent;color:var(--text);border-color:var(--line)}.btn.secondary:hover{border-color:var(--accent)}.heroart{min-height:370px;position:relative;border:1px solid var(--line);border-radius:28px;background:radial-gradient(ellipse at 50% 50%,#a78bfa18,transparent 60%),radial-gradient(ellipse at 20% 80%,#c5ff5c18,transparent 50%),var(--panel);display:grid;place-items:center;overflow:hidden;perspective:900px}.gridglow{position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(transparent,#000,transparent);transform:perspective(500px) rotateX(22deg) scale(1.3);animation:gridmove 14s linear infinite}.console{z-index:1;width:min(86%,440px);padding:18px;border:1px solid #ffffff27;border-radius:20px;background:linear-gradient(145deg,#272733,#111117);box-shadow:0 25px 80px #0009;transform:rotateX(7deg) rotateZ(-4deg);animation:float 5s ease-in-out infinite}.console-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:10px;letter-spacing:.12em;margin-bottom:17px}.leds{display:flex;gap:5px}.leds i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 9px var(--accent)}.deckrow{display:grid;grid-template-columns:1fr 1fr;gap:13px}.deck{border:1px solid #ffffff14;border-radius:14px;padding:12px;background:#0c0c12}.vinyl{aspect-ratio:1;border-radius:50%;background:repeating-radial-gradient(circle,#15151b 0 3px,#282832 4px 5px);border:5px solid #101016;display:grid;place-items:center;box-shadow:inset 0 0 0 1px #ffffff22;animation:spin 8s linear infinite;animation-play-state:paused}.vinyl:after{content:"K";width:32px;height:32px;border-radius:50%;background:var(--accent);color:#101010;display:grid;place-items:center;font-weight:1000;box-shadow:0 0 20px #c5ff5c55}.vinyl.playing{animation-play-state:running}.decklabel{font-size:9px;color:var(--muted);margin-top:8px;display:flex;justify-content:space-between}.mixer{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:15px;padding:12px;border-radius:12px;background:#0b0b11;border:1px solid #ffffff12}.channel{display:flex;flex-direction:column;align-items:center;gap:8px}.knob{width:25px;height:25px;border-radius:50%;background:conic-gradient(var(--accent) 0 210deg,#333340 210deg);position:relative;box-shadow:0 0 12px #c5ff5c16}.knob:after{content:"";position:absolute;width:2px;height:8px;background:#fff;left:11px;top:3px;border-radius:3px}.fader{height:38px;width:5px;background:#383844;border-radius:5px;position:relative}.fader:after{content:"";position:absolute;left:-5px;top:var(--pos,40%);width:15px;height:7px;border-radius:3px;background:var(--accent);box-shadow:0 0 9px #c5ff5c66}.channel small{font-size:8px;color:var(--muted)}.soundbtn{position:absolute;z-index:2;right:20px;bottom:20px;width:58px;height:58px;border-radius:20px;border:1px solid #c5ff5c77;background:#17191b;color:var(--accent);display:grid;place-items:center;font-size:24px;cursor:pointer;box-shadow:0 0 0 0 #c5ff5c33;transition:.25s}.soundbtn:hover,.soundbtn.active{background:var(--accent);color:#111;box-shadow:0 0 35px #c5ff5c33;transform:scale(1.06)}.soundhint{position:absolute;bottom:88px;right:18px;color:var(--muted);font-size:10px;background:#101017d9;padding:7px 10px;border-radius:8px;border:1px solid var(--line)}.section{padding:55px 0}.head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:24px}.head h2{font-size:clamp(30px,4.5vw,48px);line-height:1.02;letter-spacing:-.06em;margin:10px 0}.head p{max-width:440px;color:var(--muted);margin:0}.builder{display:grid;grid-template-columns:.85fr 1.15fr;gap:16px}.controls,.live{border:1px solid var(--line);border-radius:23px;background:var(--panel);padding:24px}.controls h3,.live h3{margin:0 0 8px;font-size:20px;letter-spacing:-.04em}.muted{color:var(--muted);font-size:13px}.controlgroup{margin-top:23px}.controlgroup label{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:750;margin-bottom:10px}.controlgroup label span{color:var(--accent)}input[type=range]{width:100%;accent-color:var(--accent)}.swatches{display:flex;gap:9px;flex-wrap:wrap}.swatch{width:31px;height:31px;border-radius:10px;border:2px solid transparent;cursor:pointer;transition:.2s}.swatch.selected{border-color:white;outline:2px solid var(--accent);transform:scale(1.08)}.styleoptions{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.styleopt{background:#101017;border:1px solid var(--line);color:var(--muted);padding:10px 6px;border-radius:10px;font-size:11px;cursor:pointer}.styleopt.selected{color:var(--accent);border-color:var(--accent);background:#c5ff5c0c}.live{overflow:hidden;position:relative}.livebar{display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:18px}.livebar span:first-child{display:flex;align-items:center;gap:6px}.preview{--preview-accent:#c5ff5c;min-height:320px;border-radius:16px;background:#f3f1ec;color:#1b1b22;overflow:hidden;transition:background .3s}.previewnav{padding:17px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #00000012;font-size:10px;font-weight:900}.previewlogo{display:flex;align-items:center;gap:7px}.previewlogo i{display:grid;place-items:center;width:22px;height:22px;background:var(--preview-accent);border-radius:7px;font-style:normal}.previewlinks{font-size:9px;color:#666}.previewbody{padding:28px 22px 22px}.previewtag{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#65636b}.preview h4{font-size:clamp(27px,3vw,43px);line-height:.98;letter-spacing:-.07em;max-width:340px;margin:12px 0}.preview h4 span{color:#7560cf}.previewtext{font-size:10px;color:#686570;max-width:270px}.previewcta{display:inline-block;margin-top:11px;padding:9px 12px;border-radius:7px;background:var(--preview-accent);font-size:9px;font-weight:900}.previewblocks{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:23px}.previewblock{height:58px;border-radius:8px;background:linear-gradient(135deg,#d7cafa,#f3c8d9);display:flex;align-items:end;padding:8px;font-size:8px;font-weight:900}.previewblock:nth-child(2){background:linear-gradient(135deg,#d8efb6,#c6d9f7)}.previewblock:nth-child(3){background:linear-gradient(135deg,#f5d6a8,#eab7c7)}.livefooter{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;font-size:11px;color:var(--muted)}.tinybtn{border:1px solid var(--line);background:#101017;color:var(--text);padding:8px 10px;border-radius:9px;cursor:pointer}.tinybtn:hover{border-color:var(--accent)}.featuregrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature{border:1px solid var(--line);border-radius:19px;padding:22px;background:linear-gradient(145deg,#ffffff08,transparent 70%),var(--panel);transition:transform .25s,border-color .25s}.feature:hover{transform:translateY(-6px);border-color:#c5ff5c77}.featureicon{font-size:23px;color:var(--accent);margin-bottom:14px}.feature h3{margin:0 0 7px;font-size:17px}.feature p{margin:0;color:var(--muted);font-size:13px}.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:translateY(0)}.cta{padding:35px;border:1px solid #c5ff5c4d;border-radius:24px;background:radial-gradient(ellipse at 100% 0,#c5ff5c15,transparent 50%),var(--panel);display:flex;align-items:center;justify-content:space-between;gap:25px}.cta h2{font-size:clamp(28px,4vw,43px);letter-spacing:-.06em;line-height:1.02;margin:10px 0}.cta p{color:var(--muted);margin:0}.footer{padding:25px 0;margin-top:55px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:12px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--accent);color:#111;padding:12px 16px;border-radius:12px;font-weight:850;z-index:5;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}@keyframes pulse{50%{opacity:.45;box-shadow:0 0 3px var(--accent)}}@keyframes float{0%,100%{transform:rotateX(7deg) rotateZ(-4deg) translateY(0)}50%{transform:rotateX(7deg) rotateZ(-4deg) translateY(-9px)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes gridmove{to{background-position:0 56px,56px 0}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:48px}.heroart{min-height:350px}.builder{grid-template-columns:1fr}.featuregrid{grid-template-columns:1fr 1fr}.head{display:block}.head p{margin-top:10px}.cta{align-items:flex-start;flex-direction:column}}@media(max-width:520px){.wrap{width:calc(100% - 26px)}.navlinks{gap:12px;font-size:11px}.navlinks a:nth-child(2){display:none}.hero h1{font-size:46px}.heroart{min-height:310px}.console{width:90%;padding:12px}.soundbtn{width:50px;height:50px;right:12px;bottom:12px}.soundhint{right:12px;bottom:72px}.featuregrid{grid-template-columns:1fr}.controls,.live{padding:17px}.previewbody{padding:22px 15px}.previewblocks{grid-template-columns:1fr 1fr}.previewblock:nth-child(3){display:none}.footer{flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="wrap nav">
+  <a class="brand" href="website_price_list.html"><span class="brandmark">K</span><span>KITONYO ENTERPRISE<span style="color:var(--accent)">.</span></span></a>
+  <nav class="navlinks"><a href="#builder">Try the builder</a><a href="#features">What's possible</a><a href="#contact">Get started</a></nav>
+</header>
+<main>
+<section class="wrap hero">
+  <div class="reveal">
+    <span class="pill"><span class="dot"></span> YOUR WEBSITE, YOUR STYLE</span>
+    <p class="eyebrow" style="margin-top:24px">Make it yours</p>
+    <h1>More than a page.<br><span>A whole vibe.</span></h1>
+    <p class="lead">Add another page to your website, give visitors more to explore, and make every click feel like part of your brand.</p>
+    <div class="actions"><a class="btn" href="#builder">Play with the design <span>↘</span></a><a class="btn secondary" href="https://wa.me/420720958340?text=Hi%20Kitonyo%20Enterprise%2C%20I%27d%20like%20to%20add%20a%20page%20to%20my%20website." target="_blank" rel="noopener">Discuss your page ↗</a></div>
+  </div>
+  <div class="heroart reveal">
+    <div class="gridglow"></div>
+    <div class="console">
+      <div class="console-top"><span>KITONYO / CREATIVE DECK</span><span class="leds"><i></i><i></i><i></i></span></div>
+      <div class="deckrow">
+        <div class="deck"><div class="vinyl" id="vinylA"></div><div class="decklabel"><span>DECK A</span><span>01</span></div></div>
+        <div class="deck"><div class="vinyl" id="vinylB" style="animation-direction:reverse"></div><div class="decklabel"><span>DECK B</span><span>02</span></div></div>
+      </div>
+      <div class="mixer">
+        <div class="channel"><div class="knob" style="transform:rotate(-20deg)"></div><div class="fader" style="--pos:20%"></div><small>COLOR</small></div>
+        <div class="channel"><div class="knob" style="transform:rotate(30deg)"></div><div class="fader" style="--pos:52%"></div><small>LAYOUT</small></div>
+        <div class="channel"><div class="knob" style="transform:rotate(70deg)"></div><div class="fader" style="--pos:35%"></div><small>ENERGY</small></div>
+        <div class="channel"><div class="knob" style="transform:rotate(10deg)"></div><div class="fader" style="--pos:68%"></div><small>VIBE</small></div>
+      </div>
+    </div>
+    <div class="soundhint" id="soundhint">Tap for a DJ drop</div>
+    <button class="soundbtn" id="soundbtn" aria-label="Play DJ sound effect" title="Play DJ sound">♫</button>
+  </div>
+</section>
+<section class="wrap section reveal" id="builder">
+  <div class="head"><div><p class="eyebrow">Interactive preview</p><h2>Turn the dials.</h2></div><p>Try a few styles and watch the sample page react. This is a little taste of how your own page can be shaped.</p></div>
+  <div class="builder">
+    <div class="controls">
+      <h3>Design control room</h3><p class="muted">Your choices update the live preview.</p>
+      <div class="controlgroup"><label>Accent color <span id="colorName">Electric lime</span></label><div class="swatches"><button class="swatch selected" data-color="#c5ff5c" style="background:#c5ff5c" aria-label="Electric lime"></button><button class="swatch" data-color="#a78bfa" style="background:#a78bfa" aria-label="Lavender"></button><button class="swatch" data-color="#ff8fc8" style="background:#ff8fc8" aria-label="Pink"></button><button class="swatch" data-color="#69e4f4" style="background:#69e4f4" aria-label="Cyan"></button><button class="swatch" data-color="#ffb454" style="background:#ffb454" aria-label="Orange"></button></div></div>
+      <div class="controlgroup"><label for="roundness">Corner style <span id="roundValue">Soft</span></label><input type="range" id="roundness" min="0" max="24" value="12"></div>
+      <div class="controlgroup"><label for="spacing">Breathing room <span id="spaceValue">Balanced</span></label><input type="range" id="spacing" min="12" max="36" value="22"></div>
+      <div class="controlgroup"><label>Page mood</label><div class="styleoptions"><button class="styleopt selected" data-mood="bold">Bold</button><button class="styleopt" data-mood="minimal">Minimal</button><button class="styleopt" data-mood="playful">Playful</button></div></div>
+      <div class="actions"><button class="btn" id="shuffle">Surprise me ✨</button><button class="btn secondary" id="reset">Reset</button></div>
+    </div>
+    <div class="live">
+      <div class="livebar"><span><span class="dot"></span> LIVE PREVIEW</span><span>DEMO SITE / 01</span></div>
+      <div class="preview" id="preview">
+        <div class="previewnav"><span class="previewlogo"><i id="previewmark">K</i><span id="previewbrand">YOUR BRAND</span></span><span class="previewlinks">ABOUT　 SERVICES　 CONTACT</span></div>
+        <div class="previewbody" id="previewbody"><div class="previewtag">Made to stand out</div><h4 id="previewtitle">Your next big thing <span>starts here.</span></h4><p class="previewtext" id="previewtext">A memorable online home for your business, built around your style and story.</p><a class="previewcta" id="previewcta" href="#contact">LET'S TALK ↗</a><div class="previewblocks"><div class="previewblock">YOUR STORY</div><div class="previewblock">WHAT YOU DO</div><div class="previewblock">THE DETAILS</div></div></div>
+      </div>
+      <div class="livefooter"><span id="previewstatus">Bold style · Electric lime</span><button class="tinybtn" id="changeCopy">Change headline ↻</button></div>
+    </div>
+  </div>
+</section>
+<section class="wrap section reveal" id="features">
+  <div class="head"><div><p class="eyebrow">One more click, more possibilities</p><h2>Give your ideas room.</h2></div><p>Use an extra page for the information that deserves its own space, without making your main page feel crowded.</p></div>
+  <div class="featuregrid">
+    <article class="feature"><div class="featureicon">✦</div><h3>Services & prices</h3><p>Give each service a clearer explanation and make your offer easy to browse.</p></article>
+    <article class="feature"><div class="featureicon">▧</div><h3>Gallery & portfolio</h3><p>Show your work, products, projects, or best moments in a dedicated place.</p></article>
+    <article class="feature"><div class="featureicon">⌁</div><h3>About your business</h3><p>Tell your story, introduce your team, and help customers get to know you.</p></article>
+    <article class="feature"><div class="featureicon">✉</div><h3>Contact page</h3><p>Make your contact details and next steps easy to find.</p></article>
+    <article class="feature"><div class="featureicon">◈</div><h3>Offers & promotions</h3><p>Give special offers or seasonal campaigns a page of their own.</p></article>
+    <article class="feature"><div class="featureicon">↗</div><h3>Built to match</h3><p>Keep the look consistent with your existing website and brand.</p></article>
+  </div>
+</section>
+<section class="wrap section reveal" id="contact">
+  <div class="cta"><div><p class="eyebrow">Ready to add a page?</p><h2>Let's make room for more.</h2><p>Additional clickable page or tab · <strong style="color:var(--accent)">KSh 3,000</strong></p></div><a class="btn" href="https://wa.me/420720958340?text=Hi%20Kitonyo%20Enterprise%2C%20I%27d%20like%20to%20add%20a%20page%20to%20my%20website%20for%20KSh%203%2C000." target="_blank" rel="noopener">Let's build it ↗</a></div>
+</section>
+</main>
+<footer class="wrap footer"><a class="brand" href="website_price_list.html"><span class="brandmark">K</span><span>KITONYO ENTERPRISE<span style="color:var(--accent)">.</span></span></a><span>Thoughtful websites for ambitious businesses.</span><a href="website_price_list.html">← Back to services</a></footer>
+<div class="toast" id="toast">New vibe loaded ✨</div>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+// Scroll reveal animation
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});
+$$('.reveal').forEach(el=>observer.observe(el));
+// One-click DJ sound effect: short kick, snare, hi-hat and a tiny synth sweep.
+let audioCtx=null, playing=false, stopTimer=null;
+const soundbtn=$('#soundbtn');
+function djSound(){
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC){$('#soundhint').textContent='Sound is not supported in this browser';return}
+  audioCtx=audioCtx||new AC();
+  if(audioCtx.state==='suspended') audioCtx.resume();
+  const now=audioCtx.currentTime;
+  // Each click plays one short DJ-style flourish. Everything is synthesized in-browser.
+  function tone(freq, when, duration, type, volume, endFreq){
+    const osc=audioCtx.createOscillator(), g=audioCtx.createGain();
+    osc.type=type; osc.frequency.setValueAtTime(freq,when);
+    if(endFreq) osc.frequency.exponentialRampToValueAtTime(Math.max(1,endFreq),when+duration);
+    g.gain.setValueAtTime(.0001,when); g.gain.exponentialRampToValueAtTime(volume,when+.008);
+    g.gain.exponentialRampToValueAtTime(.0001,when+duration);
+    osc.connect(g); g.connect(audioCtx.destination); osc.start(when); osc.stop(when+duration+.02);
+  }
+  function noise(when,duration,volume,highpass){
+    const length=Math.max(1,Math.floor(audioCtx.sampleRate*duration));
+    const buffer=audioCtx.createBuffer(1,length,audioCtx.sampleRate), data=buffer.getChannelData(0);
+    for(let i=0;i<length;i++) data[i]=(Math.random()*2-1)*(1-i/length);
+    const src=audioCtx.createBufferSource(), filter=audioCtx.createBiquadFilter(), g=audioCtx.createGain();
+    src.buffer=buffer;filter.type='highpass';filter.frequency.value=highpass;
+    g.gain.setValueAtTime(volume,when);g.gain.exponentialRampToValueAtTime(.0001,when+duration);
+    src.connect(filter);filter.connect(g);g.connect(audioCtx.destination);src.start(when);src.stop(when+duration);
+  }
+  // Kick + clap/snare + ticking hats + rising electronic sweep.
+  tone(125,now,.22,'sine',.48,42);
+  noise(now+.12,.13,.14,1300);
+  noise(now+.12,.12,.10,5000);
+  tone(180,now+.27,.18,'triangle',.22,85);
+  noise(now+.27,.06,.06,6500);
+  tone(110,now+.48,.24,'sine',.38,38);
+  noise(now+.50,.12,.11,1700);
+  noise(now+.53,.07,.07,6000);
+  tone(220,now+.70,.34,'sawtooth',.08,880);
+  tone(440,now+.76,.28,'triangle',.06,660);
+  noise(now+.94,.15,.09,4500);
+  tone(660,now+1.05,.24,'triangle',.09,330);
+  soundbtn.classList.add('active');soundbtn.textContent='♫';$('#soundhint').textContent='DJ drop! Tap again';
+  $('#vinylA').classList.add('playing');$('#vinylB').classList.add('playing');
+  clearTimeout(stopTimer);
+  stopTimer=setTimeout(()=>{soundbtn.classList.remove('active');$('#vinylA').classList.remove('playing');$('#vinylB').classList.remove('playing');$('#soundhint').textContent='Tap for a DJ drop'},1450);
+}
+soundbtn.addEventListener('click',djSound);
+// Live customizer
+let accent='#c5ff5c', mood='bold', copyIndex=0;
+const copyOptions=[
+ ['Your next big thing','starts here.','A memorable online home for your business, built around your style and story.'],
+ ['Make your mark','on the world.','A distinctive page that helps the right people remember your business.'],
+ ['Good ideas','deserve a stage.','Bring your best work into focus with a page designed to get noticed.'],
+ ['Small business.','Big presence.','Make it easy for people to discover you, understand you, and get in touch.']
+];
+function updateStatus(){const color=$('.swatch.selected')?.getAttribute('aria-label')||'Custom';$('#previewstatus').textContent=mood[0].toUpperCase()+mood.slice(1)+' style · '+color}
+$$('.swatch').forEach(b=>b.addEventListener('click',()=>{$$('.swatch').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');accent=b.dataset.color;$('#preview').style.setProperty('--preview-accent',accent);$('#previewmark').style.background=accent;$('#previewcta').style.background=accent;updateStatus()}));
+$('#roundness').addEventListener('input',e=>{let v=+e.target.value;$('#roundValue').textContent=v<7?'Sharp':v<17?'Soft':'Extra soft';$('#preview').style.borderRadius=v+'px';$$('.previewblock').forEach(el=>el.style.borderRadius=Math.max(3,v/2)+'px')});
+$('#spacing').addEventListener('input',e=>{let v=+e.target.value;$('#spaceValue').textContent=v<19?'Compact':v<29?'Balanced':'Airy';$('#previewbody').style.padding=`${v+6}px ${v}px ${Math.max(12,v)}px`});
+$$('.styleopt').forEach(b=>b.addEventListener('click',()=>{$$('.styleopt').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');mood=b.dataset.mood;const p=$('#preview');if(mood==='minimal'){p.style.background='#fff';$('#previewtitle').style.fontWeight='650';$('#previewtitle').style.letterSpacing='-.045em';$('#previewtag').textContent='Less, but better'}else if(mood==='playful'){p.style.background='#fff4fa';$('#previewtitle').style.fontWeight='950';$('#previewtitle').style.letterSpacing='-.075em';$('#previewtag').textContent='A little extra personality'}else{p.style.background='#f3f1ec';$('#previewtitle').style.fontWeight='900';$('#previewtitle').style.letterSpacing='-.07em';$('#previewtag').textContent='Made to stand out'}updateStatus()}));
+$('#changeCopy').addEventListener('click',()=>{copyIndex=(copyIndex+1)%copyOptions.length;let c=copyOptions[copyIndex];$('#previewtitle').innerHTML=c[0]+' <span>'+c[1]+'</span>';$('#previewtext').textContent=c[2];$('#changeCopy').textContent='Another idea ↻'});
+$('#shuffle').addEventListener('click',()=>{const swatches=$$('.swatch');swatches[Math.floor(Math.random()*swatches.length)].click();const r=$('#roundness');r.value=Math.floor(Math.random()*25);r.dispatchEvent(new Event('input'));const s=$('#spacing');s.value=12+Math.floor(Math.random()*25);s.dispatchEvent(new Event('input'));const opts=$$('.styleopt');opts[Math.floor(Math.random()*opts.length)].click();$('#changeCopy').click();const t=$('#toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)});
+$('#reset').addEventListener('click',()=>{const sw=$$('.swatch');sw.forEach(x=>x.classList.remove('selected'));sw[0].classList.add('selected');sw[0].click();$('#roundness').value=12;$('#roundness').dispatchEvent(new Event('input'));$('#spacing').value=22;$('#spacing').dispatchEvent(new Event('input'));$$('.styleopt').forEach(x=>x.classList.remove('selected'));$('.styleopt[data-mood="bold"]').classList.add('selected');$('.styleopt[data-mood="bold"]').click();copyIndex=-1;$('#changeCopy').click();});
+</script>
+</body>
+</html>
