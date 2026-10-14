@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111118">
+<title>Kitonyo Enterprise | Websites for your business</title>
+<style>
+:root{--bg:#0d0d12;--panel:#15151e;--panel2:#1c1c27;--text:#f6f4fb;--muted:#aaa8b8;--line:rgba(255,255,255,.11);--accent:#c5ff5c;--accent2:#a78bfa;--pink:#ff8fc8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;padding:24px 0;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:-.04em}.brandmark{width:35px;height:35px;border-radius:12px;background:var(--accent);color:#171018;display:grid;place-items:center;font-size:20px}.navlinks{display:flex;gap:25px;color:var(--muted);font-size:14px}.navlinks a:hover{color:var(--accent)}.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:12px;color:#d9d5e6;background:rgba(255,255,255,.03)}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 15px var(--accent)}.hero{padding:86px 0 68px;display:grid;grid-template-columns:1.12fr .88fr;gap:45px;align-items:center}.eyebrow{color:var(--accent);text-transform:uppercase;font-weight:800;letter-spacing:.16em;font-size:11px}.hero h1{font-size:clamp(44px,6.3vw,78px);line-height:.99;letter-spacing:-.07em;margin:20px 0 24px;max-width:750px}.hero h1 span{color:var(--accent)}.lead{font-size:18px;color:var(--muted);max-width:560px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 18px;border-radius:13px;background:var(--accent);color:#171018;font-weight:800;border:1px solid var(--accent);cursor:pointer;transition:transform .2s,filter .2s}.btn:hover{transform:translateY(-2px);filter:brightness(1.04)}.btn.secondary{background:transparent;color:var(--text);border-color:var(--line)}.hero-visual{position:relative;min-height:390px;border:1px solid var(--line);border-radius:28px;background:radial-gradient(ellipse at 75% 10%,rgba(167,139,250,.2),transparent 40%),radial-gradient(ellipse at 10% 90%,rgba(197,255,92,.13),transparent 45%),var(--panel);padding:20px;overflow:hidden}.browser{height:100%;min-height:340px;border:1px solid rgba(255,255,255,.15);border-radius:17px;background:#f5f3ef;color:#1b1b22;overflow:hidden;transform:rotate(1.5deg);box-shadow:0 25px 65px rgba(0,0,0,.35)}.browserbar{height:32px;border-bottom:1px solid #dedbd6;display:flex;align-items:center;gap:5px;padding:0 12px}.browserbar i{width:7px;height:7px;border-radius:50%;background:#c5c1ba}.mocksite{padding:23px}.mocknav{display:flex;justify-content:space-between;font-size:10px;font-weight:800}.mockhero{margin-top:35px;font-size:35px;line-height:.96;font-weight:900;letter-spacing:-.07em;max-width:280px}.mockhero em{font-style:normal;color:#7560cf}.mockcopy{font-size:10px;color:#686570;max-width:230px;margin:13px 0}.mockcta{display:inline-block;background:#c5ff5c;border-radius:6px;padding:8px 11px;font-size:9px;font-weight:900}.mockcards{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:23px}.mockcard{height:77px;border-radius:9px;background:linear-gradient(135deg,#d7cafa,#f3c8d9);padding:10px;font-size:9px;font-weight:800;display:flex;align-items:end}.mockcard:last-child{background:linear-gradient(135deg,#d7cafa,#f3c8d9)}.float{position:absolute;background:#20202a;border:1px solid var(--line);border-radius:15px;padding:13px 15px;box-shadow:0 12px 30px #0005}.float strong{display:block;font-size:21px;letter-spacing:-.04em}.float small{color:var(--muted)}.float.one{right:5px;top:24px}.float.two{left:2px;bottom:24px}.section{padding:68px 0}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:28px}.section h2{font-size:clamp(30px,4vw,48px);line-height:1.05;letter-spacing:-.055em;margin:12px 0}.sectionhead p{color:var(--muted);max-width:430px;margin:0}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{position:relative;padding:25px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(155deg,rgba(255,255,255,.045),transparent 60%),var(--panel);display:flex;flex-direction:column;min-height:100%}.card.featured{border-color:rgba(197,255,92,.65);box-shadow:0 0 0 1px rgba(197,255,92,.1),0 20px 70px rgba(197,255,92,.05)}.ribbon{position:absolute;top:17px;right:17px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:#101010;border-radius:999px;padding:6px 9px;font-weight:900}.iconbox{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:var(--panel2);color:var(--accent);font-size:22px;margin-bottom:20px}.card h3{font-size:22px;letter-spacing:-.04em;margin:0 0 8px}.desc{color:var(--muted);font-size:14px;min-height:44px;margin:0 0 22px}.price{font-size:42px;font-weight:900;letter-spacing:-.07em;line-height:1}.price small{font-size:13px;letter-spacing:0;color:var(--muted);font-weight:600}.rule{height:1px;background:var(--line);margin:22px 0}.features{list-style:none;padding:0;margin:0 0 25px;display:grid;gap:11px;color:#dcd9e6;font-size:14px}.features li{display:flex;gap:9px}.check{color:var(--accent);font-weight:900}.card .btn{width:100%;margin-top:auto}.note{color:var(--muted);font-size:12px;margin-top:14px}.domainbox{margin-top:20px;padding:22px 24px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(100deg,rgba(167,139,250,.09),rgba(197,255,92,.05));display:flex;justify-content:space-between;align-items:center;gap:20px}.domainbox h3{margin:0 0 4px}.domainbox p{margin:0;color:var(--muted);font-size:13px}.domainprice{font-size:22px;font-weight:850;white-space:nowrap}.domainprice small{display:block;font-size:11px;color:var(--muted);font-weight:500;text-align:right}.showcase{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.showcopy,.showpreview{border:1px solid var(--line);border-radius:24px;background:var(--panel);padding:28px}.showcopy h3{font-size:30px;line-height:1.05;letter-spacing:-.05em;margin:12px 0}.showcopy p{color:var(--muted)}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.chips span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:7px 10px;color:#d9d5e6}.previewgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.previewtile{min-height:130px;border-radius:15px;padding:17px;display:flex;flex-direction:column;justify-content:space-between;color:#17151d;background:linear-gradient(135deg,#d5c8ff,#f7d2e3)}.previewtile:nth-child(2){background:linear-gradient(135deg,#d4f59c,#e4f0d7)}.previewtile:nth-child(3){background:linear-gradient(135deg,#f7d8a4,#f1b5b7)}.previewtile:nth-child(4){background:linear-gradient(135deg,#c2e4f6,#d5c8ff)}.previewtile b{font-size:18px;line-height:1.05;letter-spacing:-.04em}.previewtile span{font-size:11px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.step{padding:22px;border-top:1px solid var(--line)}.num{font-size:12px;color:var(--accent);font-weight:900;letter-spacing:.1em}.step h3{margin:10px 0 7px}.step p{margin:0;color:var(--muted);font-size:14px}.faq{display:grid;grid-template-columns:.7fr 1.3fr;gap:40px}.faq h2{margin-top:0}.faqitem{padding:18px 0;border-bottom:1px solid var(--line)}.faqitem summary{cursor:pointer;font-weight:750}.faqitem p{color:var(--muted);font-size:14px}.contact{border:1px solid rgba(197,255,92,.35);border-radius:27px;padding:clamp(25px,5vw,50px);background:radial-gradient(ellipse at 90% 0,rgba(197,255,92,.1),transparent 45%),var(--panel);display:grid;grid-template-columns:1fr .8fr;gap:35px;align-items:center}.contact h2{font-size:clamp(34px,5vw,55px);line-height:.99;letter-spacing:-.06em;margin:13px 0}.contact p{color:var(--muted)}.contactform{display:grid;gap:10px}.contactform input,.contactform textarea,.contactform select{width:100%;padding:13px 14px;border:1px solid var(--line);background:#101017;color:var(--text);border-radius:12px;outline:none}.contactform input:focus,.contactform textarea:focus,.contactform select:focus{border-color:var(--accent)}.contactform textarea{min-height:90px;resize:vertical}.contactform .btn{width:100%}.footer{padding:28px 0;margin-top:65px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;color:var(--muted);font-size:12px}.footer strong{color:var(--text)}.toast{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--accent);color:#171018;padding:13px 18px;border-radius:12px;font-weight:800;z-index:5;box-shadow:0 10px 40px #0008}.toast.show{display:block}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding:55px 0 40px;gap:25px}.hero-visual{min-height:360px}.cards{grid-template-columns:1fr}.card{min-height:unset}.desc{min-height:unset}.sectionhead{display:block}.sectionhead p{margin-top:12px}.showcase,.faq,.contact{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.navlinks{gap:12px;font-size:12px}.navlinks a:nth-child(2){display:none}.domainbox{align-items:flex-start;flex-direction:column}.domainprice small{text-align:left}.footer{flex-direction:column}.section{padding:48px 0}}
+@media(max-width:420px){.wrap{width:calc(100% - 28px)}.navlinks a:nth-child(3){display:none}.hero h1{font-size:45px}.hero-visual{padding:13px}.mocksite{padding:17px}.mockhero{font-size:29px}.float.one{right:0}.float.two{left:0}.showcopy,.showpreview{padding:20px}}
+</style>
+</head>
+<body>
+<header class="wrap nav">
+  <a class="brand" href="#top"><span class="brandmark">K</span><span>KITONYO ENTERPRISE<span style="color:var(--accent)">.</span></span></a>
+  <nav class="navlinks"><a href="#services">Services</a><a href="#work">Style</a><a href="#process">How it works</a><a href="#contact">Contact</a></nav>
+</header>
+<main id="top">
+<section class="wrap hero">
+  <div>
+    <span class="pill"><span class="dot"></span> MADE FOR AMBITIOUS BUSINESSES</span>
+    <p class="eyebrow" style="margin-top:25px">WEB DESIGN · DIGITAL SETUP</p>
+    <h1>Your business.<br><span>Online, beautifully.</span></h1>
+    <p class="lead">Professional websites and domain setup for businesses ready to look the part online.</p>
+    <div class="actions"><a class="btn" href="#services">Explore packages <span>↗</span></a><a class="btn secondary" href="#contact">Let's talk</a></div>
+  </div>
+  <div class="hero-visual" aria-label="Website design preview">
+    <div class="browser"><div class="browserbar"><i></i><i></i><i></i><span style="font-size:9px;color:#777;margin-left:10px">kitonyo.example</span></div>
+      <div class="mocksite"><div class="mocknav"><span>KITONYO</span><span>ABOUT　 SERVICES　 CONTACT</span></div><div class="mockhero">Built around <em>your vision.</em></div><p class="mockcopy">A distinctive digital home for the work you do best.</p><span class="mockcta">DISCOVER MORE ↗</span><div class="mockcards"><div class="mockcard">YOUR STORY</div><div class="mockcard">WHAT YOU DO</div></div></div>
+    </div>
+    <div class="float one"><strong>01 / 01</strong><small>One-page experience</small></div>
+    <div class="float two"><strong>✦ Made for you</strong><small>Not another generic template</small></div>
+  </div>
+</section>
+<section class="wrap section" id="services">
+  <div class="sectionhead"><div><p class="eyebrow">Clear pricing. No surprises.</p><h2>Choose your starting point.</h2></div><p>Start with the essentials or invest in a standout website. Add a custom logo or more pages whenever you need them.</p></div>
+  <div class="cards">
+    <article class="card">
+      <div class="iconbox">↗</div><h3>Domain & Setup</h3><p class="desc">Get your name online and your basic web presence ready.</p>
+      <div class="price">KSh 3,000</div>
+      <div class="rule"></div>
+      <ul class="features"><li><span class="check">✓</span> Domain registration setup</li><li><span class="check">✓</span> Website hosting setup</li><li><span class="check">✓</span> HTTPS security setup</li><li><span class="check">✓</span> Basic account configuration</li></ul>
+      <a class="btn secondary" href="https://wa.me/420720958340?text=Hi%20Kitonyo%20Enterprise%2C%20I%27m%20interested%20in%20Domain%20%26%20Setup." target="_blank" rel="noopener">Get started <span>↗</span></a>
+    </article>
+    <article class="card">
+      <div class="iconbox">✦</div><h3>Basic One-Page Site</h3><p class="desc">A simple, clean website for getting your business online without the extras.</p>
+      <div class="price">KSh 5,000</div>
+      <div class="rule"></div>
+      <ul class="features"><li><span class="check">✓</span> Simple one-page layout</li><li><span class="check">✓</span> Essential business information</li><li><span class="check">✓</span> Mobile-friendly design</li><li><span class="check">✓</span> Up to 1 hour of design communication</li><li><span class="check">✓</span> Ready-to-publish delivery</li></ul>
+      <a class="btn secondary" href="https://wa.me/420720958340?text=Hi%20Kitonyo%20Enterprise%2C%20I%27m%20interested%20in%20the%20Basic%20One-Page%20Site%20for%20KSh%205%2C000." target="_blank" rel="noopener">Choose basic site <span>↗</span></a>
+    </article>
+    <article class="card featured">
+      <span class="ribbon">Most popular</span><div class="iconbox">✳</div><h3>Signature One-Page Site</h3><p class="desc">A custom, carefully polished one-page website designed around your brand.</p>
+      <div class="price">KSh 9,000</div>
+      <div class="rule"></div>
+      <ul class="features"><li><span class="check">✓</span> Bespoke visual direction</li><li><span class="check">✓</span> Mobile-friendly layout</li><li><span class="check">✓</span> Clear sections and calls to action</li><li><span class="check">✓</span> Up to 3 hours of design communication</li><li><span class="check">✓</span> Launch-ready delivery</li></ul>
+      <a class="btn" href="https://wa.me/420720958340?text=Hi%20Kitonyo%20Enterprise%2C%20I%27m%20interested%20in%20the%20Signature%20One-Page%20Site." target="_blank" rel="noopener">Build my website <span>↗</span></a>
+    </article>
+    <article class="card">
+      <div class="iconbox">✧</div><h3>Custom Logo Design</h3><p class="desc">A custom-generated logo for your brand, included in the header and throughout your website.</p>
+      <div class="price">KSh 2,000</div>
+      <div class="rule"></div>
+      <ul class="features"><li><span class="check">✓</span> Custom logo concept</li><li><span class="check">✓</span> Designed around your brand</li><li><span class="check">✓</span> Added to the website header</li><li><span class="check">✓</span> Used consistently throughout the site</li></ul>
+      <a class="btn secondary" href="https://wa.me/420720958340?text=Hi%20Kitonyo%20Enterprise%2C%20I%27m%20interested%20in%20the%20custom%20logo%20add-on." target="_blank" rel="noopener">Add a custom logo <span>↗</span></a>
+    </article>
+    <article class="card">
+      <div class="iconbox">▤</div><h3>Additional Clickable Tab</h3><p class="desc">Add another dedicated page or clickable section to expand your website.</p>
+      <div class="price">KSh 3,000 <small>/ each</small></div>
+      <div class="rule"></div>
+      <ul class="features"><li><span class="check">✓</span> A new page or tab</li><li><span class="check">✓</span> Matching design and style</li><li><span class="check">✓</span> Clickable navigation</li><li><span class="check">✓</span> Works on mobile and desktop</li></ul>
+      <a class="btn secondary" href="add.html">Let me see <span>↗</span></a>
+    </article>
+  </div>
+  <div class="domainbox"><div><h3>Domain names from</h3><p>Paid directly to the domain provider. Your domain stays yours.</p></div><div class="domainprice">From US$4.99 / year<small>Domain registration</small></div></div>
+</section>
+<section class="wrap section" id="work">
+  <div class="sectionhead"><div><p class="eyebrow">Design that feels like you</p><h2>Not just a page. A first impression.</h2></div><p>From clean and premium to bold and expressive, the look is shaped around your business and the customers you want to reach.</p></div>
+  <div class="showcase">
+    <div class="showcopy"><span class="pill">KITONYO · YOUR DIRECTION</span><h3>Distinctive design. Clear message. Easy to use.</h3><p>Make it simple for visitors to understand what you offer, trust your business, and take the next step.</p><div class="chips"><span>Mobile-first</span><span>Fast-loading</span><span>Brand-led</span><span>Clear calls to action</span><span>HTTPS</span></div></div>
+    <div class="showpreview"><div class="previewgrid"><div class="previewtile"><span>01 / BRAND</span><b>Make your<br>mark.</b></div><div class="previewtile"><span>02 / STORY</span><b>Say it<br>beautifully.</b></div><div class="previewtile"><span>03 / EXPERIENCE</span><b>Easy to<br>explore.</b></div><div class="previewtile"><span>04 / ACTION</span><b>Turn visits<br>into enquiries.</b></div></div></div>
+  </div>
+</section>
+<section class="wrap section" id="process">
+  <div class="sectionhead"><div><p class="eyebrow">Simple from start to launch</p><h2>Three steps. No drama.</h2></div><p>You bring the idea and the details. We shape them into a site you're happy to share.</p></div>
+  <div class="steps"><div class="step"><span class="num">STEP 01</span><h3>Tell me about your business</h3><p>Share your name, goals, preferred style, and the essentials visitors need to know.</p></div><div class="step"><span class="num">STEP 02</span><h3>Shape the design</h3><p>We align on the look and feel, then build a page that fits your brand.</p></div><div class="step"><span class="num">STEP 03</span><h3>Launch with confidence</h3><p>Get your site online with a domain and secure connection when included in your package.</p></div></div>
+</section>
+<section class="wrap section">
+  <div class="faq">
+    <div><p class="eyebrow">Good to know</p><h2>Simple answers.</h2><p style="color:var(--muted)">The details, without the tech lecture.</p></div>
+    <div>
+      <details class="faqitem"><summary>Is the domain included in the setup price?</summary><p>The KSh 3,000 covers setup. The domain's registration or renewal fee is separate and depends on the domain ending you choose.</p></details>
+      <details class="faqitem"><summary>Are there monthly hosting fees?</summary><p>A simple one-page website can often use free static hosting. If you need paid tools, email hosting, booking systems, or other services, those are priced separately.</p></details>
+      <details class="faqitem"><summary>What does the 3 hours of communication cover?</summary><p>Time to discuss your design direction, preferences, content, and refinements. You can edit this description to match your exact process.</p></details>
+      <details class="faqitem"><summary>Can I expand the website later?</summary><p>Yes. Additional clickable tabs or pages can be added for KSh 3,000 each.</p></details>
+    </div>
+  </div>
+</section>
+<section class="wrap section" id="contact">
+  <div class="contact">
+    <div><p class="eyebrow">Ready when you are</p><h2>Let's put your business online.</h2><p>Tell us what you're building and we'll help you choose the right package. Quick, direct, no complicated forms.</p><div class="chips"><span>Friendly process</span><span>Clear pricing</span><span>Built around you</span></div></div>
+    <div>
+      <div class="iconbox" style="width:58px;height:58px;font-size:28px">✆</div>
+      <h3 style="font-size:24px;margin:0 0 8px">Chat with Kitonyo Enterprise</h3>
+      <p style="color:var(--muted);margin:0 0 22px">Message us on WhatsApp to discuss your website, domain, or an extra page.</p>
+      <a class="btn" style="width:100%" href="https://wa.me/420720958340" target="_blank" rel="noopener">Chat on WhatsApp ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="wrap footer"><div><strong>KITONYO ENTERPRISE.</strong> Websites that make your business stand out.</div><div>© <span id="year"></span> · Made with intention.</div></footer>
+<div class="toast" id="toast" role="status">Enquiry prepared — copy it from the next prompt.</div>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
