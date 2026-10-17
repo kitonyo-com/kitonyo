@@ -20,6 +20,11 @@
 .whatsapp-float .wa-label{position:absolute;right:70px;white-space:nowrap;padding:8px 11px;border-radius:10px;background:#15151e;color:#f6f4fb;border:1px solid rgba(255,255,255,.13);font-size:12px;font-weight:750;opacity:0;transform:translateX(5px);pointer-events:none;transition:opacity .2s,transform .2s}
 .whatsapp-float:hover .wa-label,.whatsapp-float:focus-visible .wa-label{opacity:1;transform:translateX(0)}
 @media(max-width:600px){.whatsapp-float{width:54px;height:54px;right:16px;bottom:16px}.whatsapp-float svg{width:28px;height:28px}.whatsapp-float .wa-label{display:none}}
+
+/* Checkout actions retain the existing theme and layout. */
+.order-now{min-height:44px;box-shadow:0 4px 20px #c5ff5c20;text-align:center}.order-now:focus-visible{outline:3px solid var(--text);outline-offset:4px}.navtools{flex-wrap:wrap}.navtools .order-now{font-size:13px;padding:10px 14px;white-space:nowrap}.checkout-actions{display:flex;justify-content:center;margin:28px 0 0}.checkout-actions .order-now{min-width:220px}
+@media(max-width:1100px){.nav{flex-wrap:wrap}.navtools{margin-left:auto}}
+@media(max-width:600px){.navtools{width:100%;justify-content:flex-end;margin-left:0}.navtools .order-now{margin-right:auto;order:-1}.checkout-actions .order-now{width:100%}.brand{font-size:14px}.navlinks{flex-wrap:wrap}}
 </style>
  </head>
  <body>
@@ -29,7 +34,7 @@
     <a href="#services" data-en="Services" data-cs="Služby">Services</a><a href="#work" data-en="Style" data-cs="Styl">Style</a><a href="#process" data-en="How it works" data-cs="Jak to funguje">How it works</a><a href="#contact" data-en="Contact" data-cs="Kontakt">Contact</a>
    </nav>
    <div class="navtools" aria-label="Language and currency">
-    <button class="toolbtn" id="langToggle" type="button" aria-label="Switch language">EN / CZ</button>
+    <a class="btn order-now" href="https://paystack.shop/pay/kitonyo" data-en="Order Now ↗" data-cs="Objednat nyní ↗">Order Now ↗</a><button class="toolbtn" id="langToggle" type="button" aria-label="Switch language">EN / CZ</button>
     <button class="toolbtn" id="currencyToggle" type="button" aria-label="Change currency">KSh ▾</button>
    </div>
   </header>
@@ -82,7 +87,8 @@
      </div>
      <p data-en="Start with the essentials or invest in a standout website. Add a custom logo or more pages whenever you need them." data-cs="Začněte jednoduše, nebo investujte do výrazného webu. Logo i další stránky můžete přidat kdykoliv.">Start with the essentials or invest in a standout website. Add a custom logo or more pages whenever you need them.</p>
     </div>
-    <div class="cards">
+    <div class="checkout-actions"><a class="btn order-now" href="https://paystack.shop/pay/kitonyo" data-en="Order Now ↗" data-cs="Objednat nyní ↗">Order Now ↗</a></div>
+  <div class="cards">
      <article class="card">
       <div class="iconbox">↗</div>
       <h3 data-en="Domain &amp; Setup" data-cs="Doména a nastavení">Domain &amp; Setup</h3>
@@ -331,3 +337,4 @@ setLanguage(language);renderPrices();
    </svg> </a>
  </body>
 </html>
+
