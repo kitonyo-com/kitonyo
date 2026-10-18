@@ -307,7 +307,8 @@
   <footer class="legal-footer"><div><strong>KITONYO ENTERPRISE.</strong><p>Jan Jaroš · IČO / Business ID 07960883<br>Lesní Albrechtice 2, 74744 Březová, Czech Republic<br><a href="mailto:info@kitonyo.com">info@kitonyo.com</a> · <a href="tel:+420720958340">+420 720 958 340</a></p></div><nav aria-label="Legal"><a href="terms.html" data-cs="Podmínky" data-en="Terms">Terms</a><a href="contact.html" data-cs="Kontakt" data-en="Contact">Contact</a><a href="complaints.html" data-cs="Reklamace a odstoupení" data-en="Complaints & withdrawal">Complaints & withdrawal</a><a href="privacy.html" data-cs="Soukromí a cookies" data-en="Privacy & cookies">Privacy & cookies</a></nav></footer>
   <div class="toast" id="toast" role="status">Enquiry prepared — copy it from the next prompt.</div>
   <script>
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearElement = document.getElementById("year");
+if (yearElement) yearElement.textContent = new Date().getFullYear();
 // Locale guess is only a first-visit default; visitors can always override it.
 const languageKey = "kitonyo-language", currencyKey = "kitonyo-currency";
 let language = localStorage.getItem(languageKey) || ((navigator.language || "en").toLowerCase().startsWith("cs") ? "cs" : "en");
