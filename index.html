@@ -26,7 +26,8 @@
 @media(max-width:1100px){.nav{flex-wrap:wrap}.navtools{margin-left:auto}}
 @media(max-width:600px){.navtools{width:100%;justify-content:flex-end;margin-left:0}.navtools .order-now{margin-right:auto;order:-1}.checkout-actions .order-now{width:100%}.brand{font-size:14px}.navlinks{flex-wrap:wrap}}
 </style>
- </head>
+ <style>.legal-footer{width:min(1120px,calc(100% - 40px));margin:50px auto 0;padding:28px 0;border-top:1px solid #ffffff25;display:flex;justify-content:space-between;gap:28px;font-size:13px;color:#bbb7ca}.legal-footer nav{display:flex;flex-wrap:wrap;gap:12px 22px;align-content:start;max-width:440px}.legal-footer p{line-height:1.7}.legal-footer a{text-decoration:underline;text-underline-offset:3px}@media(max-width:600px){.legal-footer{display:block}.legal-footer nav{margin-top:20px}}</style>
+</head>
  <body>
   <header class="wrap nav">
    <a class="brand" href="#top"><span class="brandmark">K</span><span>KITONYO ENTERPRISE<span style="color:var(--accent)">.</span></span></a>
@@ -34,7 +35,7 @@
     <a href="#services" data-en="Services" data-cs="Služby">Services</a><a href="#work" data-en="Style" data-cs="Styl">Style</a><a href="#process" data-en="How it works" data-cs="Jak to funguje">How it works</a><a href="#contact" data-en="Contact" data-cs="Kontakt">Contact</a>
    </nav>
    <div class="navtools" aria-label="Language and currency">
-    <a class="btn order-now" href="https://paystack.shop/pay/kitonyo" data-en="Order Now ↗" data-cs="Objednat nyní ↗">Order Now ↗</a><button class="toolbtn" id="langToggle" type="button" aria-label="Switch language">EN / CZ</button>
+    <a class="btn order-now" href="contact.html" data-en="Request a quote ↗" data-cs="Nezávazná poptávka ↗">Request a quote ↗</a><button class="toolbtn" id="langToggle" type="button" aria-label="Switch language">EN / CZ</button>
     <button class="toolbtn" id="currencyToggle" type="button" aria-label="Change currency">KSh ▾</button>
    </div>
   </header>
@@ -87,8 +88,8 @@
      </div>
      <p data-en="Start with the essentials or invest in a standout website. Add a custom logo or more pages whenever you need them." data-cs="Začněte jednoduše, nebo investujte do výrazného webu. Logo i další stránky můžete přidat kdykoliv.">Start with the essentials or invest in a standout website. Add a custom logo or more pages whenever you need them.</p>
     </div>
-    <div class="checkout-actions"><a class="btn order-now" href="https://paystack.shop/pay/kitonyo" data-en="Order Now ↗" data-cs="Objednat nyní ↗">Order Now ↗</a></div>
-  <div class="cards">
+    <div class="checkout-actions"><a class="btn order-now" href="contact.html" data-en="Request a quote ↗" data-cs="Nezávazná poptávka ↗">Request a quote ↗</a></div>
+  <p class="note" data-en="Full payment in advance · First complete version within 7 days of payment and all materials · 3 revision rounds within the agreed scope. See Terms for consumer early-start rules." data-cs="Celá platba předem · První kompletní verze do 7 dnů od platby a dodání podkladů · 3 kola úprav v zadání. Zahájení práce u spotřebitele se řídí podmínkami.">Full payment in advance · First complete version within 7 days of payment and all materials · 3 revision rounds within the agreed scope. See Terms for consumer early-start rules.</p><div class="cards">
      <article class="card">
       <div class="iconbox">↗</div>
       <h3 data-en="Domain &amp; Setup" data-cs="Doména a nastavení">Domain &amp; Setup</h3>
@@ -303,14 +304,7 @@
     </div>
    </section>
   </main>
-  <footer class="wrap footer">
-   <div>
-    <strong>KITONYO ENTERPRISE.</strong> Websites that make your business stand out.
-   </div>
-   <div>
-    © <span id="year"></span> · Made with intention.
-   </div>
-  </footer>
+  <footer class="legal-footer"><div><strong>KITONYO ENTERPRISE.</strong><p>Jan Jaroš · IČO / Business ID 07960883<br>Lesní Albrechtice 2, 74744 Březová, Czech Republic<br><a href="mailto:info@kitonyo.com">info@kitonyo.com</a> · <a href="tel:+420720958340">+420 720 958 340</a></p></div><nav aria-label="Legal"><a href="terms.html" data-cs="Podmínky" data-en="Terms">Terms</a><a href="contact.html" data-cs="Kontakt" data-en="Contact">Contact</a><a href="complaints.html" data-cs="Reklamace a odstoupení" data-en="Complaints & withdrawal">Complaints & withdrawal</a><a href="privacy.html" data-cs="Soukromí a cookies" data-en="Privacy & cookies">Privacy & cookies</a></nav></footer>
   <div class="toast" id="toast" role="status">Enquiry prepared — copy it from the next prompt.</div>
   <script>
 document.getElementById("year").textContent = new Date().getFullYear();
