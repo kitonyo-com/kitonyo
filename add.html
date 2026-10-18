@@ -24,7 +24,7 @@
 @media(max-width:600px){.navtools{width:100%;justify-content:flex-end;margin-left:0}.navtools .order-now{margin-right:auto;order:-1}.checkout-actions .order-now{width:100%}.brand{font-size:14px}.navlinks{flex-wrap:wrap}}
 </style>
  <style>.legal-footer{width:min(1120px,calc(100% - 40px));margin:50px auto 0;padding:28px 0;border-top:1px solid #ffffff25;display:flex;justify-content:space-between;gap:28px;font-size:13px;color:#bbb7ca}.legal-footer nav{display:flex;flex-wrap:wrap;gap:12px 22px;align-content:start;max-width:440px}.legal-footer p{line-height:1.7}.legal-footer a{text-decoration:underline;text-underline-offset:3px}@media(max-width:600px){.legal-footer{display:block}.legal-footer nav{margin-top:20px}}</style>
-</head>
+<style>.payment-soon{display:inline-flex;flex-direction:column;align-items:center;gap:4px}.payment-soon small{font-size:10px;color:var(--muted);line-height:1.3;letter-spacing:.04em}.payment-soon button:disabled{cursor:default;opacity:.65;transform:none;box-shadow:none}.checkout-actions .payment-soon{min-width:220px}</style></head>
  <body>
   <header class="wrap nav">
    <a class="brand" href="index.html"><span class="brandmark">K</span><span>KITONYO ENTERPRISE<span style="color:var(--accent)">.</span></span></a>
@@ -32,7 +32,7 @@
     <a href="#builder" data-en="Try the styles" data-cs="Vyzkoušet návrhy">Try the styles</a><a href="#features" data-en="What’s possible" data-cs="Co lze vytvořit">What’s possible</a><a href="#contact" data-en="Get started" data-cs="Pustit se do toho">Get started</a>
    </nav>
    <div class="navtools">
-    <a class="btn order-now" href="contact.html" data-en="Request a quote ↗" data-cs="Nezávazná poptávka ↗">Request a quote ↗</a><button class="toolbtn" id="langToggle" type="button">EN / CZ</button>
+    <span class="payment-soon"><button class="btn order-now" type="button" disabled aria-disabled="true" data-en="Pay online" data-cs="Zaplatit online">Pay online</button><small>Coming soon</small></span><button class="toolbtn" id="langToggle" type="button">EN / CZ</button>
     <button class="toolbtn" id="currencyToggle" type="button">KSh ▾</button>
    </div>
   </header>
@@ -45,7 +45,7 @@
       <br>
       <span>A whole vibe.</span></h1>
      <p class="lead" data-en="Add another page to your website, give visitors more to explore, and make every click feel like part of your brand." data-cs="Rozšiřte svůj web o další stránku, nabídněte návštěvníkům víc obsahu a udržte každý detail ve stylu své značky.">Add another page to your website, give visitors more to explore, and make every click feel like part of your brand.</p>
-     <div class="actions"><a class="btn order-now" href="contact.html" data-en="Request a quote ↗" data-cs="Nezávazná poptávka ↗">Request a quote ↗</a>
+     <div class="actions"><span class="payment-soon"><button class="btn order-now" type="button" disabled aria-disabled="true" data-en="Pay online" data-cs="Zaplatit online">Pay online</button><small>Coming soon</small></span>
       <a class="btn" href="#builder" data-en="Try the styles ↘" data-cs="Vyzkoušet návrhy ↘">Try the styles ↘</a><a class="btn secondary" href="https://wa.me/420720958340?text=Hi%20Kitonyo%20Enterprise%2C%20I%27d%20like%20to%20add%20a%20page%20to%20my%20website." target="_blank" rel="noopener" data-en="Discuss your page ↗" data-cs="Probrat novou stránku ↗">Discuss your page ↗</a>
      </div>
     </div>
@@ -308,4 +308,5 @@ $('#reset').addEventListener('click',()=>{const sw=$$('.swatch');sw.forEach(x=>x
    </svg> </a>
  </body>
 </html>
+
 
