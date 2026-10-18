@@ -5,6 +5,7 @@
 .navlinks a:nth-child(n){display:inline-flex;align-items:center;min-height:44px}.navtools{flex-shrink:0}
 .navtools .enquiry-cta{font-size:13px;padding:10px 14px;min-height:44px;white-space:nowrap}
 .swatch{width:44px;height:44px}.styleopt,.tinybtn{min-height:44px}
+.domainbox>*{min-width:0}.domainprice{max-width:440px}.domainprice small{white-space:normal;overflow-wrap:anywhere;line-height:1.5;margin-top:4px}
 @media(max-width:700px){
  .nav{display:grid;grid-template-columns:1fr;padding:16px 0;gap:12px}.brand{font-size:14px}.brandmark{flex-shrink:0}.navtools{grid-row:2;width:100%;justify-content:flex-end;margin:0}.navtools .enquiry-cta{margin-right:auto}.navlinks{grid-row:3!important}
  .navlinks{display:flex;grid-column:1/-1;flex-wrap:wrap;justify-content:center;gap:4px 20px;font-size:13px}.navlinks a:nth-child(n){display:inline-flex}.navtools{gap:6px}
