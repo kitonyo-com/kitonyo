@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0d0d12">
-  <title>More Than a Page | Kitonyo Enterprise</title>
+  
   <style>
 :root{--bg:#0d0d12;--panel:#15151e;--panel2:#1c1c27;--text:#f6f4fb;--muted:#aaa8b8;--line:rgba(255,255,255,.11);--accent:#c5ff5c;--purple:#a78bfa;--pink:#ff8fc8}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;padding:24px 0;border-bottom:1px solid var(--line);gap:14px}.navtools{display:flex;align-items:center;gap:8px}.toolbtn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;padding:8px 10px;font-weight:800;font-size:12px;cursor:pointer}.toolbtn:hover,.toolbtn[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}.brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:-.04em}.brandmark{width:35px;height:35px;border-radius:12px;background:var(--accent);color:#171018;display:grid;place-items:center;font-size:20px}.navlinks{display:flex;gap:25px;color:var(--muted);font-size:14px}.navlinks a:hover{color:var(--accent)}.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:11px;color:#d9d5e6;background:rgba(255,255,255,.03)}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 15px var(--accent);animation:pulse 1.8s infinite}.hero{padding:86px 0 68px;display:grid;grid-template-columns:1.12fr .88fr;gap:45px;align-items:center}.eyebrow{color:var(--accent);text-transform:uppercase;font-weight:850;letter-spacing:.16em;font-size:11px}.hero h1{font-size:clamp(44px,6.4vw,76px);line-height:.96;letter-spacing:-.075em;margin:18px 0}.hero h1 span{color:var(--accent)}.lead{font-size:17px;color:var(--muted);max-width:520px}.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:25px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 17px;border-radius:13px;background:var(--accent);color:#111;font-weight:850;border:1px solid var(--accent);cursor:pointer;transition:transform .2s,box-shadow .2s,filter .2s}.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px #c5ff5c24}.btn.secondary{background:transparent;color:var(--text);border-color:var(--line)}.btn.secondary:hover{border-color:var(--accent)}.heroart{min-height:370px;position:relative;border:1px solid var(--line);border-radius:28px;background:radial-gradient(ellipse at 50% 50%,#a78bfa18,transparent 60%),radial-gradient(ellipse at 20% 80%,#c5ff5c18,transparent 50%),var(--panel);display:grid;place-items:center;overflow:hidden;perspective:900px}.gridglow{position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(transparent,#000,transparent);transform:perspective(500px) rotateX(22deg) scale(1.3);animation:gridmove 14s linear infinite}.console{z-index:1;width:min(86%,440px);padding:18px;border:1px solid #ffffff27;border-radius:20px;background:linear-gradient(145deg,#272733,#111117);box-shadow:0 25px 80px #0009;transform:rotateX(7deg) rotateZ(-4deg);animation:float 5s ease-in-out infinite}.console-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:10px;letter-spacing:.12em;margin-bottom:17px}.leds{display:flex;gap:5px}.leds i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 9px var(--accent)}.deckrow{display:grid;grid-template-columns:1fr 1fr;gap:13px}.deck{border:1px solid #ffffff14;border-radius:14px;padding:12px;background:#0c0c12}.vinyl{aspect-ratio:1;border-radius:50%;background:repeating-radial-gradient(circle,#15151b 0 3px,#282832 4px 5px);border:5px solid #101016;display:grid;place-items:center;box-shadow:inset 0 0 0 1px #ffffff22;animation:spin 8s linear infinite;animation-play-state:paused}.vinyl:after{content:"K";width:32px;height:32px;border-radius:50%;background:var(--accent);color:#101010;display:grid;place-items:center;font-weight:1000;box-shadow:0 0 20px #c5ff5c55}.vinyl.playing{animation-play-state:running}.decklabel{font-size:9px;color:var(--muted);margin-top:8px;display:flex;justify-content:space-between}.mixer{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:15px;padding:12px;border-radius:12px;background:#0b0b11;border:1px solid #ffffff12}.channel{display:flex;flex-direction:column;align-items:center;gap:8px}.knob{width:25px;height:25px;border-radius:50%;background:conic-gradient(var(--accent) 0 210deg,#333340 210deg);position:relative;box-shadow:0 0 12px #c5ff5c16}.knob:after{content:"";position:absolute;width:2px;height:8px;background:#fff;left:11px;top:3px;border-radius:3px}.fader{height:38px;width:5px;background:#383844;border-radius:5px;position:relative}.fader:after{content:"";position:absolute;left:-5px;top:var(--pos,40%);width:15px;height:7px;border-radius:3px;background:var(--accent);box-shadow:0 0 9px #c5ff5c66}.channel small{font-size:8px;color:var(--muted)}.soundbtn{position:absolute;z-index:2;right:20px;bottom:20px;width:58px;height:58px;border-radius:20px;border:1px solid #c5ff5c77;background:#17191b;color:var(--accent);display:grid;place-items:center;font-size:24px;cursor:pointer;box-shadow:0 0 0 0 #c5ff5c33;transition:.25s}.soundbtn:hover,.soundbtn.active{background:var(--accent);color:#111;box-shadow:0 0 35px #c5ff5c33;transform:scale(1.06)}.soundhint{position:absolute;bottom:88px;right:18px;color:var(--muted);font-size:10px;background:#101017d9;padding:7px 10px;border-radius:8px;border:1px solid var(--line)}.section{padding:55px 0}.head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:24px}.head h2{font-size:clamp(30px,4.5vw,48px);line-height:1.02;letter-spacing:-.06em;margin:10px 0}.head p{max-width:440px;color:var(--muted);margin:0}.builder{display:grid;grid-template-columns:.85fr 1.15fr;gap:16px}.controls,.live{border:1px solid var(--line);border-radius:23px;background:var(--panel);padding:24px}.controls h3,.live h3{margin:0 0 8px;font-size:20px;letter-spacing:-.04em}.muted{color:var(--muted);font-size:13px}.controlgroup{margin-top:23px}.controlgroup label{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:750;margin-bottom:10px}.controlgroup label span{color:var(--accent)}input[type=range]{width:100%;accent-color:var(--accent)}.swatches{display:flex;gap:9px;flex-wrap:wrap}.swatch{width:31px;height:31px;border-radius:10px;border:2px solid transparent;cursor:pointer;transition:.2s}.swatch.selected{border-color:white;outline:2px solid var(--accent);transform:scale(1.08)}.styleoptions{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.styleopt{background:#101017;border:1px solid var(--line);color:var(--muted);padding:10px 6px;border-radius:10px;font-size:11px;cursor:pointer}.styleopt.selected{color:var(--accent);border-color:var(--accent);background:#c5ff5c0c}.live{overflow:hidden;position:relative}.livebar{display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:18px}.livebar span:first-child{display:flex;align-items:center;gap:6px}.preview{--preview-accent:#c5ff5c;min-height:320px;border-radius:16px;background:#f3f1ec;color:#1b1b22;overflow:hidden;transition:background .3s}.previewnav{padding:17px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #00000012;font-size:10px;font-weight:900}.previewlogo{display:flex;align-items:center;gap:7px}.previewlogo i{display:grid;place-items:center;width:22px;height:22px;background:var(--preview-accent);border-radius:7px;font-style:normal}.previewlinks{font-size:9px;color:#666}.previewbody{padding:28px 22px 22px}.previewtag{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#65636b}.preview h4{font-size:clamp(27px,3vw,43px);line-height:.98;letter-spacing:-.07em;max-width:340px;margin:12px 0}.preview h4 span{color:#7560cf}.previewtext{font-size:10px;color:#686570;max-width:270px}.previewcta{display:inline-block;margin-top:11px;padding:9px 12px;border-radius:7px;background:var(--preview-accent);font-size:9px;font-weight:900}.previewblocks{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:23px}.previewblock{height:58px;border-radius:8px;background:linear-gradient(135deg,#d7cafa,#f3c8d9);display:flex;align-items:end;padding:8px;font-size:8px;font-weight:900}.previewblock:nth-child(2){background:linear-gradient(135deg,#d8efb6,#c6d9f7)}.previewblock:nth-child(3){background:linear-gradient(135deg,#f5d6a8,#eab7c7)}.livefooter{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;font-size:11px;color:var(--muted)}.tinybtn{border:1px solid var(--line);background:#101017;color:var(--text);padding:8px 10px;border-radius:9px;cursor:pointer}.tinybtn:hover{border-color:var(--accent)}.featuregrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature{border:1px solid var(--line);border-radius:19px;padding:22px;background:linear-gradient(145deg,#ffffff08,transparent 70%),var(--panel);transition:transform .25s,border-color .25s}.feature:hover{transform:translateY(-6px);border-color:#c5ff5c77}.featureicon{font-size:23px;color:var(--accent);margin-bottom:14px}.feature h3{margin:0 0 7px;font-size:17px}.feature p{margin:0;color:var(--muted);font-size:13px}.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:translateY(0)}.cta{padding:35px;border:1px solid #c5ff5c4d;border-radius:24px;background:radial-gradient(ellipse at 100% 0,#c5ff5c15,transparent 50%),var(--panel);display:flex;align-items:center;justify-content:space-between;gap:25px}.cta h2{font-size:clamp(28px,4vw,43px);letter-spacing:-.06em;line-height:1.02;margin:10px 0}.cta p{color:var(--muted);margin:0}.footer{padding:25px 0;margin-top:55px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:12px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--accent);color:#111;padding:12px 16px;border-radius:12px;font-weight:850;z-index:5;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}@keyframes pulse{50%{opacity:.45;box-shadow:0 0 3px var(--accent)}}@keyframes float{0%,100%{transform:rotateX(7deg) rotateZ(-4deg) translateY(0)}50%{transform:rotateX(7deg) rotateZ(-4deg) translateY(-9px)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes gridmove{to{background-position:0 56px,56px 0}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}@media(max-width:800px){.nav{flex-wrap:wrap}.navtools{margin-left:auto}.hero{grid-template-columns:1fr;padding:55px 0 40px;gap:25px}.heroart{min-height:350px}.builder{grid-template-columns:1fr}.featuregrid{grid-template-columns:1fr 1fr}.head{display:block}.head p{margin-top:10px}.cta{align-items:flex-start;flex-direction:column}}@media(max-width:420px){.wrap{width:calc(100% - 28px)}.navlinks{gap:12px;font-size:12px}.navlinks a:nth-child(2){display:none}.hero h1{font-size:46px}.heroart{min-height:310px}.console{width:90%;padding:12px}.soundbtn{width:50px;height:50px;right:12px;bottom:12px}.soundhint{right:12px;bottom:72px}.featuregrid{grid-template-columns:1fr}.controls,.live{padding:17px}.previewbody{padding:22px 15px}.previewblocks{grid-template-columns:1fr 1fr}.previewblock:nth-child(3){display:none}.footer{flex-direction:column}}
@@ -24,29 +24,27 @@
 @media(max-width:600px){.navtools{width:100%;justify-content:flex-end;margin-left:0}.navtools .order-now{margin-right:auto;order:-1}.checkout-actions .order-now{width:100%}.brand{font-size:14px}.navlinks{flex-wrap:wrap}}
 </style>
  <style>.legal-footer{width:min(1120px,calc(100% - 40px));margin:50px auto 0;padding:28px 0;border-top:1px solid #ffffff25;display:flex;justify-content:space-between;gap:28px;font-size:13px;color:#bbb7ca}.legal-footer nav{display:flex;flex-wrap:wrap;gap:12px 22px;align-content:start;max-width:440px}.legal-footer p{line-height:1.7}.legal-footer a{text-decoration:underline;text-underline-offset:3px}@media(max-width:600px){.legal-footer{display:block}.legal-footer nav{margin-top:20px}}</style>
-<style>.payment-soon{display:inline-flex;flex-direction:column;align-items:center;gap:4px}.payment-soon small{font-size:10px;color:var(--muted);line-height:1.3;letter-spacing:.04em}.payment-soon button:disabled{cursor:default;opacity:.65;transform:none;box-shadow:none}.checkout-actions .payment-soon{min-width:220px}</style></head>
- <body>
+<style>.payment-soon{display:inline-flex;flex-direction:column;align-items:center;gap:4px}.payment-soon small{font-size:10px;color:var(--muted);line-height:1.3;letter-spacing:.04em}.payment-soon button:disabled{cursor:default;opacity:.65;transform:none;box-shadow:none}.checkout-actions .payment-soon{min-width:220px}</style><title>Additional Website Pages | Kitonyo Enterprise</title><meta name="description" content="Explore styles for an additional website page and discuss your requirements with Kitonyo Enterprise on WhatsApp."><meta name="robots" content="index,follow"><link rel="canonical" href="https://kitonyo.com/add"><link rel="alternate" hreflang="en" href="https://kitonyo.com/add"><link rel="alternate" hreflang="cs" href="https://kitonyo.com/cs/add"><link rel="alternate" hreflang="x-default" href="https://kitonyo.com/add"><meta property="og:type" content="website"><meta property="og:title" content="Additional Website Pages | Kitonyo Enterprise"><meta property="og:description" content="Explore styles for an additional website page and discuss your requirements with Kitonyo Enterprise on WhatsApp."><meta property="og:url" content="https://kitonyo.com/add"><meta property="og:site_name" content="Kitonyo Enterprise"><meta property="og:locale" content="en_GB"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="mobile.css"></head>
+ <body data-language="en">
   <header class="wrap nav">
    <a class="brand" href="index.html"><span class="brandmark">K</span><span>KITONYO ENTERPRISE<span style="color:var(--accent)">.</span></span></a>
    <nav class="navlinks">
-    <a href="#builder" data-en="Try the styles" data-cs="Vyzkoušet návrhy">Try the styles</a><a href="#features" data-en="What’s possible" data-cs="Co lze vytvořit">What’s possible</a><a href="#contact" data-en="Get started" data-cs="Pustit se do toho">Get started</a>
+    <a href="#builder">Try the styles</a><a href="#features">What’s possible</a><a href="#contact">Get started</a>
    </nav>
    <div class="navtools">
-    <span class="payment-soon"><button class="btn order-now" type="button" disabled aria-disabled="true" data-en="Pay online" data-cs="Zaplatit online">Pay online</button><small>Coming soon</small></span><button class="toolbtn" id="langToggle" type="button">EN / CZ</button>
+    <a class="btn enquiry-cta" href="https://wa.me/420720958340?text=Hello%2C%20I%20would%20like%20to%20discuss%20my%20project." target="_blank" rel="noopener noreferrer">Discuss your project</a><a class="toolbtn language-link" id="langToggle" href="cs/add.html" aria-label="Switch to Czech">Česky</a>
     <button class="toolbtn" id="currencyToggle" type="button">KSh ▾</button>
    </div>
   </header>
   <main>
    <section class="wrap hero">
     <div class="reveal">
-     <span class="pill"><span class="dot"></span> <span data-en="YOUR WEBSITE, YOUR STYLE" data-cs="VÁŠ WEB, VÁŠ STYL">YOUR WEBSITE, YOUR STYLE</span></span>
-     <p class="eyebrow" style="margin-top:24px" data-en="Make it yours" data-cs="Vyladěte si ho po svém">Make it yours</p>
-     <h1 data-en="More than a page.&lt;br&gt;&lt;span&gt;A whole vibe.&lt;/span&gt;" data-cs="Víc než další stránka.&lt;br&gt;&lt;span&gt;Web s vlastním stylem.&lt;/span&gt;">More than a page.
-      <br>
-      <span>A whole vibe.</span></h1>
-     <p class="lead" data-en="Add another page to your website, give visitors more to explore, and make every click feel like part of your brand." data-cs="Rozšiřte svůj web o další stránku, nabídněte návštěvníkům víc obsahu a udržte každý detail ve stylu své značky.">Add another page to your website, give visitors more to explore, and make every click feel like part of your brand.</p>
-     <div class="actions"><span class="payment-soon"><button class="btn order-now" type="button" disabled aria-disabled="true" data-en="Pay online" data-cs="Zaplatit online">Pay online</button><small>Coming soon</small></span>
-      <a class="btn" href="#builder" data-en="Try the styles ↘" data-cs="Vyzkoušet návrhy ↘">Try the styles ↘</a><a class="btn secondary" href="https://wa.me/420720958340?text=Hi%20Kitonyo%20Enterprise%2C%20I%27d%20like%20to%20add%20a%20page%20to%20my%20website." target="_blank" rel="noopener" data-en="Discuss your page ↗" data-cs="Probrat novou stránku ↗">Discuss your page ↗</a>
+     <span class="pill"><span class="dot"></span> <span>YOUR WEBSITE, YOUR STYLE</span></span>
+     <p class="eyebrow" style="margin-top:24px">Make it yours</p>
+     <h1>More than a page.<br><span>A whole vibe.</span></h1>
+     <p class="lead">Add another page to your website, give visitors more to explore, and make every click feel like part of your brand.</p>
+     <div class="actions">
+      <a class="btn" href="#builder">Try the styles ↘</a><a class="btn secondary" href="https://wa.me/420720958340?text=Hello%2C+I+am+interested+in+your+services+and+would+like+to+discuss+my+website." target="_blank" rel="noopener">Discuss your page ↗</a>
      </div>
     </div>
     <div class="heroart reveal">
@@ -92,24 +90,24 @@
        </div>
       </div>
      </div>
-     <div class="soundhint" id="soundhint" data-en="Tap for a DJ drop" data-cs="Klikněte pro DJ zvuk">Tap for a DJ drop</div>
+     <div class="soundhint" id="soundhint">Tap for a DJ drop</div>
      <button class="soundbtn" id="soundbtn" aria-label="Play DJ sound effect" title="Play DJ sound">♫</button>
     </div>
    </section>
    <section class="wrap section reveal" id="builder">
     <div class="head">
      <div>
-      <p class="eyebrow" data-en="Live preview" data-cs="Živá ukázka">Live preview</p>
-      <h2 data-en="Try different styles." data-cs="Vyzkoušejte různé návrhy.">Turn the dials.</h2>
+      <p class="eyebrow">Live preview</p>
+      <h2>Try different styles.</h2>
      </div>
-     <p data-en="Try different looks and see how the page changes. Use this preview to explore ideas for your own website." data-cs="Vyzkoušejte různé vzhledy a sledujte, jak se stránka mění. Inspirujte se a najděte styl, který bude vašemu podnikání sedět.">Try a few styles and watch the sample page react. This is a little taste of how your own page can be shaped.</p>
+     <p>Try different looks and see how the page changes. Use this preview to explore ideas for your own website.</p>
     </div>
     <div class="builder">
      <div class="controls">
-      <h3 data-en="Try the styles" data-cs="Vyzkoušejte návrhy">Try the styles</h3>
-      <p class="muted" data-en="Your choices update the live preview." data-cs="Změny se okamžitě projeví v náhledu.">Your choices update the live preview.</p>
+      <h3>Try the styles</h3>
+      <p class="muted">Your choices update the live preview.</p>
       <div class="controlgroup">
-       <label data-en="Accent color" data-cs="Zvýrazňující barva">Accent color <span id="colorName">Electric lime</span></label>
+       <label>Accent color <span id="colorName">Electric lime</span></label>
        <div class="swatches">
         <button class="swatch selected" data-color="#c5ff5c" style="background:#c5ff5c" aria-label="Electric lime"></button>
         <button class="swatch" data-color="#a78bfa" style="background:#a78bfa" aria-label="Lavender"></button>
@@ -119,27 +117,27 @@
        </div>
       </div>
       <div class="controlgroup">
-       <label for="roundness" data-en="Corner style" data-cs="Zaoblení rohů">Corner style <span id="roundValue" data-en="Soft" data-cs="Jemné">Soft</span></label><input type="range" id="roundness" min="0" max="24" value="12">
+       <label for="roundness">Corner style <span id="roundValue">Soft</span></label><input type="range" id="roundness" min="0" max="24" value="12">
       </div>
       <div class="controlgroup">
-       <label for="spacing" data-en="Spacing" data-cs="Rozestupy">Spacing <span id="spaceValue" data-en="Balanced" data-cs="Vyvážené">Balanced</span></label><input type="range" id="spacing" min="12" max="36" value="22">
+       <label for="spacing">Spacing <span id="spaceValue">Balanced</span></label><input type="range" id="spacing" min="12" max="36" value="22">
       </div>
       <div class="controlgroup">
-       <label data-en="Page mood" data-cs="Charakter stránky">Page mood</label>
+       <label>Page mood</label>
        <div class="styleoptions">
-        <button class="styleopt selected" data-mood="bold" data-en="Bold" data-cs="Výrazný">Bold</button>
-        <button class="styleopt" data-mood="minimal" data-en="Minimal" data-cs="Minimalistický">Minimal</button>
-        <button class="styleopt" data-mood="playful" data-en="Playful" data-cs="Hravý">Playful</button>
+        <button class="styleopt selected" data-mood="bold">Bold</button>
+        <button class="styleopt" data-mood="minimal">Minimal</button>
+        <button class="styleopt" data-mood="playful">Playful</button>
        </div>
       </div>
       <div class="actions">
-       <button class="btn" id="shuffle" data-en="Surprise me ✨" data-cs="Překvapte mě ✨">Surprise me ✨</button>
-       <button class="btn secondary" id="reset" data-en="Reset" data-cs="Obnovit">Reset</button>
+       <button class="btn" id="shuffle">Surprise me ✨</button>
+       <button class="btn secondary" id="reset">Reset</button>
       </div>
      </div>
      <div class="live">
       <div class="livebar">
-       <span><span class="dot"></span> <span data-en="LIVE PREVIEW" data-cs="ŽIVÝ NÁHLED">LIVE PREVIEW</span></span><span data-en="DEMO SITE / 01" data-cs="UKÁZKOVÝ WEB / 01">DEMO SITE / 01</span>
+       <span><span class="dot"></span> <span>LIVE PREVIEW</span></span><span>DEMO SITE / 01</span>
       </div>
       <div class="preview" id="preview">
        <div class="previewnav">
@@ -159,7 +157,7 @@
       </div>
       <div class="livefooter">
        <span id="previewstatus">Bold style · Electric lime</span>
-       <button class="tinybtn" id="changeCopy" data-en="Change headline ↻" data-cs="Změnit nadpis ↻">Change headline ↻</button>
+       <button class="tinybtn" id="changeCopy">Change headline ↻</button>
       </div>
      </div>
     </div>
@@ -167,41 +165,41 @@
    <section class="wrap section reveal" id="features">
     <div class="head">
      <div>
-      <p class="eyebrow" data-en="One more click, more possibilities" data-cs="Jedna stránka navíc. Spousta možností.">One more click, more possibilities</p>
-      <h2 data-en="Give your ideas room." data-cs="Dejte svým nápadům prostor.">Give your ideas room.</h2>
+      <p class="eyebrow">One more click, more possibilities</p>
+      <h2>Give your ideas room.</h2>
      </div>
-     <p data-en="Use an extra page for the information that deserves its own space, without making your main page feel crowded." data-cs="Věnujte důležitým informacím vlastní stránku a udržte hlavní web přehledný.">Use an extra page for the information that deserves its own space, without making your main page feel crowded.</p>
+     <p>Use an extra page for the information that deserves its own space, without making your main page feel crowded.</p>
     </div>
     <div class="featuregrid">
      <article class="feature">
       <div class="featureicon">✦</div>
-      <h3 data-en="Services &amp; prices" data-cs="Služby a ceník">Services &amp; prices</h3>
-      <p data-en="Give each service a clearer explanation and make your offer easy to browse." data-cs="Vysvětlete jednotlivé služby a udělejte svou nabídku přehlednou.">Give each service a clearer explanation and make your offer easy to browse.</p>
+      <h3>Services & prices</h3>
+      <p>Give each service a clearer explanation and make your offer easy to browse.</p>
      </article>
      <article class="feature">
       <div class="featureicon">▧</div>
-      <h3 data-en="Gallery &amp; portfolio" data-cs="Galerie a portfolio">Gallery &amp; portfolio</h3>
-      <p data-en="Show your work, products, projects, or best moments in a dedicated place." data-cs="Ukažte svou práci, produkty, projekty nebo nejlepší realizace.">Show your work, products, projects, or best moments in a dedicated place.</p>
+      <h3>Gallery & portfolio</h3>
+      <p>Show your work, products, projects, or best moments in a dedicated place.</p>
      </article>
      <article class="feature">
       <div class="featureicon">⌁</div>
-      <h3 data-en="About your business" data-cs="O vašem podnikání">About your business</h3>
-      <p data-en="Tell your story, introduce your team, and help customers get to know you." data-cs="Představte svůj příběh, tým a přibližte zákazníkům svou značku.">Tell your story, introduce your team, and help customers get to know you.</p>
+      <h3>About your business</h3>
+      <p>Tell your story, introduce your team, and help customers get to know you.</p>
      </article>
      <article class="feature">
       <div class="featureicon">✉</div>
-      <h3 data-en="Contact page" data-cs="Kontaktní stránka">Contact page</h3>
-      <p data-en="Make your contact details and next steps easy to find." data-cs="Zpřístupněte kontakty a jasně ukažte, jak vás zákazníci zastihnou.">Make your contact details and next steps easy to find.</p>
+      <h3>Contact page</h3>
+      <p>Make your contact details and next steps easy to find.</p>
      </article>
      <article class="feature">
       <div class="featureicon">◈</div>
-      <h3 data-en="Offers &amp; promotions" data-cs="Akce a nabídky">Offers &amp; promotions</h3>
-      <p data-en="Give special offers or seasonal campaigns a page of their own." data-cs="Dejte speciálním nabídkám a sezónním akcím vlastní prostor.">Give special offers or seasonal campaigns a page of their own.</p>
+      <h3>Offers & promotions</h3>
+      <p>Give special offers or seasonal campaigns a page of their own.</p>
      </article>
      <article class="feature">
       <div class="featureicon">↗</div>
-      <h3 data-en="Built to match" data-cs="V jednotném stylu">Built to match</h3>
-      <p data-en="Keep the look consistent with your existing website and brand." data-cs="Zachovejte vzhled, který navazuje na váš současný web a značku.">Keep the look consistent with your existing website and brand.</p>
+      <h3>Built to match</h3>
+      <p>Keep the look consistent with your existing website and brand.</p>
      </article>
     </div>
    </section>
@@ -209,31 +207,16 @@
     <div class="cta">
      <div>
       <p class="eyebrow">Ready to add a page?</p>
-      <h2 data-en="Let’s make room for more." data-cs="Dejme vašemu webu víc prostoru.">Let's make room for more.</h2>
-      <p data-en="Additional page or section ·" data-cs="Další stránka nebo sekce ·">Additional clickable page or tab · <strong class="price" data-kes="3000" tabindex="0" role="button" aria-label="Click to change currency" style="color:var(--accent)">KSh 3,000</strong></p>
+      <h2>Let’s make room for more.</h2>
+      <p>Additional page or section · <strong class="price" data-kes="3000" tabindex="0" role="button" aria-label="Click to change currency" style="color:var(--accent)">KSh 3,000</strong></p>
      </div>
-     <a class="btn" href="https://wa.me/420720958340?text=Hi%20Kitonyo%20Enterprise%2C%20I%27d%20like%20to%20add%20a%20page%20to%20my%20website%20for%20KSh%203%2C000." target="_blank" rel="noopener" data-en="Let’s build it ↗" data-cs="Pojďme na to ↗">Let's build it ↗</a>
+     <a class="btn" href="https://wa.me/420720958340?text=Hello%2C+I+am+interested+in+your+services+and+would+like+to+discuss+my+website." target="_blank" rel="noopener">Let’s build it ↗</a>
     </div>
-   </section>
+   <div class="checkout-actions"><span class="payment-soon"><button class="btn order-now" type="button" disabled aria-disabled="true">Pay online</button><small>Coming soon</small></span></div></section>
   </main>
-  <footer class="legal-footer"><div><strong>KITONYO ENTERPRISE.</strong><p>Jan Jaroš · IČO / Business ID 07960883<br>Lesní Albrechtice 2, 74744 Březová, Czech Republic<br><a href="mailto:info@kitonyo.com">info@kitonyo.com</a> · <a href="tel:+420720958340">+420 720 958 340</a></p></div><nav aria-label="Legal"><a href="terms.html" data-cs="Podmínky" data-en="Terms">Terms</a><a href="contact.html" data-cs="Kontakt" data-en="Contact">Contact</a><a href="complaints.html" data-cs="Reklamace a odstoupení" data-en="Complaints & withdrawal">Complaints & withdrawal</a><a href="privacy.html" data-cs="Soukromí a cookies" data-en="Privacy & cookies">Privacy & cookies</a></nav></footer>
+  <footer class="legal-footer"><div><strong>KITONYO ENTERPRISE.</strong><p>Jan Jaroš · Business ID 07960883<br>Lesní Albrechtice 2, 74744 Březová, Czech Republic<br><a href="mailto:info@kitonyo.com">info@kitonyo.com</a> · <a href="tel:+420720958340">+420 720 958 340</a></p></div><nav aria-label="Legal"><a href="terms.html">Terms</a><a href="contact.html">Contact</a><a href="complaints.html">Complaints & withdrawal</a><a href="privacy.html">Privacy & cookies</a></nav></footer>
   <div class="toast" id="toast">New vibe loaded ✨</div>
-  <script>
-// Shared language and currency preferences with the main Kitonyo page.
-const languageKey="kitonyo-language", currencyKey="kitonyo-currency";
-let language=localStorage.getItem(languageKey)||((navigator.language||"en").toLowerCase().startsWith("cs")?"cs":"en");
-let currency=localStorage.getItem(currencyKey)||"KES";
-const currencyOrder=["KES","CZK","USD","EUR"], currencyLabels={KES:"KSh",CZK:"Kč",USD:"US$",EUR:"€"};
-const kesRates={KES:1,CZK:.168,USD:.00772,EUR:.00689};
-function money(kes){let v=kes*kesRates[currency],n=currency==="KES"?Math.round(v/100)*100:currency==="CZK"?Math.round(v/50)*50:Math.round(v);return currencyLabels[currency]+" "+n.toLocaleString(language==="cs"?"cs-CZ":"en-GB");}
-function renderCurrency(){document.querySelectorAll(".price[data-kes]").forEach(el=>{el.textContent=money(Number(el.dataset.kes));});document.getElementById("currencyToggle").textContent=currencyLabels[currency]+" ▾";}
-function setLanguage(next){language=next;document.documentElement.lang=language;document.querySelectorAll("[data-en][data-cs]").forEach(el=>{const value=el.dataset[language];if(value!==undefined){const child=el.querySelector(":scope > span[id]");if(child&&el.firstChild&&el.firstChild.nodeType===3)el.firstChild.nodeValue=value;else el.innerHTML=value;}});document.getElementById("langToggle").textContent=language==="cs"?"CZ / EN":"EN / CZ";localStorage.setItem(languageKey,language);renderCurrency();}
-document.getElementById("langToggle").addEventListener("click",()=>setLanguage(language==="en"?"cs":"en"));
-function cycleCurrency(){currency=currencyOrder[(currencyOrder.indexOf(currency)+1)%currencyOrder.length];localStorage.setItem(currencyKey,currency);renderCurrency();}
-document.getElementById("currencyToggle").addEventListener("click",cycleCurrency);
-document.querySelectorAll(".price[data-kes]").forEach(el=>{el.addEventListener("click",cycleCurrency);el.style.cursor="pointer";el.title=language==="cs"?"Kliknutím změnit měnu":"Click to change currency";});
-setLanguage(language);
-</script>
+  <script src="site.js"></script>
   <script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 // Scroll reveal animation
@@ -293,7 +276,7 @@ const copyOptions=[
  ['Good ideas','deserve a stage.','Bring your best work into focus with a page designed to get noticed.'],
  ['Small business.','Big presence.','Make it easy for people to discover you, understand you, and get in touch.']
 ];
-function updateStatus(){const color=$('.swatch.selected')?.getAttribute('aria-label')||'Custom';$('#previewstatus').textContent=mood[0].toUpperCase()+mood.slice(1)+' style · '+color}
+function updateStatus(){const color=$('.swatch.selected')?.getAttribute('aria-label')||'Custom';$('#colorName').textContent=color;$('#previewstatus').textContent=mood[0].toUpperCase()+mood.slice(1)+' style · '+color}
 $$('.swatch').forEach(b=>b.addEventListener('click',()=>{$$('.swatch').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');accent=b.dataset.color;$('#preview').style.setProperty('--preview-accent',accent);$('#previewmark').style.background=accent;$('#previewcta').style.background=accent;updateStatus()}));
 $('#roundness').addEventListener('input',e=>{let v=+e.target.value;$('#roundValue').textContent=v<7?'Sharp':v<17?'Soft':'Extra soft';$('#preview').style.borderRadius=v+'px';$$('.previewblock').forEach(el=>el.style.borderRadius=Math.max(3,v/2)+'px')});
 $('#spacing').addEventListener('input',e=>{let v=+e.target.value;$('#spaceValue').textContent=v<19?'Compact':v<29?'Balanced':'Airy';$('#previewbody').style.padding=`${v+6}px ${v}px ${Math.max(12,v)}px`});
@@ -304,7 +287,7 @@ $('#reset').addEventListener('click',()=>{const sw=$$('.swatch');sw.forEach(x=>x
 </script>
   <a class="whatsapp-float" href="https://wa.me/420720958340" target="_blank" rel="noopener noreferrer" aria-label="Chat with Kitonyo Enterprise on WhatsApp"> <span class="wa-label">Chat on WhatsApp</span> 
    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-    <path d="M16.02 3.2C9.02 3.2 3.33 8.83 3.33 15.75c0 2.22.59 4.39 1.71 6.31L3.2 28.8l6.94-1.8a12.8 12.8 0 0 0 5.87 1.42h.01c7 0 12.68-5.63 12.68-12.55 0-3.35-1.32-6.5-3.72-8.88a12.64 12.64 0 0 0-8.96-3.79Zm0 23.08h-.01c-1.8 0-3.57-.48-5.12-1.39l-.37-.22-4.12 1.07 1.1-4-.24-.39a10.34 10.34 0 0 1-1.6-5.6c0-5.7 4.65-10.33 10.37-10.33 2.77 0 5.37 1.08 7.33 3.03a10.25 10.25 0 0 1 3.04 7.3c0 5.7-4.65 10.33-10.38 10.33Zm5.69-7.73c-.31-.15-1.84-.9-2.13-1-.28-.1-.49-.15-.7.15-.21.31-.8 1-.98 1.2-.18.2-.36.23-.67.08-.31-.15-1.3-.48-2.47-1.52-.91-.81-1.53-1.81-1.71-2.12-.18-.31-.02-.48.13-.63.14-.14.31-.36.46-.54.16-.18.21-.31.31-.52.1-.2.05-.39-.03-.54-.08-.15-.7-1.67-.96-2.29-.25-.6-.51-.52-.7-.53l-.6-.01c-.2 0-.54.08-.82.39-.28.31-1.08 1.05-1.08 2.57s1.1 2.98 1.25 3.19c.15.2 2.16 3.28 5.23 4.6.73.31 1.3.5 1.75.64.74.23 1.41.2 1.94.12.59-.09 1.84-.75 2.1-1.47.26-.72.26-1.34.18-1.47-.08-.13-.28-.2-.59-.36Z" />
+    <path d="M16.02 3.2C9.02 3.2 3.33 8.83 3.33 15.75c0 2.22.59 4.39 1.71 6.31L3.2 28.8l6.94-1.8a12.8 12.8 0 0 0 5.87 1.42h.01c7 0 12.68-5.63 12.68-12.55 0-3.35-1.32-6.5-3.72-8.88a12.64 12.64 0 0 0-8.96-3.79Zm0 23.08h-.01c-1.8 0-3.57-.48-5.12-1.39l-.37-.22-4.12 1.07 1.1-4-.24-.39a10.34 10.34 0 0 1-1.6-5.6c0-5.7 4.65-10.33 10.37-10.33 2.77 0 5.37 1.08 7.33 3.03a10.25 10.25 0 0 1 3.04 7.3c0 5.7-4.65 10.33-10.38 10.33Zm5.69-7.73c-.31-.15-1.84-.9-2.13-1-.28-.1-.49-.15-.7.15-.21.31-.8 1-.98 1.2-.18.2-.36.23-.67.08-.31-.15-1.3-.48-2.47-1.52-.91-.81-1.53-1.81-1.71-2.12-.18-.31-.02-.48.13-.63.14-.14.31-.36.46-.54.16-.18.21-.31.31-.52.1-.2.05-.39-.03-.54-.08-.15-.7-1.67-.96-2.29-.25-.6-.51-.52-.7-.53l-.6-.01c-.2 0-.54.08-.82.39-.28.31-1.08 1.05-1.08 2.57s1.1 2.98 1.25 3.19c.15.2 2.16 3.28 5.23 4.6.73.31 1.3.5 1.75.64.74.23 1.41.2 1.94.12.59-.09 1.84-.75 2.1-1.47.26-.72.26-1.34.18-1.47-.08-.13-.28-.2-.59-.36Z"></path>
    </svg> </a>
  </body>
 </html>

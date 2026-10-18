@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="cs">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0d0d12">
+  
+  <style>
+:root{--bg:#0d0d12;--panel:#15151e;--panel2:#1c1c27;--text:#f6f4fb;--muted:#aaa8b8;--line:rgba(255,255,255,.11);--accent:#c5ff5c;--purple:#a78bfa;--pink:#ff8fc8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;padding:24px 0;border-bottom:1px solid var(--line);gap:14px}.navtools{display:flex;align-items:center;gap:8px}.toolbtn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;padding:8px 10px;font-weight:800;font-size:12px;cursor:pointer}.toolbtn:hover,.toolbtn[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}.brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:-.04em}.brandmark{width:35px;height:35px;border-radius:12px;background:var(--accent);color:#171018;display:grid;place-items:center;font-size:20px}.navlinks{display:flex;gap:25px;color:var(--muted);font-size:14px}.navlinks a:hover{color:var(--accent)}.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:11px;color:#d9d5e6;background:rgba(255,255,255,.03)}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 15px var(--accent);animation:pulse 1.8s infinite}.hero{padding:86px 0 68px;display:grid;grid-template-columns:1.12fr .88fr;gap:45px;align-items:center}.eyebrow{color:var(--accent);text-transform:uppercase;font-weight:850;letter-spacing:.16em;font-size:11px}.hero h1{font-size:clamp(44px,6.4vw,76px);line-height:.96;letter-spacing:-.075em;margin:18px 0}.hero h1 span{color:var(--accent)}.lead{font-size:17px;color:var(--muted);max-width:520px}.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:25px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 17px;border-radius:13px;background:var(--accent);color:#111;font-weight:850;border:1px solid var(--accent);cursor:pointer;transition:transform .2s,box-shadow .2s,filter .2s}.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px #c5ff5c24}.btn.secondary{background:transparent;color:var(--text);border-color:var(--line)}.btn.secondary:hover{border-color:var(--accent)}.heroart{min-height:370px;position:relative;border:1px solid var(--line);border-radius:28px;background:radial-gradient(ellipse at 50% 50%,#a78bfa18,transparent 60%),radial-gradient(ellipse at 20% 80%,#c5ff5c18,transparent 50%),var(--panel);display:grid;place-items:center;overflow:hidden;perspective:900px}.gridglow{position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(transparent,#000,transparent);transform:perspective(500px) rotateX(22deg) scale(1.3);animation:gridmove 14s linear infinite}.console{z-index:1;width:min(86%,440px);padding:18px;border:1px solid #ffffff27;border-radius:20px;background:linear-gradient(145deg,#272733,#111117);box-shadow:0 25px 80px #0009;transform:rotateX(7deg) rotateZ(-4deg);animation:float 5s ease-in-out infinite}.console-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:10px;letter-spacing:.12em;margin-bottom:17px}.leds{display:flex;gap:5px}.leds i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 9px var(--accent)}.deckrow{display:grid;grid-template-columns:1fr 1fr;gap:13px}.deck{border:1px solid #ffffff14;border-radius:14px;padding:12px;background:#0c0c12}.vinyl{aspect-ratio:1;border-radius:50%;background:repeating-radial-gradient(circle,#15151b 0 3px,#282832 4px 5px);border:5px solid #101016;display:grid;place-items:center;box-shadow:inset 0 0 0 1px #ffffff22;animation:spin 8s linear infinite;animation-play-state:paused}.vinyl:after{content:"K";width:32px;height:32px;border-radius:50%;background:var(--accent);color:#101010;display:grid;place-items:center;font-weight:1000;box-shadow:0 0 20px #c5ff5c55}.vinyl.playing{animation-play-state:running}.decklabel{font-size:9px;color:var(--muted);margin-top:8px;display:flex;justify-content:space-between}.mixer{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:15px;padding:12px;border-radius:12px;background:#0b0b11;border:1px solid #ffffff12}.channel{display:flex;flex-direction:column;align-items:center;gap:8px}.knob{width:25px;height:25px;border-radius:50%;background:conic-gradient(var(--accent) 0 210deg,#333340 210deg);position:relative;box-shadow:0 0 12px #c5ff5c16}.knob:after{content:"";position:absolute;width:2px;height:8px;background:#fff;left:11px;top:3px;border-radius:3px}.fader{height:38px;width:5px;background:#383844;border-radius:5px;position:relative}.fader:after{content:"";position:absolute;left:-5px;top:var(--pos,40%);width:15px;height:7px;border-radius:3px;background:var(--accent);box-shadow:0 0 9px #c5ff5c66}.channel small{font-size:8px;color:var(--muted)}.soundbtn{position:absolute;z-index:2;right:20px;bottom:20px;width:58px;height:58px;border-radius:20px;border:1px solid #c5ff5c77;background:#17191b;color:var(--accent);display:grid;place-items:center;font-size:24px;cursor:pointer;box-shadow:0 0 0 0 #c5ff5c33;transition:.25s}.soundbtn:hover,.soundbtn.active{background:var(--accent);color:#111;box-shadow:0 0 35px #c5ff5c33;transform:scale(1.06)}.soundhint{position:absolute;bottom:88px;right:18px;color:var(--muted);font-size:10px;background:#101017d9;padding:7px 10px;border-radius:8px;border:1px solid var(--line)}.section{padding:55px 0}.head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:24px}.head h2{font-size:clamp(30px,4.5vw,48px);line-height:1.02;letter-spacing:-.06em;margin:10px 0}.head p{max-width:440px;color:var(--muted);margin:0}.builder{display:grid;grid-template-columns:.85fr 1.15fr;gap:16px}.controls,.live{border:1px solid var(--line);border-radius:23px;background:var(--panel);padding:24px}.controls h3,.live h3{margin:0 0 8px;font-size:20px;letter-spacing:-.04em}.muted{color:var(--muted);font-size:13px}.controlgroup{margin-top:23px}.controlgroup label{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:750;margin-bottom:10px}.controlgroup label span{color:var(--accent)}input[type=range]{width:100%;accent-color:var(--accent)}.swatches{display:flex;gap:9px;flex-wrap:wrap}.swatch{width:31px;height:31px;border-radius:10px;border:2px solid transparent;cursor:pointer;transition:.2s}.swatch.selected{border-color:white;outline:2px solid var(--accent);transform:scale(1.08)}.styleoptions{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.styleopt{background:#101017;border:1px solid var(--line);color:var(--muted);padding:10px 6px;border-radius:10px;font-size:11px;cursor:pointer}.styleopt.selected{color:var(--accent);border-color:var(--accent);background:#c5ff5c0c}.live{overflow:hidden;position:relative}.livebar{display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:18px}.livebar span:first-child{display:flex;align-items:center;gap:6px}.preview{--preview-accent:#c5ff5c;min-height:320px;border-radius:16px;background:#f3f1ec;color:#1b1b22;overflow:hidden;transition:background .3s}.previewnav{padding:17px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #00000012;font-size:10px;font-weight:900}.previewlogo{display:flex;align-items:center;gap:7px}.previewlogo i{display:grid;place-items:center;width:22px;height:22px;background:var(--preview-accent);border-radius:7px;font-style:normal}.previewlinks{font-size:9px;color:#666}.previewbody{padding:28px 22px 22px}.previewtag{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#65636b}.preview h4{font-size:clamp(27px,3vw,43px);line-height:.98;letter-spacing:-.07em;max-width:340px;margin:12px 0}.preview h4 span{color:#7560cf}.previewtext{font-size:10px;color:#686570;max-width:270px}.previewcta{display:inline-block;margin-top:11px;padding:9px 12px;border-radius:7px;background:var(--preview-accent);font-size:9px;font-weight:900}.previewblocks{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:23px}.previewblock{height:58px;border-radius:8px;background:linear-gradient(135deg,#d7cafa,#f3c8d9);display:flex;align-items:end;padding:8px;font-size:8px;font-weight:900}.previewblock:nth-child(2){background:linear-gradient(135deg,#d8efb6,#c6d9f7)}.previewblock:nth-child(3){background:linear-gradient(135deg,#f5d6a8,#eab7c7)}.livefooter{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;font-size:11px;color:var(--muted)}.tinybtn{border:1px solid var(--line);background:#101017;color:var(--text);padding:8px 10px;border-radius:9px;cursor:pointer}.tinybtn:hover{border-color:var(--accent)}.featuregrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature{border:1px solid var(--line);border-radius:19px;padding:22px;background:linear-gradient(145deg,#ffffff08,transparent 70%),var(--panel);transition:transform .25s,border-color .25s}.feature:hover{transform:translateY(-6px);border-color:#c5ff5c77}.featureicon{font-size:23px;color:var(--accent);margin-bottom:14px}.feature h3{margin:0 0 7px;font-size:17px}.feature p{margin:0;color:var(--muted);font-size:13px}.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:translateY(0)}.cta{padding:35px;border:1px solid #c5ff5c4d;border-radius:24px;background:radial-gradient(ellipse at 100% 0,#c5ff5c15,transparent 50%),var(--panel);display:flex;align-items:center;justify-content:space-between;gap:25px}.cta h2{font-size:clamp(28px,4vw,43px);letter-spacing:-.06em;line-height:1.02;margin:10px 0}.cta p{color:var(--muted);margin:0}.footer{padding:25px 0;margin-top:55px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:12px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--accent);color:#111;padding:12px 16px;border-radius:12px;font-weight:850;z-index:5;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}@keyframes pulse{50%{opacity:.45;box-shadow:0 0 3px var(--accent)}}@keyframes float{0%,100%{transform:rotateX(7deg) rotateZ(-4deg) translateY(0)}50%{transform:rotateX(7deg) rotateZ(-4deg) translateY(-9px)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes gridmove{to{background-position:0 56px,56px 0}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}@media(max-width:800px){.nav{flex-wrap:wrap}.navtools{margin-left:auto}.hero{grid-template-columns:1fr;padding:55px 0 40px;gap:25px}.heroart{min-height:350px}.builder{grid-template-columns:1fr}.featuregrid{grid-template-columns:1fr 1fr}.head{display:block}.head p{margin-top:10px}.cta{align-items:flex-start;flex-direction:column}}@media(max-width:420px){.wrap{width:calc(100% - 28px)}.navlinks{gap:12px;font-size:12px}.navlinks a:nth-child(2){display:none}.hero h1{font-size:46px}.heroart{min-height:310px}.console{width:90%;padding:12px}.soundbtn{width:50px;height:50px;right:12px;bottom:12px}.soundhint{right:12px;bottom:72px}.featuregrid{grid-template-columns:1fr}.controls,.live{padding:17px}.previewbody{padding:22px 15px}.previewblocks{grid-template-columns:1fr 1fr}.previewblock:nth-child(3){display:none}.footer{flex-direction:column}}
+
+/* Persistent WhatsApp contact button */
+.whatsapp-float{position:fixed;right:22px;bottom:22px;z-index:9999;width:60px;height:60px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#25D366;color:#fff;box-shadow:0 8px 26px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.16);transition:transform .2s ease,box-shadow .2s ease;text-decoration:none}
+.whatsapp-float:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 12px 32px rgba(0,0,0,.42),0 0 0 5px rgba(37,211,102,.18)}
+.whatsapp-float:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.whatsapp-float svg{width:31px;height:31px;display:block;fill:currentColor}
+.whatsapp-float .wa-label{position:absolute;right:70px;white-space:nowrap;padding:8px 11px;border-radius:10px;background:#15151e;color:#f6f4fb;border:1px solid rgba(255,255,255,.13);font-size:12px;font-weight:750;opacity:0;transform:translateX(5px);pointer-events:none;transition:opacity .2s,transform .2s}
+.whatsapp-float:hover .wa-label,.whatsapp-float:focus-visible .wa-label{opacity:1;transform:translateX(0)}
+@media(max-width:600px){.whatsapp-float{width:54px;height:54px;right:16px;bottom:16px}.whatsapp-float svg{width:28px;height:28px}.whatsapp-float .wa-label{display:none}}
+
+/* Checkout actions retain the existing theme and layout. */
+.order-now{min-height:44px;box-shadow:0 4px 20px #c5ff5c20;text-align:center}.order-now:focus-visible{outline:3px solid var(--text);outline-offset:4px}.navtools{flex-wrap:wrap}.navtools .order-now{font-size:13px;padding:10px 14px;white-space:nowrap}.checkout-actions{display:flex;justify-content:center;margin:28px 0 0}.checkout-actions .order-now{min-width:220px}
+@media(max-width:1100px){.nav{flex-wrap:wrap}.navtools{margin-left:auto}}
+@media(max-width:600px){.navtools{width:100%;justify-content:flex-end;margin-left:0}.navtools .order-now{margin-right:auto;order:-1}.checkout-actions .order-now{width:100%}.brand{font-size:14px}.navlinks{flex-wrap:wrap}}
+</style>
+ <style>.legal-footer{width:min(1120px,calc(100% - 40px));margin:50px auto 0;padding:28px 0;border-top:1px solid #ffffff25;display:flex;justify-content:space-between;gap:28px;font-size:13px;color:#bbb7ca}.legal-footer nav{display:flex;flex-wrap:wrap;gap:12px 22px;align-content:start;max-width:440px}.legal-footer p{line-height:1.7}.legal-footer a{text-decoration:underline;text-underline-offset:3px}@media(max-width:600px){.legal-footer{display:block}.legal-footer nav{margin-top:20px}}</style>
+<style>.payment-soon{display:inline-flex;flex-direction:column;align-items:center;gap:4px}.payment-soon small{font-size:10px;color:var(--muted);line-height:1.3;letter-spacing:.04em}.payment-soon button:disabled{cursor:default;opacity:.65;transform:none;box-shadow:none}.checkout-actions .payment-soon{min-width:220px}</style><title>Další stránky pro váš web | Kitonyo Enterprise</title><meta name="description" content="Vyzkoušejte vzhled další stránky webu a proberte své požadavky s Kitonyo Enterprise na WhatsAppu."><meta name="robots" content="index,follow"><link rel="canonical" href="https://kitonyo.com/cs/add"><link rel="alternate" hreflang="en" href="https://kitonyo.com/add"><link rel="alternate" hreflang="cs" href="https://kitonyo.com/cs/add"><link rel="alternate" hreflang="x-default" href="https://kitonyo.com/add"><meta property="og:type" content="website"><meta property="og:title" content="Další stránky pro váš web | Kitonyo Enterprise"><meta property="og:description" content="Vyzkoušejte vzhled další stránky webu a proberte své požadavky s Kitonyo Enterprise na WhatsAppu."><meta property="og:url" content="https://kitonyo.com/cs/add"><meta property="og:site_name" content="Kitonyo Enterprise"><meta property="og:locale" content="cs_CZ"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="../mobile.css"></head>
+ <body data-language="cs">
+  <header class="wrap nav">
+   <a class="brand" href="index.html"><span class="brandmark">K</span><span>KITONYO ENTERPRISE<span style="color:var(--accent)">.</span></span></a>
+   <nav class="navlinks">
+    <a href="#builder">Vyzkoušet návrhy</a><a href="#features">Co lze vytvořit</a><a href="#contact">Pustit se do toho</a>
+   </nav>
+   <div class="navtools">
+    <a class="btn enquiry-cta" href="https://wa.me/420720958340?text=Dobr%C3%BD%20den%2C%20r%C3%A1d%2Fa%20bych%20probral%2Fa%20sv%C5%AFj%20projekt." target="_blank" rel="noopener noreferrer">Probrat projekt</a><a class="toolbtn language-link" id="langToggle" href="../add.html" aria-label="Přepnout do angličtiny">English</a>
+    <button class="toolbtn" id="currencyToggle" type="button">KSh ▾</button>
+   </div>
+  </header>
+  <main>
+   <section class="wrap hero">
+    <div class="reveal">
+     <span class="pill"><span class="dot"></span> <span>VÁŠ WEB, VÁŠ STYL</span></span>
+     <p class="eyebrow" style="margin-top:24px">Vyladěte si ho po svém</p>
+     <h1>Víc než další stránka.<br><span>Web s vlastním stylem.</span></h1>
+     <p class="lead">Rozšiřte svůj web o další stránku, nabídněte návštěvníkům víc obsahu a udržte každý detail ve stylu své značky.</p>
+     <div class="actions">
+      <a class="btn" href="#builder">Vyzkoušet návrhy ↘</a><a class="btn secondary" href="https://wa.me/420720958340?text=Dobr%C3%BD+den%2C+m%C3%A1m+z%C3%A1jem+o+va%C5%A1e+slu%C5%BEby.+R%C3%A1d%2Fa+bych+probral%2Fa+sv%C5%AFj+web." target="_blank" rel="noopener">Probrat novou stránku ↗</a>
+     </div>
+    </div>
+    <div class="heroart reveal">
+     <div class="gridglow"></div>
+     <div class="console">
+      <div class="console-top">
+       <span>KITONYO / TVŮRČÍ PULT</span><span class="leds"><i></i><i></i><i></i></span>
+      </div>
+      <div class="deckrow">
+       <div class="deck">
+        <div class="vinyl" id="vinylA"></div>
+        <div class="decklabel">
+         <span>PULT A</span><span>01</span>
+        </div>
+       </div>
+       <div class="deck">
+        <div class="vinyl" id="vinylB" style="animation-direction:reverse"></div>
+        <div class="decklabel">
+         <span>PULT B</span><span>02</span>
+        </div>
+       </div>
+      </div>
+      <div class="mixer">
+       <div class="channel">
+        <div class="knob" style="transform:rotate(-20deg)"></div>
+        <div class="fader" style="--pos:20%"></div>
+        <small>BARVA</small>
+       </div>
+       <div class="channel">
+        <div class="knob" style="transform:rotate(30deg)"></div>
+        <div class="fader" style="--pos:52%"></div>
+        <small>ROZVRŽENÍ</small>
+       </div>
+       <div class="channel">
+        <div class="knob" style="transform:rotate(70deg)"></div>
+        <div class="fader" style="--pos:35%"></div>
+        <small>ENERGIE</small>
+       </div>
+       <div class="channel">
+        <div class="knob" style="transform:rotate(10deg)"></div>
+        <div class="fader" style="--pos:68%"></div>
+        <small>STYL</small>
+       </div>
+      </div>
+     </div>
+     <div class="soundhint" id="soundhint">Klikněte pro DJ zvuk</div>
+     <button class="soundbtn" id="soundbtn" aria-label="Přehrát DJ zvuk" title="Přehrát DJ zvuk">♫</button>
+    </div>
+   </section>
+   <section class="wrap section reveal" id="builder">
+    <div class="head">
+     <div>
+      <p class="eyebrow">Živá ukázka</p>
+      <h2>Vyzkoušejte různé návrhy.</h2>
+     </div>
+     <p>Vyzkoušejte různé vzhledy a sledujte, jak se stránka mění. Inspirujte se a najděte styl, který bude vašemu podnikání sedět.</p>
+    </div>
+    <div class="builder">
+     <div class="controls">
+      <h3>Vyzkoušejte návrhy</h3>
+      <p class="muted">Změny se okamžitě projeví v náhledu.</p>
+      <div class="controlgroup">
+       <label>Zvýrazňující barva <span id="colorName">Limetková</span></label>
+       <div class="swatches">
+        <button class="swatch selected" data-color="#c5ff5c" style="background:#c5ff5c" aria-label="Limetková"></button>
+        <button class="swatch" data-color="#a78bfa" style="background:#a78bfa" aria-label="Levandulová"></button>
+        <button class="swatch" data-color="#ff8fc8" style="background:#ff8fc8" aria-label="Růžová"></button>
+        <button class="swatch" data-color="#69e4f4" style="background:#69e4f4" aria-label="Tyrkysová"></button>
+        <button class="swatch" data-color="#ffb454" style="background:#ffb454" aria-label="Oranžová"></button>
+       </div>
+      </div>
+      <div class="controlgroup">
+       <label for="roundness">Zaoblení rohů <span id="roundValue">Jemné</span></label><input type="range" id="roundness" min="0" max="24" value="12">
+      </div>
+      <div class="controlgroup">
+       <label for="spacing">Rozestupy <span id="spaceValue">Vyvážené</span></label><input type="range" id="spacing" min="12" max="36" value="22">
+      </div>
+      <div class="controlgroup">
+       <label>Charakter stránky</label>
+       <div class="styleoptions">
+        <button class="styleopt selected" data-mood="bold">Výrazný</button>
+        <button class="styleopt" data-mood="minimal">Minimalistický</button>
+        <button class="styleopt" data-mood="playful">Hravý</button>
+       </div>
+      </div>
+      <div class="actions">
+       <button class="btn" id="shuffle">Překvapte mě ✨</button>
+       <button class="btn secondary" id="reset">Obnovit</button>
+      </div>
+     </div>
+     <div class="live">
+      <div class="livebar">
+       <span><span class="dot"></span> <span>ŽIVÝ NÁHLED</span></span><span>UKÁZKOVÝ WEB / 01</span>
+      </div>
+      <div class="preview" id="preview">
+       <div class="previewnav">
+        <span class="previewlogo"><i id="previewmark">K</i><span id="previewbrand">VAŠE ZNAČKA</span></span><span class="previewlinks">O NÁS SLUŽBY KONTAKT</span>
+       </div>
+       <div class="previewbody" id="previewbody">
+        <div class="previewtag">Vytvořeno, aby vyniklo</div>
+        <h4 id="previewtitle">Váš další velký nápad <span>začíná tady.</span></h4>
+        <p class="previewtext" id="previewtext">Zapamatovatelný web pro vaše podnikání, vytvořený podle vašeho stylu a příběhu.</p>
+        <a class="previewcta" id="previewcta" href="#contact">NAPIŠTE NÁM ↗</a>
+        <div class="previewblocks">
+         <div class="previewblock">VÁŠ PŘÍBĚH</div>
+         <div class="previewblock">CO DĚLÁTE</div>
+         <div class="previewblock">PODROBNOSTI</div>
+        </div>
+       </div>
+      </div>
+      <div class="livefooter">
+       <span id="previewstatus">Výrazný styl · Limetková</span>
+       <button class="tinybtn" id="changeCopy">Změnit nadpis ↻</button>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="wrap section reveal" id="features">
+    <div class="head">
+     <div>
+      <p class="eyebrow">Jedna stránka navíc. Spousta možností.</p>
+      <h2>Dejte svým nápadům prostor.</h2>
+     </div>
+     <p>Věnujte důležitým informacím vlastní stránku a udržte hlavní web přehledný.</p>
+    </div>
+    <div class="featuregrid">
+     <article class="feature">
+      <div class="featureicon">✦</div>
+      <h3>Služby a ceník</h3>
+      <p>Vysvětlete jednotlivé služby a udělejte svou nabídku přehlednou.</p>
+     </article>
+     <article class="feature">
+      <div class="featureicon">▧</div>
+      <h3>Galerie a portfolio</h3>
+      <p>Ukažte svou práci, produkty, projekty nebo nejlepší realizace.</p>
+     </article>
+     <article class="feature">
+      <div class="featureicon">⌁</div>
+      <h3>O vašem podnikání</h3>
+      <p>Představte svůj příběh, tým a přibližte zákazníkům svou značku.</p>
+     </article>
+     <article class="feature">
+      <div class="featureicon">✉</div>
+      <h3>Kontaktní stránka</h3>
+      <p>Zpřístupněte kontakty a jasně ukažte, jak vás zákazníci zastihnou.</p>
+     </article>
+     <article class="feature">
+      <div class="featureicon">◈</div>
+      <h3>Akce a nabídky</h3>
+      <p>Dejte speciálním nabídkám a sezónním akcím vlastní prostor.</p>
+     </article>
+     <article class="feature">
+      <div class="featureicon">↗</div>
+      <h3>V jednotném stylu</h3>
+      <p>Zachovejte vzhled, který navazuje na váš současný web a značku.</p>
+     </article>
+    </div>
+   </section>
+   <section class="wrap section reveal" id="contact">
+    <div class="cta">
+     <div>
+      <p class="eyebrow">Chcete přidat další stránku?</p>
+      <h2>Dejme vašemu webu víc prostoru.</h2>
+      <p>Další stránka nebo sekce · <strong class="price" data-kes="3000" tabindex="0" role="button" aria-label="Kliknutím změnit měnu" style="color:var(--accent)">KSh 3,000</strong></p>
+     </div>
+     <a class="btn" href="https://wa.me/420720958340?text=Dobr%C3%BD+den%2C+m%C3%A1m+z%C3%A1jem+o+va%C5%A1e+slu%C5%BEby.+R%C3%A1d%2Fa+bych+probral%2Fa+sv%C5%AFj+web." target="_blank" rel="noopener">Pojďme na to ↗</a>
+    </div>
+   <div class="checkout-actions"><span class="payment-soon"><button class="btn order-now" type="button" disabled aria-disabled="true">Zaplatit online</button><small>Připravujeme</small></span></div></section>
+  </main>
+  <footer class="legal-footer"><div><strong>KITONYO ENTERPRISE.</strong><p>Jan Jaroš · IČO 07960883<br>Lesní Albrechtice 2, 74744 Březová, Česká republika<br><a href="mailto:info@kitonyo.com">info@kitonyo.com</a> · <a href="tel:+420720958340">+420 720 958 340</a></p></div><nav aria-label="Právní informace"><a href="terms.html">Podmínky</a><a href="contact.html">Kontakt</a><a href="complaints.html">Reklamace a odstoupení</a><a href="privacy.html">Soukromí a cookies</a></nav></footer>
+  <div class="toast" id="toast">Nový styl je připravený ✨</div>
+  <script src="../site.js"></script>
+  <script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+// Scroll reveal animation
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});
+$$('.reveal').forEach(el=>observer.observe(el));
+// One-click DJ sound effect: short kick, snare, hi-hat and a tiny synth sweep.
+let audioCtx=null, playing=false, stopTimer=null;
+const soundbtn=$('#soundbtn');
+function djSound(){
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC){$('#soundhint').textContent='Tento prohlížeč nepodporuje zvuk';return}
+  audioCtx=audioCtx||new AC();
+  if(audioCtx.state==='suspended') audioCtx.resume();
+  const now=audioCtx.currentTime;
+  // Each click plays one short DJ-style flourish. Everything is synthesized in-browser.
+  function tone(freq, when, duration, type, volume, endFreq){
+    const osc=audioCtx.createOscillator(), g=audioCtx.createGain();
+    osc.type=type; osc.frequency.setValueAtTime(freq,when);
+    if(endFreq) osc.frequency.exponentialRampToValueAtTime(Math.max(1,endFreq),when+duration);
+    g.gain.setValueAtTime(.0001,when); g.gain.exponentialRampToValueAtTime(volume,when+.008);
+    g.gain.exponentialRampToValueAtTime(.0001,when+duration);
+    osc.connect(g); g.connect(audioCtx.destination); osc.start(when); osc.stop(when+duration+.02);
+  }
+  function noise(when,duration,volume,highpass){
+    const length=Math.max(1,Math.floor(audioCtx.sampleRate*duration));
+    const buffer=audioCtx.createBuffer(1,length,audioCtx.sampleRate), data=buffer.getChannelData(0);
+    for(let i=0;i<length;i++) data[i]=(Math.random()*2-1)*(1-i/length);
+    const src=audioCtx.createBufferSource(), filter=audioCtx.createBiquadFilter(), g=audioCtx.createGain();
+    src.buffer=buffer;filter.type='highpass';filter.frequency.value=highpass;
+    g.gain.setValueAtTime(volume,when);g.gain.exponentialRampToValueAtTime(.0001,when+duration);
+    src.connect(filter);filter.connect(g);g.connect(audioCtx.destination);src.start(when);src.stop(when+duration);
+  }
+  // Kick + clap/snare + ticking hats + rising electronic sweep.
+  tone(125,now,.22,'sine',.48,42);
+  noise(now+.12,.13,.14,1300);
+  noise(now+.12,.12,.10,5000);
+  tone(180,now+.27,.18,'triangle',.22,85);
+  noise(now+.27,.06,.06,6500);
+  tone(110,now+.48,.24,'sine',.38,38);
+  noise(now+.50,.12,.11,1700);
+  noise(now+.53,.07,.07,6000);
+  tone(220,now+.70,.34,'sawtooth',.08,880);
+  tone(440,now+.76,.28,'triangle',.06,660);
+  noise(now+.94,.15,.09,4500);
+  tone(660,now+1.05,.24,'triangle',.09,330);
+  soundbtn.classList.add('active');soundbtn.textContent='♫';$('#soundhint').textContent='DJ zvuk! Klikněte znovu';
+  $('#vinylA').classList.add('playing');$('#vinylB').classList.add('playing');
+  clearTimeout(stopTimer);
+  stopTimer=setTimeout(()=>{soundbtn.classList.remove('active');$('#vinylA').classList.remove('playing');$('#vinylB').classList.remove('playing');$('#soundhint').textContent='Klikněte pro DJ zvuk'},1450);
+}
+soundbtn.addEventListener('click',djSound);
+// Live customizer
+let accent='#c5ff5c', mood='bold', copyIndex=0;
+const copyOptions=[
+ ['Váš další velký nápad','začíná tady.','Zapamatovatelný web pro vaše podnikání, vytvořený podle vašeho stylu a příběhu.'],
+ ['Zanechte svůj otisk','ve světě.','Osobitá stránka, díky které si vás ti správní zákazníci zapamatují.'],
+ ['Dobré nápady','si zaslouží prostor.','Ukažte svou nejlepší práci na stránce, která upoutá pozornost.'],
+ ['Malá firma.','Velká prezentace.','Usnadněte lidem, aby vás našli, pochopili vaši nabídku a ozvali se.']
+];
+function updateStatus(){const color=$('.swatch.selected')?.getAttribute('aria-label')||'Vlastní';$('#colorName').textContent=color;$('#previewstatus').textContent=({bold:'Výrazný',minimal:'Minimalistický',playful:'Hravý'})[mood]+' styl · '+color}
+$$('.swatch').forEach(b=>b.addEventListener('click',()=>{$$('.swatch').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');accent=b.dataset.color;$('#preview').style.setProperty('--preview-accent',accent);$('#previewmark').style.background=accent;$('#previewcta').style.background=accent;updateStatus()}));
+$('#roundness').addEventListener('input',e=>{let v=+e.target.value;$('#roundValue').textContent=v<7?'Ostré':v<17?'Jemné':'Výrazně zaoblené';$('#preview').style.borderRadius=v+'px';$$('.previewblock').forEach(el=>el.style.borderRadius=Math.max(3,v/2)+'px')});
+$('#spacing').addEventListener('input',e=>{let v=+e.target.value;$('#spaceValue').textContent=v<19?'Kompaktní':v<29?'Vyvážené':'Vzdušné';$('#previewbody').style.padding=`${v+6}px ${v}px ${Math.max(12,v)}px`});
+$$('.styleopt').forEach(b=>b.addEventListener('click',()=>{$$('.styleopt').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');mood=b.dataset.mood;const p=$('#preview');if(mood==='minimal'){p.style.background='#fff';$('#previewtitle').style.fontWeight='650';$('#previewtitle').style.letterSpacing='-.045em';$('#previewtag').textContent='Méně, ale lépe'}else if(mood==='playful'){p.style.background='#fff4fa';$('#previewtitle').style.fontWeight='950';$('#previewtitle').style.letterSpacing='-.075em';$('#previewtag').textContent='Trocha osobitosti navíc'}else{p.style.background='#f3f1ec';$('#previewtitle').style.fontWeight='900';$('#previewtitle').style.letterSpacing='-.07em';$('#previewtag').textContent='Vytvořeno, aby vyniklo'}updateStatus()}));
+$('#changeCopy').addEventListener('click',()=>{copyIndex=(copyIndex+1)%copyOptions.length;let c=copyOptions[copyIndex];$('#previewtitle').innerHTML=c[0]+' <span>'+c[1]+'</span>';$('#previewtext').textContent=c[2];$('#changeCopy').textContent='Další nápad ↻'});
+$('#shuffle').addEventListener('click',()=>{const swatches=$$('.swatch');swatches[Math.floor(Math.random()*swatches.length)].click();const r=$('#roundness');r.value=Math.floor(Math.random()*25);r.dispatchEvent(new Event('input'));const s=$('#spacing');s.value=12+Math.floor(Math.random()*25);s.dispatchEvent(new Event('input'));const opts=$$('.styleopt');opts[Math.floor(Math.random()*opts.length)].click();$('#changeCopy').click();const t=$('#toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)});
+$('#reset').addEventListener('click',()=>{const sw=$$('.swatch');sw.forEach(x=>x.classList.remove('selected'));sw[0].classList.add('selected');sw[0].click();$('#roundness').value=12;$('#roundness').dispatchEvent(new Event('input'));$('#spacing').value=22;$('#spacing').dispatchEvent(new Event('input'));$$('.styleopt').forEach(x=>x.classList.remove('selected'));$('.styleopt[data-mood="bold"]').classList.add('selected');$('.styleopt[data-mood="bold"]').click();copyIndex=-1;$('#changeCopy').click();});
+</script>
+  <a class="whatsapp-float" href="https://wa.me/420720958340" target="_blank" rel="noopener noreferrer" aria-label="Napsat Kitonyo Enterprise na WhatsApp"> <span class="wa-label">Napsat na WhatsApp</span> 
+   <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <path d="M16.02 3.2C9.02 3.2 3.33 8.83 3.33 15.75c0 2.22.59 4.39 1.71 6.31L3.2 28.8l6.94-1.8a12.8 12.8 0 0 0 5.87 1.42h.01c7 0 12.68-5.63 12.68-12.55 0-3.35-1.32-6.5-3.72-8.88a12.64 12.64 0 0 0-8.96-3.79Zm0 23.08h-.01c-1.8 0-3.57-.48-5.12-1.39l-.37-.22-4.12 1.07 1.1-4-.24-.39a10.34 10.34 0 0 1-1.6-5.6c0-5.7 4.65-10.33 10.37-10.33 2.77 0 5.37 1.08 7.33 3.03a10.25 10.25 0 0 1 3.04 7.3c0 5.7-4.65 10.33-10.38 10.33Zm5.69-7.73c-.31-.15-1.84-.9-2.13-1-.28-.1-.49-.15-.7.15-.21.31-.8 1-.98 1.2-.18.2-.36.23-.67.08-.31-.15-1.3-.48-2.47-1.52-.91-.81-1.53-1.81-1.71-2.12-.18-.31-.02-.48.13-.63.14-.14.31-.36.46-.54.16-.18.21-.31.31-.52.1-.2.05-.39-.03-.54-.08-.15-.7-1.67-.96-2.29-.25-.6-.51-.52-.7-.53l-.6-.01c-.2 0-.54.08-.82.39-.28.31-1.08 1.05-1.08 2.57s1.1 2.98 1.25 3.19c.15.2 2.16 3.28 5.23 4.6.73.31 1.3.5 1.75.64.74.23 1.41.2 1.94.12.59-.09 1.84-.75 2.1-1.47.26-.72.26-1.34.18-1.47-.08-.13-.28-.2-.59-.36Z"></path>
+   </svg> </a>
+ </body>
+</html>
+
+
