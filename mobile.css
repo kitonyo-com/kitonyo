@@ -23,3 +23,5 @@
 .footer-copyright{margin-left:auto;text-align:right;color:var(--muted);font-size:12px;line-height:1.7}.footer-copyright span{display:block}@media(max-width:700px){.footer-copyright{flex-basis:100%;margin-left:0;text-align:left}}
 
 @media(min-width:701px){.footer-copyright{padding-right:70px}}@media(max-width:700px){.footer .payment-footer{padding-bottom:65px}}
+
+.payment-partner{flex-direction:column}.payment-partner .gopay-upcoming{padding:3px 8px 6px;color:#555;font-size:10px}

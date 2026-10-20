@@ -1,6 +1,6 @@
 # PayNecta checkout
 
-The existing EN/CZ static site keeps its design and adds a basket. Only KES (displayed as KSh) can be paid. CZK, USD and EUR remain estimates with payment disabled. Domain protection and third-party domain/hosting purchases still require a quote.
+The existing EN/CZ static site keeps its design and adds a basket. Only KES (displayed as KSh) can be paid. CZK, USD and EUR remain estimates with payment disabled. Domain registration is a separate basket item starting at KSh 650 for the first year; domain protection and hosting still require a quote.
 
 ## Deployment
 
@@ -29,6 +29,10 @@ Read orders through the authenticated Cloudflare D1 console. Only `state=paid` i
 Kitonyo must email the customer the order confirmation and saved terms separately; this integration does not send email or generate invoices. Review the customer's brief and agreed scope before accepting/starting the project. Export the order details and applicable terms for that confirmation. No service work is started automatically.
 
 The first release intentionally has no public order-list/admin endpoint and no automated refunds or fulfillment. Refunds and payout destination changes remain merchant actions. Apply the existing privacy retention policy to D1 records and any backups; do not keep unsuccessful checkout personal data indefinitely. Do not enable request-body logging. Rate-limit buckets are salted hashes and expire after two minutes.
+
+Domain registration is a separate first-year item with a server-enforced minimum of KSh 650. A higher agreed whole-shilling amount is allowed; domain name, amount and quantity (one) are validated and saved with the order. Registration and renewals are performed manually after confirming availability and registrar cost.
+
+Bot protection: set `TURNSTILE_REQUIRED=true`, publish `TURNSTILE_SITE_KEY`, and store `TURNSTILE_SECRET_KEY` as an encrypted runtime Secret. The Worker verifies each new order's proof with Cloudflare Siteverify and checks both hostname and the `checkout` action. Invalid, expired or replayed proofs cannot create a new session. Existing idempotent order retries do not consume another proof. Checkout creation is additionally limited to three attempts/minute and twelve/hour per hashed IP. Hourly rate buckets expire after one hour. These protections cover Kitonyo's checkout endpoint, not the public PayNecta TapFlow or OTP resend controls on PayNecta's domain. A provider-side SMS cap or OTP throttle must be configured/agreed with PayNecta separately.
 
 ## Validation
 

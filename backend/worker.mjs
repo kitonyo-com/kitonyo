@@ -1,20 +1,26 @@
 const BASE = 'https://api.paynecta.co.ke/v1';
-export const TERMS = '2026-10-20-paynecta-v1';
+export const TERMS = '2026-10-20-paynecta-v2';
 // All amounts are integer KES cents. Browser amounts are never accepted.
 export const PRODUCTS = Object.freeze({
  setup: {amount:300000,en:'Domain & Setup',cs:'Doména a nastavení'},
  basic: {amount:500000,en:'Basic One-Page Site',cs:'Základní jednostránkový web'},
  signature: {amount:900000,en:'Signature One-Page Site',cs:'Jednostránkový web na míru'},
  logo: {amount:200000,en:'Custom Logo Design',cs:'Vlastní návrh loga'},
- page: {amount:300000,en:'Additional Website Page',cs:'Další stránka webu'}
+ page: {amount:300000,en:'Additional Website Page',cs:'Další stránka webu'},
+ domain: {amount:65000,editable:true,en:'Domain registration · first year',cs:'Registrace domény · první rok'}
 });
 class HttpError extends Error { constructor(status,code){super(code);this.status=status;this.code=code;} }
 function fail(status,code){throw new HttpError(status,code);}
 export function priceCart(items){
- if(!Array.isArray(items)||!items.length||items.length>5)fail(400,'invalid_cart');
+ if(!Array.isArray(items)||!items.length||items.length>6)fail(400,'invalid_cart');
  const seen=new Set();let amount=0;
  const lines=items.map(item=>{
   if(!item||!Object.hasOwn(PRODUCTS,item.id)||seen.has(item.id)||!Number.isInteger(item.quantity)||item.quantity<1||item.quantity>10)fail(400,'invalid_cart');
+  if(item.id==='domain'){
+   const domain=typeof item.domain==='string'?item.domain.trim().toLowerCase():'';
+   if(item.quantity!==1||!Number.isSafeInteger(item.amount)||item.amount<PRODUCTS.domain.amount||item.amount>25000000||item.amount%100!==0||domain.length>253||! /^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/.test(domain))fail(400,'invalid_domain');
+   seen.add(item.id);amount+=item.amount;return {id:item.id,quantity:1,amount:item.amount,domain};
+  }
   seen.add(item.id);amount+=PRODUCTS[item.id].amount*item.quantity;
   return {id:item.id,quantity:item.quantity};
  }).sort((a,b)=>a.id.localeCompare(b.id));
@@ -60,7 +66,16 @@ async function rateLimit(env,request){
  const now=Date.now(),window=Math.floor(now/60000);
  const bucket=await hash(env.PAYNECTA_SECRET_KEY+'|'+(request.headers.get('CF-Connecting-IP')||'local')+'|'+window);
  const row=await env.DB.prepare('INSERT INTO rate_limits(bucket,count,expires_at) VALUES(?,1,?) ON CONFLICT(bucket) DO UPDATE SET count=count+1 RETURNING count').bind(bucket,now+120000).first();
- if(row.count>6)fail(429,'rate_limited');
+ if(row.count>3)fail(429,'rate_limited');
+ const hourBucket=await hash(env.PAYNECTA_SECRET_KEY+'|hour|'+(request.headers.get('CF-Connecting-IP')||'local')+'|'+Math.floor(now/3600000));
+ const hourly=await env.DB.prepare('INSERT INTO rate_limits(bucket,count,expires_at) VALUES(?,1,?) ON CONFLICT(bucket) DO UPDATE SET count=count+1 RETURNING count').bind(hourBucket,now+3600000).first();
+ if(hourly.count>12)fail(429,'rate_limited');
+}
+async function verifyBot(request,env,body,origin){
+ if(env.TURNSTILE_REQUIRED!=='true')return;
+ if(typeof body.botToken!=='string'||body.botToken.length<1||body.botToken.length>2048)fail(403,'bot_verification_failed');
+ let response,result;try{response=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({secret:env.TURNSTILE_SECRET_KEY,response:body.botToken,remoteip:request.headers.get('CF-Connecting-IP')||undefined}),signal:AbortSignal.timeout(10000)});result=await response.json();}catch{fail(503,'bot_unavailable');}
+ if(!response.ok||result.success!==true||result.hostname!==new URL(origin).hostname||result.action!=='checkout')fail(403,'bot_verification_failed');
 }
 async function createOrder(request,env,origin){
  if((Number(request.headers.get('Content-Length'))||0)>12000)fail(413,'too_large');
@@ -88,6 +103,7 @@ async function createOrder(request,env,origin){
   fail(409,'checkout_uncertain');
  }
  await rateLimit(env,request);
+ await verifyBot(request,env,body,origin);
  const insert=await env.DB.prepare("INSERT OR IGNORE INTO orders(id,token_hash,request_hash,amount,currency,items,customer,language,terms_version,early_start,state,created_at) VALUES(?,?,?,?,'KES',?,?,?,?,?,'creating',?)").bind(id,tokenHash,fingerprint,cart.amount,JSON.stringify(cart.items),JSON.stringify(customer),body.language,TERMS,body.earlyStart===true?1:0,Date.now()).run();
  if(!insert.meta.changes)fail(409,'checkout_uncertain');
  // Persist before calling the provider. Never retry an ambiguous session POST.
@@ -98,7 +114,7 @@ async function createOrder(request,env,origin){
  await env.DB.prepare("UPDATE orders SET session_id=?,checkout_url=?,state='pending' WHERE id=?").bind(data.id,data.url,id).run();
  return json({id,sessionId:data.id,url:data.url,state:'pending',amount:cart.amount,currency:'KES'},201,origin);
 }
-function configured(env){return env.PAYMENTS_ENABLED==='true'&&env.DB&&env.PAYNECTA_PUBLIC_KEY&&env.PAYNECTA_SECRET_KEY&&env.PAYNECTA_TAPFLOW;}
+function configured(env){return env.PAYMENTS_ENABLED==='true'&&env.DB&&env.PAYNECTA_PUBLIC_KEY&&env.PAYNECTA_SECRET_KEY&&env.PAYNECTA_TAPFLOW&&(env.TURNSTILE_REQUIRED!=='true'||(env.TURNSTILE_SECRET_KEY&&env.TURNSTILE_SITE_KEY));}
 const readiness=new WeakMap();
 async function ready(env){
  if(!configured(env))return false;
@@ -116,7 +132,7 @@ export default {
   if(!allowed.includes(origin))return json({error:'origin_denied'},403);
   try{
    if(request.method==='OPTIONS')return new Response(null,{status:204,headers:{'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Methods':'GET,POST,OPTIONS','Access-Control-Allow-Headers':'Authorization,Content-Type,Idempotency-Key','Access-Control-Max-Age':'600','Vary':'Origin'}});
-   if(url.pathname==='/api/catalog'&&request.method==='GET')return json({enabled:await ready(env),currency:'KES',termsVersion:TERMS,products:PRODUCTS},200,origin);
+   if(url.pathname==='/api/catalog'&&request.method==='GET')return json({enabled:await ready(env),currency:'KES',termsVersion:TERMS,products:PRODUCTS,botRequired:env.TURNSTILE_REQUIRED==='true',siteKey:env.TURNSTILE_SITE_KEY||null},200,origin);
    if(!configured(env))fail(503,'payments_not_ready');
    if(url.pathname==='/api/checkout'&&request.method==='POST'){
     if(!await ready(env))fail(503,'payments_not_ready');

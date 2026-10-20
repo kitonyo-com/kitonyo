@@ -17,6 +17,13 @@ test('prices come only from the server catalog, including quantities',()=>{
  assert.equal(priceCart([{id:'basic',quantity:2,amount:1}]).amount,1000000);
  for(const items of [[],[{id:'__proto__',quantity:1}],[{id:'basic',quantity:0}],[{id:'basic',quantity:1.5}],[{id:'basic',quantity:11}],[{id:'basic',quantity:1},{id:'basic',quantity:1}],[{id:'basic',quantity:1},{id:'signature',quantity:1}]])assert.throws(()=>priceCart(items));
 });
+test('domain amount is editable only above the enforced KSh 650 minimum',()=>{
+ const item={id:'domain',quantity:1,amount:65000,domain:'example.com'};
+ assert.equal(priceCart([item]).amount,65000);
+ assert.equal(priceCart([{...item,amount:120000}]).amount,120000);
+ for(const changed of [{amount:64900},{amount:65001},{amount:'65000'},{amount:-1},{amount:Infinity},{quantity:2},{domain:'https://example.com'},{domain:'-bad.com'},{domain:'example.com<script>'}])assert.throws(()=>priceCart([{...item,...changed}]));
+ assert.deepEqual(priceCart([{...item,domain:'EXAMPLE.COM'}]).items,[item]);
+});
 test('rejects unsupported currencies and missing consent before contacting provider',async()=>{
  assert.equal((await create(payload({currency:'USD'}))).status,400);
  assert.equal((await create(payload({acceptTerms:false}))).status,400);
@@ -64,7 +71,7 @@ test('configuration fails closed and hostile origins have no API access',async()
  const denied=await worker.fetch(new Request(origin+'/api/catalog',{headers:{Origin:'https://attacker.example'}}),env);assert.equal(denied.status,403);assert.equal(denied.headers.get('Access-Control-Allow-Origin'),null);
 });
 test('rate limit prevents unbounded creation by the same client',async()=>{
- for(let i=0;i<6;i++){const key=crypto.randomUUID();session={...session,reference:key,id:'chk_fixture'+i,url:'https://pay.paynecta.co.ke/s/chk_fixture'+i+'#session-fixture'};assert.equal((await create(payload(),key)).status,201);}
+ for(let i=0;i<3;i++){const key=crypto.randomUUID();session={...session,reference:key,id:'chk_fixture'+i,url:'https://pay.paynecta.co.ke/s/chk_fixture'+i+'#session-fixture'};assert.equal((await create(payload(),key)).status,201);}
  assert.equal((await create(payload(),crypto.randomUUID())).status,429);
 });
 test('scheduled reconciliation verifies a payment even after the browser is closed',async()=>{
@@ -74,4 +81,26 @@ test('scheduled reconciliation verifies a payment even after the browser is clos
 test('checkout stays disabled when the merchant has no usable TapFlow or fee credit',async()=>{
  const provider=globalThis.fetch;globalThis.fetch=async(url,options)=>url.includes('/tapflows?')?Response.json({status:true,data:[]}):provider(url,options);
  const response=await worker.fetch(new Request(origin+'/api/catalog'),env);assert.equal((await response.json()).enabled,false);assert.equal((await create()).status,503);assert.equal(providerCalls.filter(x=>x.url.endsWith('/checkout_sessions')).length,0);
+});
+test('bot verification blocks absent, forged and wrong-origin tokens before checkout creation',async()=>{
+ env.TURNSTILE_REQUIRED='true';env.TURNSTILE_SITE_KEY='fixture-sitekey';env.TURNSTILE_SECRET_KEY='fixture-secret';
+ const provider=globalThis.fetch;let proof={success:false};globalThis.fetch=async(url,options)=>url.includes('/siteverify')?Response.json(proof):provider(url,options);
+ assert.equal((await create()).status,403);
+ assert.equal((await create(payload({botToken:'forged'}))).status,403);
+ proof={success:true,hostname:'attacker.example',action:'checkout'};
+ assert.equal((await create(payload({botToken:'wrong-origin'}))).status,403);
+ assert.equal(providerCalls.filter(x=>x.url.endsWith('/checkout_sessions')).length,0);
+});
+test('verified human can create a checkout and safely retry the same order',async()=>{
+ env.TURNSTILE_REQUIRED='true';env.TURNSTILE_SITE_KEY='fixture-sitekey';env.TURNSTILE_SECRET_KEY='fixture-secret';
+ const provider=globalThis.fetch;let verifications=0;globalThis.fetch=async(url,options)=>{if(url.includes('/siteverify')){verifications++;return Response.json({success:true,hostname:'kitonyo.com',action:'checkout'});}return provider(url,options);};
+ const body=payload({botToken:'valid-fixture'});assert.equal((await create(body)).status,201);assert.equal((await create(body)).status,200);assert.equal(verifications,1);
+});
+test('required bot protection fails closed when its secret is missing',async()=>{
+ env.TURNSTILE_REQUIRED='true';env.TURNSTILE_SITE_KEY='fixture-sitekey';
+ const response=await worker.fetch(new Request(origin+'/api/catalog'),env);assert.equal((await response.json()).enabled,false);assert.equal((await create()).status,503);assert.equal(providerCalls.length,0);
+});
+test('hourly checkout limit still applies when minute buckets reset',async()=>{
+ const originalNow=Date.now;let now=Math.floor(originalNow()/3600000)*3600000+60000;Date.now=()=>now;
+ try{for(let batch=0;batch<4;batch++){for(let i=0;i<3;i++){const key=crypto.randomUUID(),suffix=batch+'x'+i;session={...session,reference:key,id:'chk_'+suffix,url:'https://pay.paynecta.co.ke/s/chk_'+suffix+'#fixture'};assert.equal((await create(payload(),key)).status,201);}now+=61000;}assert.equal((await create(payload(),crypto.randomUUID())).status,429);}finally{Date.now=originalNow;}
 });
