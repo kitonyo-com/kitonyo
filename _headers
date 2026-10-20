@@ -1,0 +1,4 @@
+/*
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: frame-src https://pay.paynecta.co.ke 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'
