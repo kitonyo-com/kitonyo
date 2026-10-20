@@ -36,6 +36,7 @@ function render(){
  const q=el('input');q.type='number';q.min='1';q.max='10';q.value=line.quantity;q.setAttribute('aria-label',t('Quantity: ','Počet: ')+p[cs?2:1]);q.disabled=!!active;
  q.addEventListener('input',()=>{const n=Number(q.value);if(!Number.isInteger(n)||n<1||n>10)return;line.quantity=n;name.querySelector('small').textContent=money(p[0]*n);$('.cart-amount').textContent=money(cart.reduce((sum,x)=>sum+products[x.id][0]*x.quantity,0));pay.textContent=t('Order and pay ','Objednat a zaplatit ')+$('.cart-amount').textContent;if(catalog?.enabled!==true)pay.textContent=t('Online payment is being prepared','Online platbu připravujeme');persist();});
  q.addEventListener('change',()=>{q.value=line.quantity;render();});
+ q.addEventListener('input',()=>{if(currency()!=='KES')pay.textContent=t('Other currencies coming soon','Ostatní měny připravujeme');});
  const remove=el('button',t('Remove','Odebrat'),'cart-remove');remove.type='button';remove.disabled=!!active;remove.addEventListener('click',()=>{cart=cart.filter(x=>x.id!==line.id);persist();render();});li.append(name,q,remove);list.append(li);}
  const total=cart.reduce((n,x)=>n+products[x.id][0]*x.quantity,0);$('.cart-amount').textContent=money(total);$('.cart-empty').hidden=cart.length>0;
  const kes=currency()==='KES';$('.cart-convert').hidden=kes;form.querySelector('fieldset').disabled=!!active;
