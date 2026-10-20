@@ -1,5 +1,18 @@
 (()=>{
 const language=document.documentElement.lang==='cs'?'cs':'en';
+// Only a deliberate language switch overrides browser detection. The legacy
+// kitonyo-language value was written on every visit and is not a user choice.
+const languageChoiceKey='kitonyo-language-choice-v1';
+let chosenLanguage;try{chosenLanguage=localStorage.getItem(languageChoiceKey)}catch{}
+const browserLanguage=(navigator.languages?.[0]||navigator.language||'en').toLowerCase();
+const preferredLanguage=['cs','en'].includes(chosenLanguage)?chosenLanguage:browserLanguage.startsWith('cs')?'cs':'en';
+if(language==='en'&&preferredLanguage==='cs'&&['/','/index.html'].includes(location.pathname)){
+ location.replace('/cs/index.html'+location.search+location.hash);return;
+}
+document.getElementById('langToggle')?.addEventListener('click',()=>{
+ try{const targetLanguage=language==='cs'?'en':'cs';localStorage.setItem(languageChoiceKey,targetLanguage);
+ localStorage.setItem('kitonyo-currency-preference-v2',JSON.stringify({language:targetLanguage,currency:targetLanguage==='cs'?'CZK':'KES'}));}catch{}
+});
 const order=['KES','CZK','USD','EUR'],labels={KES:'KSh',CZK:'Kč',USD:'US$',EUR:'€'},rates={KES:1,CZK:.168,USD:.00772,EUR:.00689};
 const defaultCurrency=language==='cs'?'CZK':'KES';
 let currency=defaultCurrency;
