@@ -1,0 +1,11 @@
+{
+ "name":"kitonyo-checkout",
+ "main":"backend/worker.mjs",
+ "compatibility_date":"2026-10-20",
+ "assets":{"directory":"./dist","binding":"ASSETS","run_worker_first":["/api/*"]},
+ "build":{"command":"node build-public.cjs"},
+ "vars":{"PAYMENTS_ENABLED":"false","PAYNECTA_TAPFLOW":"kitonyo","ALLOWED_ORIGINS":"https://kitonyo.com,https://www.kitonyo.com"},
+ "d1_databases":[{"binding":"DB","database_name":"kitonyo-orders","database_id":"cc70be56-ea02-4c50-896d-8e31cd018cbb","jurisdiction":"eu"}],
+ "triggers":{"crons":["* * * * *"]},
+ "observability":{"enabled":false}
+}
