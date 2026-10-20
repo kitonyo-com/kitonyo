@@ -59,6 +59,8 @@ async function verify(env,order){
   await env.DB.prepare("UPDATE orders SET state='paid', payment_reference=?, paid_at=?, checkout_url=NULL WHERE id=? AND state!='paid'").bind(session.payment.reference,Date.now(),order.id).run();
   return {...order,state:'paid',payment_reference:session.payment.reference};
  }
+ // Only the provider can release an expired checkout. Never release an unresolved payment.
+ if(session?.id===order.session_id&&session.reference===order.id&&session.currency==='KES'&&session.amount===order.amount&&session.status==='expired'&&!session.payment)return {...order,state:'expired'};
  // Neither a return URL, session status, nor a browser message settles an order.
  return order;
 }
@@ -144,7 +146,7 @@ export default {
     let order=await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(match[1]).first();
     if(!order||order.token_hash!==await hash(bearer(request)))fail(404,'order_not_found');
     order=await verify(env,order);
-    return json({id:order.id,state:order.state,amount:order.amount,currency:'KES',paymentReference:order.state==='paid'?order.payment_reference:null},200,origin);
+    return json({id:order.id,state:order.state,amount:order.amount,currency:'KES',items:JSON.parse(order.items),paymentReference:order.state==='paid'?order.payment_reference:null},200,origin);
    }
    fail(404,'not_found');
   }catch(error){return json({error:error instanceof HttpError?error.code:'temporarily_unavailable'},error instanceof HttpError?error.status:503,origin);}
