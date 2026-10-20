@@ -99,6 +99,14 @@ async function createOrder(request,env,origin){
  return json({id,sessionId:data.id,url:data.url,state:'pending',amount:cart.amount,currency:'KES'},201,origin);
 }
 function configured(env){return env.PAYMENTS_ENABLED==='true'&&env.DB&&env.PAYNECTA_PUBLIC_KEY&&env.PAYNECTA_SECRET_KEY&&env.PAYNECTA_TAPFLOW;}
+const readiness=new WeakMap();
+async function ready(env){
+ if(!configured(env))return false;
+ const cached=readiness.get(env);if(cached&&cached.until>Date.now())return cached.value;
+ let value=false;
+ try{const flows=await paynecta(env,'/tapflows?usable=true&per_page=100');const balance=await paynecta(env,'/balance');value=Array.isArray(flows)&&flows.some(f=>(f.slug===env.PAYNECTA_TAPFLOW||f.id===env.PAYNECTA_TAPFLOW)&&f.active===true&&f.open_amount===true&&f.can_collect===true)&&balance.can_collect===true;}catch{}
+ readiness.set(env,{value,until:Date.now()+60000});return value;
+}
 export default {
  async fetch(request,env){
   const url=new URL(request.url);
@@ -108,9 +116,10 @@ export default {
   if(!allowed.includes(origin))return json({error:'origin_denied'},403);
   try{
    if(request.method==='OPTIONS')return new Response(null,{status:204,headers:{'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Methods':'GET,POST,OPTIONS','Access-Control-Allow-Headers':'Authorization,Content-Type,Idempotency-Key','Access-Control-Max-Age':'600','Vary':'Origin'}});
-   if(url.pathname==='/api/catalog'&&request.method==='GET')return json({enabled:!!configured(env),currency:'KES',termsVersion:TERMS,products:PRODUCTS},200,origin);
+   if(url.pathname==='/api/catalog'&&request.method==='GET')return json({enabled:await ready(env),currency:'KES',termsVersion:TERMS,products:PRODUCTS},200,origin);
    if(!configured(env))fail(503,'payments_not_ready');
    if(url.pathname==='/api/checkout'&&request.method==='POST'){
+    if(!await ready(env))fail(503,'payments_not_ready');
     if(!(request.headers.get('Content-Type')||'').startsWith('application/json'))fail(415,'invalid_request');
     return await createOrder(request,env,origin);
    }

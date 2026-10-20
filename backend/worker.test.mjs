@@ -9,7 +9,7 @@ let env,providerCalls,session;
 beforeEach(()=>{
  env={DB:database(),ASSETS:{fetch:()=>new Response('static')},PAYMENTS_ENABLED:'true',PAYNECTA_PUBLIC_KEY:'test-fixture-public',PAYNECTA_SECRET_KEY:'test-fixture-secret',PAYNECTA_TAPFLOW:'kitonyo'};
  providerCalls=[];session={id:'chk_fixture',url:'https://pay.paynecta.co.ke/s/chk_fixture#session-fixture',amount:500000,currency:'KES',reference:id};
- globalThis.fetch=async(url,options)=>{providerCalls.push({url,options});if(url.endsWith('/auth/token'))return Response.json({status:true,data:{access_token:'token-fixture',expires_in:3600}});return Response.json({status:true,data:session});};
+ globalThis.fetch=async(url,options)=>{providerCalls.push({url,options});if(url.endsWith('/auth/token'))return Response.json({status:true,data:{access_token:'token-fixture',expires_in:3600}});if(url.includes('/tapflows?'))return Response.json({status:true,data:[{slug:'kitonyo',active:true,open_amount:true,can_collect:true}]});if(url.endsWith('/balance'))return Response.json({status:true,data:{can_collect:true}});return Response.json({status:true,data:session});};
 });
 function payload(extra={}){return {items:[{id:'basic',quantity:1}],currency:'KES',language:'en',termsVersion:TERMS,acceptTerms:true,customer:{name:'Test Customer',email:'customer@example.com',brief:'Example business website'},...extra};}
 function create(body=payload(),key=id,auth=token){return worker.fetch(new Request(origin+'/api/checkout',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json',Authorization:'Bearer '+auth,'Idempotency-Key':key},body:JSON.stringify(body)}),env);}
@@ -20,7 +20,7 @@ test('prices come only from the server catalog, including quantities',()=>{
 test('rejects unsupported currencies and missing consent before contacting provider',async()=>{
  assert.equal((await create(payload({currency:'USD'}))).status,400);
  assert.equal((await create(payload({acceptTerms:false}))).status,400);
- assert.equal(providerCalls.length,0);
+ assert.equal(providerCalls.filter(x=>x.url.endsWith('/checkout_sessions')).length,0);
 });
 test('backend passes exact catalog amount and fixed frame origin; no customer PII goes to PayNecta',async()=>{
  const response=await create();assert.equal(response.status,201);
@@ -35,7 +35,7 @@ test('same order retry does not create a second session; changed basket is rejec
  assert.equal((await create(payload(),id,'b'.repeat(64))).status,401);
 });
 test('ambiguous provider timeout cannot create a duplicate session on retry',async()=>{
- globalThis.fetch=async()=>{throw Error('timeout');};
+ const provider=globalThis.fetch;globalThis.fetch=async(url,options)=>{if(url.endsWith('/checkout_sessions'))throw Error('timeout');return provider(url,options);};
  assert.equal((await create()).status,503);assert.equal((await create()).status,409);
  const stored=await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(id).first();assert.equal(stored.state,'creating');
 });
@@ -70,4 +70,8 @@ test('rate limit prevents unbounded creation by the same client',async()=>{
 test('scheduled reconciliation verifies a payment even after the browser is closed',async()=>{
  await create();session.payment={status:'succeeded',reference:'PN-FIXTURE',amount:500000,merchant_reference:id};await worker.scheduled({},env,{});
  assert.equal((await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(id).first()).state,'paid');
+});
+test('checkout stays disabled when the merchant has no usable TapFlow or fee credit',async()=>{
+ const provider=globalThis.fetch;globalThis.fetch=async(url,options)=>url.includes('/tapflows?')?Response.json({status:true,data:[]}):provider(url,options);
+ const response=await worker.fetch(new Request(origin+'/api/catalog'),env);assert.equal((await response.json()).enabled,false);assert.equal((await create()).status,503);assert.equal(providerCalls.filter(x=>x.url.endsWith('/checkout_sessions')).length,0);
 });

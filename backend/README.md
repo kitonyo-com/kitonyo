@@ -4,13 +4,13 @@ The existing EN/CZ static site keeps its design and adds a basket. Only KES (dis
 
 ## Deployment
 
-Deploy `kitonyo-checkout` to Cloudflare Workers, not GitHub Pages. Build: `node build-public.cjs`. Deploy: `npx wrangler@4 deploy`. The public asset allowlist excludes backend sources, secrets and repository metadata. Existing production remains on Cloudflare Pages until an explicit cutover.
+Deploy `kitonyo-checkout` to Cloudflare Workers, not GitHub Pages. Build: `node build-public.cjs`. Deploy: `npx wrangler@4 deploy --config wrangler.worker.jsonc`. The public asset allowlist excludes backend sources, secrets and repository metadata. Existing production remains on Cloudflare Pages until an explicit cutover.
 
-1. The EU-jurisdiction D1 database `kitonyo-orders` is configured in `wrangler.jsonc`. Apply `backend/schema.sql` once through the D1 console, or `npx wrangler@4 d1 execute kitonyo-orders --remote --file backend/schema.sql`.
+1. The EU-jurisdiction D1 database `kitonyo-orders` is configured in `wrangler.worker.jsonc`. Apply `backend/schema.sql` once through the D1 console, or `npx wrangler@4 d1 execute kitonyo-orders --remote --file backend/schema.sql`.
 2. Add `PAYNECTA_PUBLIC_KEY` and `PAYNECTA_SECRET_KEY` as encrypted Worker Secrets. Never place either key in HTML, source code, committed files, build variables or chat. The secret key must be entered by the owner in Cloudflare. The public key is also kept server-side.
 3. Finish the PayNecta `kitonyo` TapFlow: open amount, approved payout method, usable collection status, completed business verification and sufficient fee credit. Do not rotate keys unless intended: generating a replacement pair revokes the old pair.
 4. Add the actual preview origin to `ALLOWED_ORIGINS` for a controlled preview. For the current separate Pages frontend, set the `kitonyo-api` meta content on the six basket pages to the deployed Worker HTTPS origin. On the unified Worker site leave this value empty for same-origin API calls.
-5. Keep `PAYMENTS_ENABLED=false` until keys, schema and TapFlow readiness are verified. To enable, set it to `true` in the deployed configuration. Subsequent Wrangler deployments take variables from `wrangler.jsonc`; update it deliberately when enabling production.
+5. Keep `PAYMENTS_ENABLED=false` until keys, schema and TapFlow readiness are verified. To enable, set it to `true` in the deployed configuration. Subsequent Wrangler deployments take variables from `wrangler.worker.jsonc`; update it deliberately when enabling production.
 6. Use server-side `GET /whoami` and `GET /tapflows?usable=true` to verify the business and TapFlow before enabling. Do not log keys, access tokens or full provider responses.
 7. PayNecta currently has no sandbox. Unit tests use fixtures and do not send payment prompts or move money. A live acceptance payment must be performed by the owner. Never treat a test fixture as a real payment.
 
