@@ -13,6 +13,17 @@ beforeEach(()=>{
 });
 function payload(extra={}){return {items:[{id:'basic',quantity:1}],currency:'KES',language:'en',termsVersion:TERMS,acceptTerms:true,customer:{name:'Test Customer',email:'customer@example.com',brief:'Example business website'},...extra};}
 function create(body=payload(),key=id,auth=token){return worker.fetch(new Request(origin+'/api/checkout',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json',Authorization:'Bearer '+auth,'Idempotency-Key':key},body:JSON.stringify(body)}),env);}
+test('checkout does not ask for the name collected by PayNecta again',async()=>{
+ const response=await create(payload({customer:{email:'customer@example.com',brief:'Example business website'}}));
+ assert.equal(response.status,201);
+ const stored=await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(id).first();
+ assert.deepEqual(JSON.parse(stored.customer),{name:'',email:'customer@example.com',brief:'Example business website'});
+});
+test('email and project brief are still required without a name',async()=>{
+ assert.equal((await create(payload({customer:{email:'invalid',brief:'Example business website'}}))).status,400);
+ assert.equal((await create(payload({customer:{email:'customer@example.com',brief:''}}))).status,400);
+ assert.equal(providerCalls.filter(x=>x.url.endsWith('/checkout_sessions')).length,0);
+});
 test('prices come only from the server catalog, including quantities',()=>{
  assert.equal(priceCart([{id:'basic',quantity:2,amount:1}]).amount,1000000);
  for(const items of [[],[{id:'__proto__',quantity:1}],[{id:'basic',quantity:0}],[{id:'basic',quantity:1.5}],[{id:'basic',quantity:11}],[{id:'basic',quantity:1},{id:'basic',quantity:1}],[{id:'basic',quantity:1},{id:'signature',quantity:1}]])assert.throws(()=>priceCart(items));

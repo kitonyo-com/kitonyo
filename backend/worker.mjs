@@ -92,7 +92,7 @@ async function createOrder(request,env,origin){
  if(!['en','cs'].includes(body.language))fail(400,'invalid_language');
  const cart=priceCart(body.items);
  const customer={name:String(body.customer?.name||'').trim(),email:String(body.customer?.email||'').trim(),brief:String(body.customer?.brief||'').trim()};
- if(customer.name.length<2||customer.name.length>120||customer.email.length>254||!/^\S+@\S+\.\S+$/.test(customer.email)||customer.brief.length<10||customer.brief.length>2000)fail(400,'customer_required');
+ if(customer.name.length>120||customer.email.length>254||!/^\S+@\S+\.\S+$/.test(customer.email)||customer.brief.length<10||customer.brief.length>2000)fail(400,'customer_required');
  const tokenHash=await hash(bearer(request));
  const id=request.headers.get('Idempotency-Key');
  if(!/^[a-f0-9-]{36}$/.test(id||''))fail(400,'invalid_idempotency_key');
