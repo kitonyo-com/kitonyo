@@ -28,7 +28,7 @@ Read orders through the authenticated Cloudflare D1 console. Only `state=paid` i
 
 Kitonyo must email the customer the order confirmation and saved terms separately; this integration does not send email or generate invoices. Review the customer's brief and agreed scope before accepting/starting the project. Export the order details and applicable terms for that confirmation. No service work is started automatically.
 
-The first release intentionally has no public order-list/admin endpoint and no automated refunds or fulfillment. Refunds and payout destination changes remain merchant actions. Apply the existing privacy retention policy to D1 records and any backups; do not keep unsuccessful checkout personal data indefinitely. Do not enable request-body logging. Rate-limit buckets are salted hashes and expire after two minutes.
+There is no public order-list/admin endpoint and no automated refunds or fulfillment. Refunds and payout destination changes remain merchant actions. The [order retention runbook](RETENTION.md) defines confirmed closure, operator approval, legal holds, automatic removal of unnecessary failed-checkout data after 30 days, final erasure after 1,095 days, and manual review of unresolved/paid records. Cleanup defaults to disabled until the additive migration and record review are complete. Do not enable request-body logging. Rate-limit buckets are salted hashes and expire after two minutes (one hour for hourly buckets).
 
 Domain registration is a separate first-year item with a server-enforced minimum of KSh 650. A higher agreed whole-shilling amount is allowed; domain name, amount and quantity (one) are validated and saved with the order. Registration and renewals are performed manually after confirming availability and registrar cost.
 
@@ -36,6 +36,6 @@ Bot protection: set `TURNSTILE_REQUIRED=true`, publish `TURNSTILE_SITE_KEY`, and
 
 ## Validation
 
-`node --test backend/worker.test.mjs` checks pricing, input validation, origin restrictions, capability authorization, timeout/retry safety, rate limiting, strict settlement verification and browser-independent reconciliation. `node build-public.cjs` builds public-only output. Inspect EN/CZ index/add pages and currency switching in a browser before rollout.
+`node --test backend/worker.test.mjs backend/retention.test.mjs` checks payment integrity and retention, including ambiguous outcomes, paid markers, legal holds, concurrent changes and migration safety. All provider responses are fixtures; tests never make payments. `node build-public.cjs` builds public-only output; `node --test social-preview.test.cjs` checks its public assets/metadata. Inspect EN/CZ index/add pages and currency switching in a browser before rollout.
 
 Official contracts: https://docs.paynecta.co.ke/api/checkout-sessions/ · https://docs.paynecta.co.ke/api/embedded-checkout/ · https://api.paynecta.co.ke/v1/openapi.yaml

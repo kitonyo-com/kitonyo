@@ -1,3 +1,5 @@
+import {paymentMatches,expiredUnpaid,recordExpiredClosure,runRetention} from './retention.mjs';
+export {paymentMatches} from './retention.mjs';
 const BASE = 'https://api.paynecta.co.ke/v1';
 export const TERMS = '2026-10-20-paynecta-v2';
 // All amounts are integer KES cents. Browser amounts are never accepted.
@@ -45,9 +47,6 @@ async function paynecta(env,path,body,retry=true){
  if(!response.ok||result.status!==true)fail(503,'provider_unavailable');
  return result.data;
 }
-export function paymentMatches(order,session){
- return session?.id===order.session_id&&session.reference===order.id&&session.currency==='KES'&&session.amount===order.amount&&session.payment?.amount===order.amount&&session.payment?.merchant_reference===order.id&&session.payment?.status==='succeeded'&&typeof session.payment?.reference==='string';
-}
 async function verify(env,order){
  if(order.state==='paid'||!order.session_id)return order;
  if(order.checked_at&&Date.now()-order.checked_at<10000)return order;
@@ -60,7 +59,13 @@ async function verify(env,order){
   return {...order,state:'paid',payment_reference:session.payment.reference};
  }
  // Only the provider can release an expired checkout. Never release an unresolved payment.
- if(session?.id===order.session_id&&session.reference===order.id&&session.currency==='KES'&&session.amount===order.amount&&session.status==='expired'&&!session.payment)return {...order,state:'expired'};
+ if(expiredUnpaid(order,session))return recordExpiredClosure(env.DB,order,session);
+ if(order.state==='expired'||order.state==='closed_unpaid'){
+  // New contradictory evidence supersedes the old closure, including in the UI.
+  await env.DB.prepare("UPDATE orders SET state='pending' WHERE id=? AND session_id=? AND state IN ('expired','closed_unpaid') AND paid_at IS NULL AND payment_reference IS NULL").bind(order.id,order.session_id).run();
+  try{await env.DB.prepare('UPDATE order_retention SET disposal_approved_at=NULL,invalidated_at=? WHERE order_id=? AND session_id=?').bind(Date.now(),order.id,order.session_id).run();}catch{/* Missing retention migration keeps the order pending and retained. */}
+  return await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(order.id).first()||order;
+ }
  // Neither a return URL, session status, nor a browser message settles an order.
  return order;
 }
@@ -100,6 +105,7 @@ async function createOrder(request,env,origin){
  let order=await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(id).first();
  if(order){
   if(order.token_hash!==tokenHash)fail(401,'unauthorized');
+  if(order.state==='expired'||order.state==='closed_unpaid')fail(410,'order_closed');
   if(order.request_hash!==fingerprint)fail(409,'cart_changed');
   if(order.session_id)return json({id,sessionId:order.session_id,url:order.checkout_url,state:order.state,amount:order.amount,currency:'KES'},200,origin);
   fail(409,'checkout_uncertain');
@@ -146,16 +152,20 @@ export default {
     let order=await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(match[1]).first();
     if(!order||order.token_hash!==await hash(bearer(request)))fail(404,'order_not_found');
     order=await verify(env,order);
-    return json({id:order.id,state:order.state,amount:order.amount,currency:'KES',items:JSON.parse(order.items),paymentReference:order.state==='paid'?order.payment_reference:null},200,origin);
+    return json({id:order.id,state:order.state==='closed_unpaid'?'expired':order.state,amount:order.amount,currency:'KES',items:JSON.parse(order.items),paymentReference:order.state==='paid'?order.payment_reference:null},200,origin);
    }
    fail(404,'not_found');
   }catch(error){return json({error:error instanceof HttpError?error.code:'temporarily_unavailable'},error instanceof HttpError?error.status:503,origin);}
  },
  async scheduled(event,env,ctx){
-  if(!configured(env))return;
-  // Keep checking after the payer closes the browser; never expire a pending payment as failed.
-  const result=await env.DB.prepare("SELECT * FROM orders WHERE state='pending' AND created_at>? ORDER BY COALESCE(checked_at,0) LIMIT 30").bind(Date.now()-7*86400000).all();
-  for(const order of result.results){try{await verify(env,order);}catch{/* Retain pending and retry next cron. No credentials or provider payloads in logs. */}}
+  if(!env.DB)return;
+  if(configured(env)){
+   // Keep checking after the payer closes the browser; age is never proof of failure.
+   const result=await env.DB.prepare("SELECT * FROM orders WHERE state='pending' AND created_at>? ORDER BY COALESCE(checked_at,0) LIMIT 30").bind(Date.now()-7*86400000).all();
+   for(const order of result.results){try{await verify(env,order);}catch{/* Retain pending and retry. Never log provider/customer payloads. */}}
+  }
   await env.DB.prepare('DELETE FROM rate_limits WHERE expires_at<?').bind(Date.now()).run();
+  const retention=await runRetention(env,{fetchSession:order=>paynecta(env,'/checkout_sessions/'+encodeURIComponent(order.session_id))});
+  if(!retention.disabled)console.log('order_retention',JSON.stringify(retention));
  }
 };
