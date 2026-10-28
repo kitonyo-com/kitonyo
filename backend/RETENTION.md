@@ -21,7 +21,7 @@ Paid orders are deliberately not deleted automatically: this application does no
 
 ## Controlled rollout
 
-`ORDER_RETENTION_ENABLED` defaults to `false`, including the tracked Worker configuration. A deployment alone does not authorize cleanup of legacy records. No old record becomes eligible solely because a migration ran.
+`ORDER_RETENTION_ENABLED` is an explicit opt-in; the runtime defaults to disabled when it is absent. The tracked production configuration enables the scheduled maintenance after the additive D1 migration and a zero-eligible-record preflight on 28 October 2026. This does not approve disposal of any individual order. For new environments and database restores, keep the flag `false` until the steps below are complete. No old record becomes eligible solely because a migration ran.
 
 1. Run local fixture tests and build. Apply `backend/migrations/0001-order-retention.sql` to an existing D1 database; `backend/schema.sql` describes a fresh database. The additive migration must leave existing orders unchanged and may be rerun. Keep cleanup disabled while applying it.
 2. In the authenticated D1 console, inventory unresolved records, accepted work, receivables, invoices, complaints and external evidence. Existing `pending`/`creating` records stay unresolved. Protect any relevant closure with `legal_hold=1` and a non-sensitive reason; keep the fuller matter record outside this table.
